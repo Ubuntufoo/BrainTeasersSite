@@ -36,8 +36,11 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'livereload',
     'django.contrib.staticfiles',
+
+    # local apps
+    'livereload',
+    'games.apps.GamesConfig',
 ]
 
 MIDDLEWARE = [
