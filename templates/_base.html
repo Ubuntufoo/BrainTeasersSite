@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+  <script src="https://kit.fontawesome.com/0e33780c76.js" crossorigin="anonymous"></script>
+  <title>{% block title %}{% endblock %} | Play2Learn</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-dark bg-opacity-25">
+    <div class="container">
+      <a class="navbar-brand" href="#">Play2Learn</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse fw-bold" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'games:homepage' %}">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Games
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'games:anagram-game' %}">Anagram Hunt</a></li>
+              <li><a class="dropdown-item" href="{% url 'games:math-game' %}">Math Game</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  {% block main %}{% endblock %}
+
+  <footer class="flex-row justify-content-around text-center border-top fixed-bottom mb-5">
+    <div>&copy; 2022 Play2Learn.</div>
+    <div id="footLinks">
+      <a href="contact-us.html" target="_blank"><i class="fa-solid fa-envelope"></i></a>
+      <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://twitter.com" target="_blank"><i class="fa-brands fa-square-twitter"></i></a>
+      <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-square-facebook"></i></a>
+    </div>
+  </footer>
+  <script src="JS/Indexjs.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
