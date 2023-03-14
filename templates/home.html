@@ -1,6 +1,47 @@
 {% extends "_base.html" %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Home{% endblock title %}
 
 {% block main %}
+<main class="container p-5">
+  <section class="row text-center testimonials" id="test">
+    <h3 class="p-2">Witty Clients Say...</h3>
+    <blockquote cite="" id="blockquote" class="text-success"></blockquote>
+    <p id="authors" class="text-uppercase fst-italic"></p>
+  </section>
+
+  <section class="row">
+    <div class="col-lg-6 text-center">
+      <h2>Anagram Hunt</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eget risus massa. Morbi porttitor purus
+        mauris, nec
+        suscipit mi consectetur sit amet. Proin urna arcu, tristique vitae laoreet vel, maximus vitae nisi. Ut
+        volutpat est
+        felis, id mattis leo mattis tristique. Praesent vestibulum urna ac est rutrum ullamcorper. Donec ante ex,
+        tincidunt vel
+        imperdiet a, maximus viverra eros. Duis eu sem pellentesque augue convallis pretium quis eu urna. Integer quam
+        mi,
+        bibendum in mi vitae, congue rutrum nulla. Aenean sodales facilisis turpis, non hendrerit dolor rutrum ut.
+        <span class="invisible">test</span>
+        <span><i class="fa-solid fa-play text-success"></i></span>
+      </p>
+    </div>
+    <div class="col-lg-6 text-center">
+      <h2>Math Facts Practice</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eget risus massa. Morbi porttitor purus
+        mauris, nec
+        suscipit mi consectetur sit amet. Proin urna arcu, tristique vitae laoreet vel, maximus vitae nisi. Ut
+        volutpat est
+        felis, id mattis leo mattis tristique. Praesent vestibulum urna ac est rutrum ullamcorper. Donec ante ex,
+        tincidunt vel
+        imperdiet a, maximus viverra eros. Duis eu sem pellentesque augue convallis pretium quis eu urna. Integer quam
+        mi,
+        bibendum in mi vitae, congue rutrum nulla. Aenean sodales facilisis turpis, non hendrerit dolor rutrum ut.
+        <span class="invisible">test</span>
+        <span><i class="fa-solid fa-play text-success"></i></span>
+      </p>
+    </div>
+  </section>
+
+</main>
 {% endblock main %}
