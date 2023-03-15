@@ -42,6 +42,10 @@ class ContactUsView(TemplateView):
     template_name = "contact-us.html"
 
 
+class MyAccountView(TemplateView):
+    template_name = "my-account.html"
+
+
 class HomeView(TemplateView):
     template_name = "home.html"
 

@@ -48,6 +48,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'games:login' %}">Login</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'games:my-account' %}">My Account</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -59,7 +62,7 @@
     {% endblock main %}
   </main>
 
-  <footer class="flex-row justify-content-around text-center border-top">
+  <footer class="flex-row justify-content-around text-center border-top fixed-bottom">
     <div>&copy; 2022 Play2Learn.</div>
     <div id="footLinks">
       <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>

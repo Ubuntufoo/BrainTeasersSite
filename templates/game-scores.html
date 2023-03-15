@@ -3,10 +3,10 @@
 {% block title %}Game Scores{% endblock title %}
 {% block main %}
 <div class="container mt-5 mb-5 pb-5">
-  <h1 class="text-center">Game Scores</h1>
+  <h1 class="text-center">User Scores</h1>
   <div class="row justify-content-center mt-5">
     <div class="col-lg-6">
-      <h2 class="text-center">Math Game</h2>
+      <h2 class="text-center mb-4">Math Game</h2>
       <ol class="list-group">
         {% for score in math_scores %}
         <li class="list-group-item">{{score.score}}: ({{ score.user_name }} - {{ score.created }})</li>
@@ -14,7 +14,28 @@
       </ol>
     </div>
     <div class="col-lg-6">
-      <h2 class="text-center">Anagram Game</h2>
+      <h2 class="text-center mb-4">Anagram Game</h2>
+      <ol class="list-group">
+        {% for score in anagram_scores %}
+        <li class="list-group-item">{{score.score}}: ({{ score.user_name }} - {{ score.created }})</li>
+        {% endfor %}
+      </ol>
+    </div>
+  </div>
+</div>
+<div class="container mt-5 mb-5 pb-5">
+  <h1 class="text-center">Leader Boards</h1>
+  <div class="row justify-content-center mt-5">
+    <div class="col-lg-6">
+      <h2 class="text-center mb-4">Math Game</h2>
+      <ol class="list-group">
+        {% for score in math_scores %}
+        <li class="list-group-item">{{score.score}}: ({{ score.user_name }} - {{ score.created }})</li>
+        {% endfor %}
+      </ol>
+    </div>
+    <div class="col-lg-6">
+      <h2 class="text-center mb-4">Anagram Game</h2>
       <ol class="list-group">
         {% for score in anagram_scores %}
         <li class="list-group-item">{{score.score}}: ({{ score.user_name }} - {{ score.created }})</li>
