@@ -1,17 +1,15 @@
 
 <template>
   <Main />
-  <p>Record your score and join the leader boards!</p>
-  <div>
+
+  <div class="d-flex flex-column justify-content-center align-items-center mb-5">
     <div>
-      <label for="user-name">Username</label>
-      <input type="user-name" id="user-name" v-model="userName" />
+      <label for="user-name" class="form-label">Username</label>
+      <input type="text" class="form-control mb-3" id="user-name" v-model="userName" />
+      <label for="score" class="form-label">Score</label>
+      <input type="number" class="form-control mb-3" id="score" v-model="score" />
+      <button class="btn btn-primary" @click="recordScore">Record Score</button>
     </div>
-    <div>
-      <label for="score">Score</label>
-      <input name="score" type="number" id="score" v-model="score" />
-    </div>
-    <button @click="recordScore">Record Score</button>
   </div>
 </template>
 

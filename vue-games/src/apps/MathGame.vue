@@ -59,21 +59,17 @@
       <div class="text-center">
         <input type="submit" name="playAgain" id="playAgain" value="Play Again" class="btn btn-success">
       </div>
-      <div>
-        <p>Record your score and join the leader boards!</p>
+      <div class="d-flex flex-column justify-content-center align-items-center m-5">
         <div>
-          <label for="user-name">Username</label>
-          <input type="user-name" id="user-name" v-model="userName" />
+          <label for="user-name" class="form-label">Username</label>
+          <input type="text" class="form-control mb-3" id="user-name" v-model="userName" />
+          <label for="score" class="form-label">Score</label>
+          <input type="number" class="form-control mb-3" id="score" v-model="score" />
+          <button class="btn btn-success" @click="recordScore">Record Score</button>
         </div>
-        <div>
-          <label for="score">Score</label>
-          <input name="score" type="number" id="score" v-model="score" />
-        </div>
-        <button @click="recordScore">Record Score</button>
       </div>
     </section>
   </div>
-  <p>Record your score and join the leader boards!</p>
 </template>
 
 <script>
