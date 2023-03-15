@@ -34,6 +34,14 @@ class GameScoresView(TemplateView):
         return context
 
 
+class LoginView(TemplateView):
+    template_name = "login.html"
+
+
+class ContactUsView(TemplateView):
+    template_name = "contact-us.html"
+
+
 class HomeView(TemplateView):
     template_name = "home.html"
 

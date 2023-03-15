@@ -42,10 +42,10 @@
                 </ul>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="about.html">About</a>
+                <a class="nav-link" href="{% url 'games:contact-us' %}">Contact Us</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="login.html">Login</a>
+                <a class="nav-link" href="{% url 'games:login' %}">Login</a>
               </li>
             </ul>
           </div>
@@ -57,7 +57,6 @@
   <footer class="flex-row justify-content-around text-center border-top">
     <div>&copy; 2022 Play2Learn.</div>
     <div id="footLinks">
-      <a href="contact-us.html" target="_blank"><i class="fa-solid fa-envelope"></i></a>
       <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
       <a href="https://twitter.com" target="_blank"><i class="fa-brands fa-square-twitter"></i></a>
       <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-square-facebook"></i></a>
