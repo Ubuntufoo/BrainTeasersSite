@@ -2,7 +2,7 @@ import json
 from django.http import JsonResponse
 from games.models import GameScore
 
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 
 
 def record_score(request):
@@ -22,7 +22,10 @@ def record_score(request):
     return JsonResponse(response)
 
 
-class GameScoresView(TemplateView):
+class GameScoresView(ListView):
+
+    model = GameScore
+
     template_name = "game-scores.html"
 
     def get_context_data(self, **kwargs):
