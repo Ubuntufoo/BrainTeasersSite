@@ -1,20 +1,19 @@
 {% extends '_base.html' %}
 
-{% block html %}
 
-<head>
-  {% block head %}{{ block.super }}{% endblock head %}
-  <script defer src="http://localhost:8080/js/chunk-vendors.js"></script>
-  <script defer src="http://localhost:8080/js/app.js"></script>
-</head>
 
-<body>
-  {% block body %}
-  {{ block.super }}
-  <div id="app"></div>
-  <!-- built files will be auto injected -->
-  {% endblock body %}
-</body>
-{% endblock html %}
 
-</html>
+{% block head %}
+{{ block.super }}
+<script defer src="http://localhost:8080/js/chunk-vendors.js"></script>
+<script defer src="http://localhost:8080/js/app.js"></script>
+{% endblock head %}
+
+
+{% block body %}
+{{ block.super }}
+{% block main %}
+<div id="app"></div>
+<!-- built files will be auto injected -->
+{% endblock main %}
+{% endblock body %}
