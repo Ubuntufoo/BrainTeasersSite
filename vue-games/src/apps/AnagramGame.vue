@@ -1,5 +1,6 @@
 
 <template>
+  <Main />
   <p>This is the Anagram Game Vue.</p>
   <div>
     <div>
@@ -15,8 +16,14 @@
 </template>
 
 <script>
+
+import Main from '../components/Main';
+
 export default {
   name: 'AnagramGame',
+  components: {
+    Main
+  },
   data() {
     return {
       userName: '',
