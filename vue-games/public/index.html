@@ -1,26 +1,16 @@
 {% extends '_base.html' %}
 
-{% block html %}
+{% block head %}
+{{ block.super }}
+<script defer src="http://localhost:8080/js/chunk-vendors.js"></script>
+<script defer src="http://localhost:8080/js/app.js"></script>
+{% endblock head %}
 
-<html lang="en">
 
-<head>
-  {% block head %}{{ block.super }}{% endblock head %}
-</head>
-
-<body>
-  {% block body %}
-  {{ block.super }}
-  <noscript>
-    <strong>
-      We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
-        Please enable it to continue.
-    </strong>
-  </noscript>
-  <div id="app"></div>
-  <!-- built files will be auto injected -->
-  {% endblock body %}
-</body>
-
-</html>
-{% endblock html %}
+{% block body %}
+{{ block.super }}
+{% block main %}
+<div id="app"></div>
+<!-- built files will be auto injected -->
+{% endblock main %}
+{% endblock body %}

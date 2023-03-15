@@ -60,6 +60,7 @@
         <input type="submit" name="playAgain" id="playAgain" value="Play Again" class="btn btn-success">
       </div>
       <div>
+        <p>Record your score and join the leader boards!</p>
         <div>
           <label for="user-name">Username</label>
           <input type="user-name" id="user-name" v-model="userName" />
@@ -72,6 +73,7 @@
       </div>
     </section>
   </div>
+  <p>Record your score and join the leader boards!</p>
 </template>
 
 <script>

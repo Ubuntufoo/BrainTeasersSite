@@ -1,7 +1,7 @@
 
 <template>
   <Main />
-  <p>This is the Anagram Game Vue.</p>
+  <p>Record your score and join the leader boards!</p>
   <div>
     <div>
       <label for="user-name">Username</label>
