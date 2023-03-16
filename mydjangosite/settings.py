@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # local apps
     'livereload',
     'games.apps.GamesConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
@@ -103,6 +104,9 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+# AUTHENTICATION SETTINGS
+AUTH_USER_MODEL = 'users.CustomUsers'
 
 
 # Internationalization
