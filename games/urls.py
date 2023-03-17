@@ -6,8 +6,7 @@ app_name = 'games'
 urlpatterns = [
     path('', HomeView.as_view(), name='homepage'),
     path('contact-us/',  ContactUsView.as_view(), name='contact-us'),
-    path('login/', LoginView.as_view(), name='login'),
-    path('my-account/', MyAccountView.as_view(), name='my-account'),
+
     path('math-game/', MathGameView.as_view(), name='math-game'),
     path('anagram-game/', AnagramGameView.as_view(), name='anagram-game'),
     path('game-scores/',  GameScoresView.as_view(), name='game-scores'),
