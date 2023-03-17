@@ -1,7 +1,7 @@
 import json
 from django.http import JsonResponse
 from games.models import GameScore
-
+from reviews.models import UserReview
 from django.views.generic import TemplateView, ListView
 
 
@@ -51,6 +51,12 @@ class MyAccountView(TemplateView):
 
 class HomeView(TemplateView):
     template_name = "home.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        reviews = UserReview.objects.all()
+        context['reviews'] = reviews
+        return context
 
 
 class MathGameView(TemplateView):
