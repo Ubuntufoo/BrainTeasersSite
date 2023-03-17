@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'games.apps.GamesConfig',
     'users.apps.UsersConfig',
     'contactus.apps.ContactusConfig',
+    'reviews.apps.ReviewsConfig',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
