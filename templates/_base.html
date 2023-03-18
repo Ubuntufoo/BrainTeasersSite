@@ -47,12 +47,29 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'contactus:form' %}">Contact Us</a>
               </li>
+              {% if not user.is_authenticated %}
               <li class="nav-item">
-                <a class="nav-link" href="">Login</a>
+                <a class="nav-link" href="{% url 'account_login' %}">Log in</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="">My Account</a>
+                <a class="nav-link" href="{% url 'account_signup' %}">Sign up</a>
               </li>
+              {% else %}
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Me
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="">My Account</a></li>
+                  <div class="dropdown-divider"></div>
+                  <form method="post" action="{% url 'account_logout' %}">
+                    {% csrf_token %}
+                    <button class="btn dropdown-item">Log out</button>
+                  </form>
+                </ul>
+              </li>
+              {% endif %}
             </ul>
           </div>
         </div>
@@ -64,8 +81,13 @@
     {% endblock main %}
   </main>
 
-  <footer class="flex-row justify-content-around text-center border-top fixed-bottom">
+  <footer class="flex-row justify-content-around text-center border-top">
     <div>&copy; 2022 Play2Learn.</div>
+    {% if user.is_staff %}
+    <li class="nav-item list-unstyled">
+      <a class="nav-link" href="/admin/">Admin</a>
+    </li>
+    {% endif %}
     <div id="footLinks">
       <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
       <a href="https://twitter.com" target="_blank"><i class="fa-brands fa-square-twitter"></i></a>
