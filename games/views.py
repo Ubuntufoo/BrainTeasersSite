@@ -1,8 +1,12 @@
 import json
 from django.http import JsonResponse
+from django.urls import reverse_lazy
 from games.models import GameScore
 from reviews.models import UserReview
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+from reviews.models import UserReview
 
 
 def record_score(request):
@@ -22,7 +26,7 @@ def record_score(request):
     return JsonResponse(response)
 
 
-class GameScoresView(ListView):
+class GameScoresView(LoginRequiredMixin, ListView):
 
     model = GameScore
 
@@ -30,10 +34,15 @@ class GameScoresView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(GameScoresView, self).get_context_data(**kwargs)
+        user = self.request.user
         context['anagram_scores'] = GameScore.objects.filter(
             game__exact='ANAGRAM').order_by('-score')
         context['math_scores'] = GameScore.objects.filter(
             game__exact='MATH').order_by('-score')
+        context['user_anagram_scores'] = GameScore.objects.filter(
+            user=user, game__exact='ANAGRAM').order_by('-score')
+        context['user_math_scores'] = GameScore.objects.filter(
+            user=user, game__exact='MATH').order_by('-score')
         return context
 
 
@@ -49,8 +58,17 @@ class MyAccountView(TemplateView):
     template_name = "my-account.html"
 
 
-class HomeView(TemplateView):
+class HomeView(CreateView):
+
+    model = UserReview
+    fields = ['rating', 'comment']
+
     template_name = "home.html"
+    success_url = reverse_lazy('games:homepage')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

@@ -1,9 +1,8 @@
 from django import forms
-from .models import UserReviews
+from .models import UserReview
 
 
-class UserReviewForm(forms.Form):
-
-    rating = forms.IntegerField()
-    comment = forms.CharField(
-        widget=forms.Textarea(attrs={"rows": 5, "cols": 50}))
+class UserReviewForm(forms.ModelForm):
+    class Meta:
+        model = UserReview
+        fields = ['rating', 'comment']
