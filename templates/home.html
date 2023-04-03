@@ -17,7 +17,8 @@
     <div class="row justify-content-center">
       <div class="col-md-6 d-flex justify-content-center mb-4">
         <div class="card border border-primary rounded-lg  h-100">
-          <div class="card-body d-flex flex-column justify-content-between bg-secondary text-white">
+          <div class="card-body d-flex flex-column justify-content-between"
+            style="background-color:  #006475; color: #ffffff">
             <h5 class="card-title py-2 text-center">Anagram Game</h5>
             <p class="card-text text-center">
               Anagram Game is a fun word game where you have to guess as many anagrams of a starting word as you can in
@@ -33,7 +34,8 @@
       </div>
       <div class="col-md-6 d-flex justify-content-center mb-4">
         <div class="card border border-primary rounded-lg  h-100">
-          <div class="card-body d-flex flex-column justify-content-between bg-secondary text-white">
+          <div class="card-body d-flex flex-column justify-content-between"
+            style="background-color:  #006475; color: #ffffff">
             <h5 class="card-title py-2 text-center">Math Game</h5>
             <p class="card-text text-center">
               Math Game is a fun game where you have to solve as many equations as you can in 30 seconds.
@@ -58,11 +60,11 @@
           {% else %}
           <div class="carousel-item text-center">
             {% endif %}
-            <div class="card bg-info">
+            <div class="card" style="background-color: #006475; color: #ffffff">
               <div class="card-body">
                 <h3 class="card-title font-weight-bold">{{ review.user.first_name }}</h3>
                 <p class="card-text">{{ review.comment }}</p>
-                <p class="card-text"><small class="text-muted">Rating: {{ review.rating }}</small></p>
+                <p class="card-text"><small>Rating: {{ review.rating }}</small></p>
               </div>
             </div>
           </div>
