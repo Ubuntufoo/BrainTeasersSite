@@ -1,7 +1,7 @@
-//const { defineConfig } = require('@vue/cli-service')
-//module.exports = defineConfig({
-//  transpileDependencies: true
-//})
+const { defineConfig } = require('@vue/cli-service')
+module.exports = defineConfig({
+  transpileDependencies: true
+})
 
 module.exports = {
   publicPath: 'http://localhost:8080', // The base URL where your app will be deployed
