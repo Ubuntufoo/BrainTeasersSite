@@ -9,9 +9,9 @@ import App from "./App";
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
 
-const app = createApp(App);
+const app = createApp(App); // create our app instance
 
-app.use(router);
+app.use(router); // tell our app to use the router
 app.use(VueAxios, axios);
 
-app.mount("#app");
+app.mount("#app"); // mount our app on the div#app element in our template

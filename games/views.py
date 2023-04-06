@@ -16,7 +16,8 @@ def record_score(request):
     game = data["game"]
     score = data["score"]
 
-    new_score = GameScore(user_name=user_name, game=game, score=score)
+    new_score = GameScore(user_name=user_name, game=game,
+                          score=score, user=request.user)
     new_score.save()
 
     response = {

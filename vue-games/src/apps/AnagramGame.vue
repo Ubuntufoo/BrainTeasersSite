@@ -36,9 +36,17 @@ export default {
         "game": "ANAGRAM"
       };
 
-      const response = (await this.axios.post("/record-score/", data)).data;
+      try {
+        const response = (await this.axios.post("/record-score/", data)).data;
+        console.log(response);
+        console.log(response.data);
+      } catch (error) {
+        console.error(error.response.data);     // NOTE - use "error.response.data` (not "error")
+      }
 
-      console.log(response);
+
+
+
     }
   }
 }
