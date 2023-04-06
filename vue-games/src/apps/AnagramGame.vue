@@ -15,7 +15,7 @@
 
 <script>
 
-import Main from '../components/Main';
+import Main from '../components/AnagramComps/Main';
 
 export default {
   name: 'AnagramGame',

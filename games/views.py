@@ -5,10 +5,14 @@ from games.models import GameScore
 from reviews.models import UserReview
 from django.views.generic import TemplateView, ListView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 from reviews.models import UserReview
 
+# not currently working , no redirect occurs
 
+
+@login_required(login_url="account_login")
 def record_score(request):
     data = json.loads(request.body)
 
