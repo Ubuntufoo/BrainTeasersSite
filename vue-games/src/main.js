@@ -1,3 +1,4 @@
+// Vue app created with options API
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 

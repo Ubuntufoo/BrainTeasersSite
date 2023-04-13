@@ -4,10 +4,10 @@
     <div v-if="screen === 'config'" id="config-container">
 
       <SelectInput :options="numbers" v-model="WordLength" />
-      <ol>
+      <ol class="fs-5">
         <li>Choose Word Length</li>
         <li>Press <span class="fw-bold">Play!</span></li>
-        <li>How many anagrams can you find in a minute?</li>
+        <li>Find anagrams! You get 60 seconds</li>
       </ol>
       <PlayButton @play-button-click="play" />
     </div>
