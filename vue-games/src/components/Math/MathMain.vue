@@ -2,11 +2,11 @@
   <main id="main-container">
     <div v-if="screen === 'config'" id="config-container">
       <h1>Mathificent</h1>
-      <SelectInput :currentValue="operation" label="Operation"
+      <MathSelectInput :currentValue="operation" label="Operation"
         id="operation" v-model="operation" :options="operations" />
-      <SelectInput :currentValue="maxNumber" label="Maximum Number"
+      <MathSelectInput :currentValue="maxNumber" label="Maximum Number"
         id="max-number" v-model="maxNumber" :options="numbers" />
-      <PlayButton @play-button-click="play" />
+      <MathPlayButton @play-button-click="play" />
     </div>
     <div v-else-if="screen === 'play'" id="game-container" class="text-center">
       <transition name="slide">
@@ -32,14 +32,14 @@
           <div>
             <div class="row border-bottom" id="scoreboard">
               <div class="col px-3 text-left">
-                <Score :score="score" />
+                <MathScore :score="score" />
               </div>
               <div class="col px-3 text-right">
-                <Timer :timeLeft="timeLeft" />
+                <MathTimer :timeLeft="timeLeft" />
               </div>
             </div>
             <div :class="equationClass" id="equation">
-              <Equation :question="question"
+              <MathEquation :question="question"
                 :answer="input"
                 :answered="answered" />
             </div>
@@ -60,20 +60,20 @@
 </template>
 
 <script>
-  import SelectInput from './SelectInput';
-  import PlayButton from './PlayButton';
-  import Score from './Score';
-  import Timer from './Timer';
-  import Equation from './Equation';
+  import MathSelectInput from './MathSelectInput';
+  import MathPlayButton from './MathPlayButton';
+  import MathScore from './MathScore';
+  import MathTimer from './MathTimer';
+  import MathEquation from './MathEquation';
   import {randInt} from '../../helpers/helpers';
   export default {
     name: 'MainComp',
     components: {
-      SelectInput,
-      PlayButton,
-      Score,
-      Timer,
-      Equation
+      MathSelectInput,
+      MathPlayButton,
+      MathScore,
+      MathTimer,
+      MathEquation
     },
     data: function() {
       return {

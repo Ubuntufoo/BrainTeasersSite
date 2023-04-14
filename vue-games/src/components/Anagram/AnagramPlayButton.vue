@@ -8,6 +8,6 @@
 
 <script>
 export default {
-  name: 'PlayButton',
+  name: 'AnagramPlayButton',
 }
 </script>

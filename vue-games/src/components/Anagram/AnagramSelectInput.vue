@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: 'SelectInput',
+  name: 'AnagramSelectInput',
   props: {
     /* id: String,
     label: String, */

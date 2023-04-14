@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: 'AnswerInput',
+  name: 'AnagramAnswerInput',
   props: {
     value: String
   },

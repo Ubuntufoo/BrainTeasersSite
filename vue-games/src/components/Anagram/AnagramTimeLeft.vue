@@ -1,14 +1,14 @@
 <template>
   <div>
-    Score: {{ score }}
+    Time Left: {{ timeLeft }}
   </div>
 </template>
 
 <script>
 export default {
-  name: 'ScoreComp',
+  name: 'AnagramTimeLeft',
   props: {
-    score: Number
+    timeLeft: Number
   }
 }
 </script>

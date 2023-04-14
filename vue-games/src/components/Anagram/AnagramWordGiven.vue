@@ -7,7 +7,7 @@
 <script>
 
 export default {
-  name: 'WordGiven',
+  name: 'AnagramWordGiven',
   props: {
     startWord: String,
     answersLeft: Number

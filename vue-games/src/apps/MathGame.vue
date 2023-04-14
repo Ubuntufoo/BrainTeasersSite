@@ -1,5 +1,5 @@
 <template>
-  <Main />
+  <MathMain />
 
   <div class="d-flex flex-column justify-content-center align-items-center m-5">
     <div>
@@ -14,12 +14,12 @@
 
 <script>
 
-import Main from '../components/MathComps/Main';
+import MathMain from '../components/Math/MathMain';
 
 export default {
   name: 'MathGame',
   components: {
-    Main
+    MathMain
   },
   data() {
     return {

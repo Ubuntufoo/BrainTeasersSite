@@ -1,6 +1,6 @@
 
 <template>
-  <Main />
+  <AnagramMain />
 
   <div class="d-flex flex-column justify-content-center align-items-center mb-5">
     <div>
@@ -15,12 +15,12 @@
 
 <script>
 
-import Main from '../components/AnagramComps/Main';
+import AnagramMain from '../components/Anagram/AnagramMain';
 
 export default {
   name: 'AnagramGame',
   components: {
-    Main
+    AnagramMain
   },
   data() {
     return {
