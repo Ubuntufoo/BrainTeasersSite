@@ -1,18 +1,16 @@
+from django.views.generic import TemplateView
 import json
 from django.http import JsonResponse
 from django.urls import reverse_lazy
-from games.models import GameScore
+
 from reviews.models import UserReview
 from django.views.generic import TemplateView, ListView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.decorators import login_required
 
 from reviews.models import UserReview
+from games.models import GameScore
 
-# not currently working , no redirect occurs
 
-
-@login_required(login_url="account_login")
 def record_score(request):
     data = json.loads(request.body)
 
@@ -87,4 +85,9 @@ class MathGameView(TemplateView):
 
 
 class AnagramGameView(TemplateView):
-    template_name = "anagram-game.html"
+    template_name = 'anagram-game.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['username'] = self.request.user.username
+        return context

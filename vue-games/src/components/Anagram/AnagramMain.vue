@@ -9,6 +9,7 @@
         <li>Press <span class="fw-bold">Play!</span></li>
         <li>Find anagrams! You get 60 seconds</li>
       </ol>
+      {{ user }}
       <AnagramPlayButton @play-button-click="play" />
     </div>
     <div id="game-container" v-else-if="screen === 'play'">
@@ -32,6 +33,7 @@
       <h3 class="my-4">You Got:</h3>
       <p class="fs-1 fw-bold text-success">{{ finalScore }}</p>
       <p class="fs-2 fw-bold text-primary">Anagrams</p>
+      <AnagramRecordScore :finalScore="finalScore" :user="user" />
       <div>
         <a href="http://127.0.0.1:8000/anagram-game/" class="btn btn-dark form-control mt-3" role="button">Play Again</a>
       </div>
@@ -47,9 +49,10 @@ import AnagramScoreComp from './AnagramScoreComp';
 import AnagramTimeLeft from './AnagramTimeLeft';
 import AnagramWordGiven from './AnagramWordGiven';
 import AnagramAnswerInput from './AnagramAnswerInput';
+import AnagramRecordScore from './AnagramRecordScore.vue';
 
 export default {
-  name: 'MainComp',
+  name: 'MainComponent',
   components: {
     AnagramSelectInput,
     AnagramPlayButton,
@@ -57,7 +60,13 @@ export default {
     AnagramTimeLeft,
     AnagramWordGiven,
     AnagramAnswerInput,
+    AnagramRecordScore,
   },
+
+  props: {
+    user: String,
+  },
+
   data: function () {
     return {
       WordLength: '',
@@ -226,7 +235,6 @@ export default {
           ]
         ]
       }
-
     }
   },
   computed: {
