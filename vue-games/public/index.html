@@ -4,14 +4,15 @@
 {{ block.super }}
 {% endblock head %}
 
-
 {% block body %}
 {{ block.super }}
+
 {% block main %}
-<div id="app">
-  <router-view :user="{{ username }}"></router-view>
-</div>
+{{ username|json_script:"username" }}
+<div id="app"></div>
 <!-- built files will be auto injected -->
 {% endblock main %}
+
 {% csrf_token %}
+
 {% endblock body %}

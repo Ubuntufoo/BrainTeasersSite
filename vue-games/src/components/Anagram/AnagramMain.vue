@@ -8,8 +8,8 @@
         <li>Choose Word Length</li>
         <li>Press <span class="fw-bold">Play!</span></li>
         <li>Find anagrams! You get 60 seconds</li>
+
       </ol>
-      {{ user }}
       <AnagramPlayButton @play-button-click="play" />
     </div>
     <div id="game-container" v-else-if="screen === 'play'">

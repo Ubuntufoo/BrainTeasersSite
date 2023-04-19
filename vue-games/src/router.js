@@ -1,16 +1,16 @@
 import { createWebHistory, createRouter } from "vue-router";
 
 import AnagramMain from "./components/Anagram/AnagramMain.vue";
-import MathGame from "./apps/MathGame.vue";
+import MathMain from "./components/Math/MathMain.vue";
 
 const routes = [
   {
-    path: '/anagram-game',
-    component: AnagramMain
+    path: '/math-game',
+    component: MathMain
   },
   {
-    path: '/math-game',
-    component: MathGame
+    path: '/anagram-game',
+    component: AnagramMain
   }
 ];
 
