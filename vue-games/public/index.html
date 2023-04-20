@@ -8,8 +8,10 @@
 {{ block.super }}
 
 {% block main %}
-{{ username|json_script:"username" }}
-<div id="app"></div>
+
+<div id="app">
+  {{ username|json_script:"username" }}
+</div>
 <!-- built files will be auto injected -->
 {% endblock main %}
 

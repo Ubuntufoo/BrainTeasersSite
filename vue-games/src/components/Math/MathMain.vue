@@ -1,7 +1,7 @@
 <template>
   <main id="main-container">
     <div v-if="screen === 'config'" id="config-container">
-      <h1>Mathificent | {{ user }}</h1>
+      <h1>Mathificent | {{ user }}{{ user2 }}{{ testProp }}</h1>
 
       <MathSelectInput :currentValue="operation" label="Operation"
         id="operation" v-model="operation" :options="operations" />
@@ -72,7 +72,7 @@ import MathRecordScore from './MathRecordScore.vue';
 
 import {randInt} from '../../helpers/helpers';
 export default {
-  name: 'MainComp',
+  name: 'MathMainComponent',
   components: {
     MathSelectInput,
     MathPlayButton,
@@ -82,7 +82,9 @@ export default {
     MathRecordScore
   },
    props: {
-    user2: String,
+     user: String,
+     user2: String,
+     testProp: String
   },
   data: function() {
     return {

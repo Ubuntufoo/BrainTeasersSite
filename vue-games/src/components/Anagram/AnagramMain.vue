@@ -8,6 +8,7 @@
         <li>Choose Word Length</li>
         <li>Press <span class="fw-bold">Play!</span></li>
         <li>Find anagrams! You get 60 seconds</li>
+        {{ user }} {{  user2 }}
 
       </ol>
       <AnagramPlayButton @play-button-click="play" />
@@ -52,7 +53,7 @@ import AnagramAnswerInput from './AnagramAnswerInput';
 import AnagramRecordScore from './AnagramRecordScore.vue';
 
 export default {
-  name: 'MainComponent',
+  name: 'AnagramMainComponent',
   components: {
     AnagramSelectInput,
     AnagramPlayButton,
@@ -65,6 +66,7 @@ export default {
 
   props: {
     user: String,
+    user2: String,
   },
 
   data: function () {
