@@ -2,13 +2,12 @@
 <template>
   <div class="d-flex flex-column justify-content-center align-items-center mb-5">
     <button class="btn btn-primary" @click="recordScore">Record Score</button>
-    <p>{{ user }}</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'AnagramRecordScore',
+  name: "AnagramRecordScore",
 
   props: {
     finalScore: Number,
@@ -18,18 +17,23 @@ export default {
   methods: {
     async recordScore() {
       const data = {
-        "user-name": this.user, // include user in the data object
+        "user-name": this.user,
         "score": this.finalScore,
         "game": "ANAGRAM"
       };
 
       try {
-        const response = (await this.axios.post("/record-score/", data)).data;
+        const response = await this.axios.post("/record-score/", data);
         console.log(response.data);
       } catch (error) {
-        console.error(error);     // NOTE - use "error.response.data` for better results (not "error")
-        console.error(error.response);     // NOTE - use "error.response.data` for better results (not "error")
-        console.error(error.response.data);     // NOTE - use "error.response.data` for better results (not "error")
+        console.error(`Error recording score: ${error.message}`);
+        if (error.response && error.response.status === 404) {
+          console.error("Record not found");
+        } else if (error.response && error.response.status === 500) {
+          console.error("Server error");
+        } else {
+          console.error(`Unknown error: ${error.response.data}`);
+        }
       }
     }
   }

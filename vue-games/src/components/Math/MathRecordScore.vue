@@ -2,7 +2,6 @@
 <template>
   <div class="d-flex flex-column justify-content-center align-items-center mb-5">
     <button class="btn btn-primary" @click="recordScore">Record Score</button>
-    <p>{{ user2 }}</p>
   </div>
 </template>
 
@@ -12,7 +11,7 @@ export default {
 
   props: {
     finalScore: Number,
-    user2: String
+    user: String
   },
 
   methods: {

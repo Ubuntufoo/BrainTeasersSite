@@ -1,7 +1,7 @@
 <template>
   <main id="main-container">
     <div v-if="screen === 'config'" id="config-container">
-      <h1>Mathificent | {{ user }}</h1>
+      <h1>Mathificent</h1>
 
       <MathSelectInput :currentValue="operation" label="Operation"
         id="operation" v-model="operation" :options="operations" />
@@ -17,7 +17,7 @@
             <strong class="big">You Answered</strong>
             <div class="huge">{{score}}</div>
             <strong class="big">Questions Correctly</strong>
-            <MathRecordScore/>
+            <MathRecordScore :user="user" :finalScore="finalScore"/>
             <button class="btn btn-primary form-control m-1"
               v-on:click="restart()">
                 Play Again with Same Settings
@@ -100,7 +100,8 @@ export default {
       operands: {num1: '1', num2: '1'},
       answered: false,
       score: 0,
-      gameLength: 1,
+      finalScore: 0,
+      gameLength: 10,
       timeLeft: 0
     }
   },
@@ -122,6 +123,7 @@ export default {
       if (this.answered) {
         setTimeout(this.newQuestion, 300);
         this.score++;
+        this.finalScore++;
       }
     },
     clear() {
@@ -187,6 +189,7 @@ export default {
     },
     restart() {
       this.score = 0;
+      this.finalScore = 0;
       this.startTimer();
       this.newQuestion();
     },

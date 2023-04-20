@@ -1,7 +1,7 @@
 <template>
   <div class="row my-5">
     <div class="col-6">
-      <label class="col fw-bold text-uppercase" id="word-length">Word Length</label>
+      <label class="col fw-bold text-uppercase" for="word-length">Word Length</label>
     </div>
     <div class="col">
       <select class="col form-select" id="word-length" :value="modelValue"
@@ -18,15 +18,8 @@
 export default {
   name: 'AnagramSelectInput',
   props: {
-    /* id: String,
-    label: String, */
     options: Array,
     modelValue: String
-  },
-  data: function () {
-    return {
-
-    }
   }
 }
 </script>
