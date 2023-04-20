@@ -83,6 +83,11 @@ class HomeView(CreateView):
 class MathGameView(TemplateView):
     template_name = "math-game.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['username'] = self.request.user.username
+        return context
+
 
 class AnagramGameView(TemplateView):
     template_name = 'anagram-game.html'

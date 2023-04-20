@@ -1,5 +1,5 @@
 <template>
-  <router-view :user="parsedUser" :user2="parsedUser2" :testProp="testProp"/>
+  <router-view :user="parsedUser"/>
 </template>
 
 <script>
@@ -8,15 +8,11 @@ export default {
   data() {
     return {
       parsedUser: 'User not authenticated',
-      parsedUser2: 'User not authenticated',
-      testProp: 'User not authenticated'
-
     }
   },
   created() {
-    const parsedData = JSON.parse(document.getElementById('username').textContent);
-    this.parsedUser = parsedData;
-    this.parsedUser2 = parsedData;
+    this.parsedUser = JSON.parse(document.getElementById('username').textContent);
+
   },
 }
 </script>

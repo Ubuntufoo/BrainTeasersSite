@@ -1,7 +1,7 @@
 <template>
   <main id="main-container">
     <div v-if="screen === 'config'" id="config-container">
-      <h1>Mathificent | {{ user }}{{ user2 }}{{ testProp }}</h1>
+      <h1>Mathificent | {{ user }}</h1>
 
       <MathSelectInput :currentValue="operation" label="Operation"
         id="operation" v-model="operation" :options="operations" />
@@ -83,8 +83,6 @@ export default {
   },
    props: {
      user: String,
-     user2: String,
-     testProp: String
   },
   data: function() {
     return {
