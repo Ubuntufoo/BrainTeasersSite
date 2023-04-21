@@ -2,6 +2,7 @@ import { createWebHistory, createRouter } from "vue-router";
 
 import AnagramMain from "./components/Anagram/AnagramMain.vue";
 import MathMain from "./components/Math/MathMain.vue";
+import WordleMain from "./components/Wordle/WordleMain.vue";
 
 const routes = [
   {
@@ -11,7 +12,11 @@ const routes = [
   {
     path: '/anagram-game',
     component: AnagramMain
-  }
+  },
+  {
+    path: '/wordle-game',
+    component: WordleMain
+  },
 ];
 
 const router = createRouter({

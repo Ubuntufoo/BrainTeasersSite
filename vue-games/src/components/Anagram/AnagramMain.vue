@@ -1,5 +1,5 @@
 <template>
-  <main class="container w-25 border border-primary border-5 rounded-5 my-5 p-5">
+  <section class="container w-25 border border-primary border-5 rounded-5 my-5 p-5">
     <h1 class="text-center pb-2">Anagram Hunt</h1>
     <div v-if="screen === 'config'" id="config-container">
 
@@ -40,7 +40,7 @@
         <a href="http://127.0.0.1:8000/anagram-game/" class="btn btn-dark form-control mt-3" role="button">Play Again</a>
       </div>
     </div>
-  </main>
+  </section>
 </template>
 
 <script>

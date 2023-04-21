@@ -1,5 +1,5 @@
 <template>
-  <main id="main-container">
+  <section id="main-container">
     <div v-if="screen === 'config'" id="config-container">
       <h1>Mathificent</h1>
 
@@ -59,7 +59,7 @@
         </template>
       </transition>
     </div>
-  </main>
+  </section>
 </template>
 
 <script>
