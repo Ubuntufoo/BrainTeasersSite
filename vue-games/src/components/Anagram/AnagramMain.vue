@@ -51,7 +51,6 @@ import AnagramRecordScore from './AnagramRecordScore.vue';
 import { anagramsDict } from '../../helpers/anagramsDict.js';
 
 export default {
-
   name: 'AnagramMainComponent',
   components: {
     AnagramSelectInput,
@@ -62,11 +61,9 @@ export default {
     AnagramAnswerInput,
     AnagramRecordScore,
   },
-
   props: {
     user: String,
   },
-
   data: function () {
     return {
       WordLength: '',
@@ -88,11 +85,7 @@ export default {
   },
   computed: {
     numbers() {
-      const numbers = [];
-      for (let number = 5; number <= 8; number++) {
-        numbers.push([number, number]);
-      }
-      return numbers;
+      return Array.from({ length: 4 }, (_, i) => i + 5).map(n => [n, n]);
     },
   },
   methods: {
@@ -110,7 +103,6 @@ export default {
       if (this.score === 0) {
         this.newAnagram = this.anagrams;
       }
-
       const key = this.WordLength;
 
       if (this.newAnagram[key].length == 0) {
@@ -129,11 +121,10 @@ export default {
 
         console.log(`answer key: ${this.answerKey}`);
       }
-
       this.startTimer();
     },
     startTimer() {
-      if (this.timeLeft == 60) {
+      if (this.timeLeft === 60) {
         this.timer = setInterval(() => {
           this.timeLeft--;
           if (this.timeLeft === 0) {
