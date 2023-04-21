@@ -19,11 +19,11 @@
             <strong class="big">Questions Correctly</strong>
             <MathRecordScore :user="user" :finalScore="finalScore"/>
             <button class="btn btn-primary form-control m-1"
-              v-on:click="restart()">
+              v-on:click="restart">
                 Play Again with Same Settings
             </button>
             <button class="btn btn-secondary form-control m-1"
-              v-on:click="config()">
+              v-on:click="config">
                 Change Settings
             </button>
           </div>
@@ -51,7 +51,7 @@
                   v-for="button in buttons" :key="button"
                   @click="setInput(button)">{{button}}</button>
                 <button class="btn btn-primary" id="clear-button"
-                  @click="clear">Clear</button>
+                  @click="this.input = ''">Clear</button>
               </div>
 
             </div>
@@ -101,7 +101,7 @@ export default {
       answered: false,
       score: 0,
       finalScore: 0,
-      gameLength: 10,
+      gameLength: 6,
       timeLeft: 0
     }
   },
@@ -115,29 +115,20 @@ export default {
       this.startTimer();
     },
     setInput(value) {
-      this.input += String(value);
-      this.input = String(Number(this.input));
-      this.answered = this.checkAnswer(this.input,
-                                      this.operation,
-                                      this.operands);
+      this.input += String(Number(value));
+      this.answered = this.checkAnswer(this.input, this.operation, this.operands);
       if (this.answered) {
         setTimeout(this.newQuestion, 300);
         this.score++;
         this.finalScore++;
       }
     },
-    clear() {
-      this.input = '';
-    },
     getRandNumbers(operator, low, high) {
       let num1 = randInt(low, high);
       let num2 = randInt(low, high);
-      const numHigh = Math.max(num1, num2);
-      const numLow = Math.min(num1, num2);
 
-      if(operator === '-') { // Make sure higher num comes first
-        num1 = numHigh;
-        num2 = numLow;
+      if (operator === '-') { // Make sure higher num comes first
+        [num1, num2] = [Math.max(num1, num2), Math.min(num1, num2)];
       }
 
       if(operator === '/') {
@@ -149,8 +140,9 @@ export default {
       return {num1, num2};
     },
     checkAnswer(userAnswer, operation, operands) {
-      if (isNaN(userAnswer)) return false; // User hasn't answered
-
+      if (isNaN(userAnswer)) {
+        return false; // User hasn't answered
+      }
       let correctAnswer;
       switch(operation) {
         case '+':
@@ -165,7 +157,7 @@ export default {
         default: // division
           correctAnswer = operands.num1 / operands.num2;
       }
-      return (parseInt(userAnswer) === correctAnswer);
+      return (Number(userAnswer) === correctAnswer);
     },
     newQuestion() {
       this.input='';
@@ -212,18 +204,11 @@ export default {
       }
       return numbers;
     },
-    question: function() {
-      const num1 = this.operands.num1;
-      const num2 = this.operands.num2;
-      const equation = `${num1} ${this.operation} ${num2}`;
-      return equation;
+    question() {
+      return `${this.operands.num1} ${this.operation} ${this.operands.num2}`;
     },
-    equationClass: function() {
-      if (this.answered) {
-        return 'row text-primary my-2 fade';
-      } else {
-        return 'row text-secondary my-2';
-      }
+    equationClass() {
+      return this.answered ? 'row text-primary my-2 fade' : 'row text-secondary my-2';
     }
   }
 }
