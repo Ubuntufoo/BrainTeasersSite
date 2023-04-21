@@ -24,6 +24,9 @@
         <AnagramWordGiven :startWord="startWord" :answersLeft="answersLeft" />
         <AnagramAnswerInput v-model="answered" @change="answerChk(answered)" />
         <ol id="answer-list" class="pt-5 text-success fw-bold fs-2">
+          <li v-for="item in correctAnswers" :key="item.id">
+            {{ item }}
+          </li>
         </ol>
       </div>
     </div>
@@ -49,8 +52,10 @@ import AnagramWordGiven from './AnagramWordGiven';
 import AnagramAnswerInput from './AnagramAnswerInput';
 import AnagramRecordScore from './AnagramRecordScore.vue';
 import { anagramsDict } from '../../helpers/anagramsDict.js';
+import { getRandom } from '../../helpers/helpers.js';
 
 export default {
+
   name: 'AnagramMainComponent',
   components: {
     AnagramSelectInput,
@@ -61,9 +66,11 @@ export default {
     AnagramAnswerInput,
     AnagramRecordScore,
   },
+
   props: {
     user: String,
   },
+
   data: function () {
     return {
       WordLength: '',
@@ -73,11 +80,12 @@ export default {
       randWordIndex: '',
       answered: '',
       answerKey: '',
+      correctAnswers: [],
       answersLeft: 0,
       score: 0,
       finalScore: 0,
       startTime: '',
-      timeLeft: 60,
+      timeLeft: 600,
       screen: 'config',
       newAnagram: {},
       anagrams: anagramsDict
@@ -103,28 +111,28 @@ export default {
       if (this.score === 0) {
         this.newAnagram = this.anagrams;
       }
+
       const key = this.WordLength;
 
       if (this.newAnagram[key].length == 0) {
         this.screen = "game-over";
         this.gameOver();
       } else {
-        this.randArrayIndex = this.getRandom(this.newAnagram[key].length);
-        this.randWordIndex = this.getRandom(this.newAnagram[key][this.randArrayIndex].length);
+        this.randArrayIndex = getRandom(this.newAnagram[key].length);
+        this.randWordIndex = getRandom(this.newAnagram[key][this.randArrayIndex].length);
         this.startArray = this.newAnagram[key][this.randArrayIndex];
         this.startWord = this.newAnagram[key][this.randArrayIndex][this.randWordIndex];
-
         this.startArray.splice(this.randWordIndex, 1);
-
         this.answerKey = this.startArray;
         this.answersLeft = this.answerKey.length;
 
         console.log(`answer key: ${this.answerKey}`);
       }
+
       this.startTimer();
     },
     startTimer() {
-      if (this.timeLeft === 60) {
+      if (this.timeLeft == 60) {
         this.timer = setInterval(() => {
           this.timeLeft--;
           if (this.timeLeft === 0) {
@@ -145,13 +153,12 @@ export default {
           this.answered = '';
           this.answersLeft--;
           this.answerKey.splice(indexOfAnswer, 1);  // Improper testing of this.answerKey.splice(i, 1) , now corrected.
-          this.answerList(i);
+          this.renderAnswer(i);
 
           console.log(`updated answer key: ${this.answerKey}`);
 
           if (this.answerKey.length == 0) {
-            const domOl = document.getElementById('answer-list');
-            domOl.innerHTML = "";
+            this.correctAnswers = [];
             this.newAnagram[this.WordLength].splice([this.randArrayIndex], 1);
             this.play();
           }
@@ -160,15 +167,8 @@ export default {
         }
       }
     },
-    getRandom(max) {
-      return Math.floor(Math.random() * max);
-    },
-    answerList(text) {
-      const newLiNode = document.createElement("li");
-      const nodeContent = document.createTextNode(text);
-      newLiNode.appendChild(nodeContent);
-      const domOl = document.getElementById('answer-list');
-      domOl.appendChild(newLiNode);
+    renderAnswer(answer) {
+      this.correctAnswers.push(answer);
     }
   }
 }
