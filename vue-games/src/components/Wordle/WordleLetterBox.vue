@@ -15,7 +15,7 @@ const props = defineProps({
 
 <template>
   <div
-    class="border border-secondary rounded text-uppercase text-center py-3 px-4 shadow"
+    class="rounded text-uppercase shadow fs-1 d-flex justify-content-center align-items-center"
     :class="{
     'bg-secondary text-white'
     : color == 'gray',
@@ -28,3 +28,11 @@ const props = defineProps({
     {{ letter }}
   </div>
 </template>
+
+<style lang="css" scoped>
+div {
+  height: 90px;
+  width: 90px;
+}
+</style>
+

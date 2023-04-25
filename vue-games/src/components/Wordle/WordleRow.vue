@@ -44,7 +44,7 @@ watch(
 </script>
 
 <template>
-  <div class="d-flex gap-2">
+  <div class="d-flex gap-1">
     <WordleLetterBox
     v-for="i in 5"
     :key="i"
