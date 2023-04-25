@@ -1,22 +1,45 @@
 <script setup>
-import { onMounted, reactive } from "vue";
+import { onMounted, reactive, computed } from "vue";
 import SimpleKeyboard from "./WordleKeyboard.vue"
 import WordleRow from "./WordleRow.vue";
 
 const state = reactive({
   solution: "books",
-  guesses: ["", "", "", "", "", "", ""],
+  guesses: ["", "", "", "", "", ""],
   currentGuessIndex: 0,
-})
+  guessedLetters: {
+    miss: [],
+    found: [],
+    hint: [],
+  }
+});
+
+const wonGame = computed(
+  () => state.guesses[state.currentGuessIndex - 1] === state.solution,
+);
+
+const lostGame = computed(() => !wonGame.value
+  && state.currentGuessIndex >= 6
+);
 
 const handleInput = (key) => {
-  if (state.currentGuessIndex >= 6) {
+  if (state.currentGuessIndex >= 6 || wonGame.value) {
     return;
   }
   const currentGuess = state.guesses[state.currentGuessIndex];
 
   if (key == "{enter}") {
-    //SEND GUESS
+    state.currentGuessIndex++;
+    for (var i = 0; i < currentGuess.length; i++) {
+      let c = currentGuess.charAt(i);
+      if (c == state.solution.charAt(i)) {
+        state.guessedLetters.found.push(c);
+      } else if (state.solution.indexOf(c) != -1) {
+        state.guessedLetters.hint.push(c);
+      } else {
+        state.guessedLetters.miss.push(c);
+      }
+    }
   } else if (key == "{bksp}") {
     //REMOVE LAST LETTER
     state.guesses[state.currentGuessIndex] =
@@ -62,15 +85,23 @@ onMounted(() => {
   <div class="d-flex flex-column align-items-center">
     <div>
       <WordleRow
-      v-for="(guess, i)
-      in state.guesses"
-      :key="i" :value="guess"
+      v-for="(guess, i) in state.guesses"
+      :key="i"
+      :value="guess"
       :solution="state.solution"
       :submitted="i < state.currentGuessIndex"
-
       />
     </div>
-    <SimpleKeyboard @onKeyPress="handleInput"/>
+    <p v-if="wonGame" class="text-center">
+      Congratulations!
+    </p>
+    <p v-else-if="lostGame" class="text-center">
+      No more guesses left, better luck next time.
+    </p>
+    <SimpleKeyboard
+    @onKeyPress="handleInput"
+    :guessedLetters="state.guessedLetters"
+    />
   </div>
 
 </template>
@@ -81,10 +112,10 @@ onMounted(() => {
 .simple-keyboard {
   display: inline-flex;
   flex-direction: column;
-  background-color: #707070;
+  background-color: #d8d8d8;
   border-radius: 10px;
   box-shadow: 0px 0px 5px 1px #d2d2d2;
-  font-size: 1.5em;
+  font-size: 2em;
   width: fit-content;
   /* margin-top: 50px; */
 }
