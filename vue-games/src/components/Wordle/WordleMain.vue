@@ -1,11 +1,15 @@
 <!-- eslint-disable no-unused-vars -->
 <script setup>
-import { onMounted, reactive, computed, watch } from "vue";
+import { onMounted, reactive, computed, watch, defineProps } from "vue";
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import SimpleKeyboard from "./WordleKeyboard.vue"
 import WordleRow from "./WordleRow.vue";
 import WordleGameOver from "./WordleGameOver.vue";
+
+const props = defineProps({
+  user: String
+});
 
 const state = reactive({
   solution: "",
