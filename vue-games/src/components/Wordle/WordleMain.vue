@@ -1,6 +1,6 @@
 <!-- eslint-disable no-unused-vars -->
 <script setup>
-import { onMounted, reactive, computed } from "vue";
+import { onMounted, reactive, computed, watch } from "vue";
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import SimpleKeyboard from "./WordleKeyboard.vue"
@@ -8,8 +8,16 @@ import WordleRow from "./WordleRow.vue";
 import WordleGameOver from "./WordleGameOver.vue";
 
 const state = reactive({
-  solution: "books",
-  guesses: ["", "", "", "", "", ""], // all guesses are 5 characters long
+  solution: "",
+  guesses: ["", "", "", "", "", ""], //each item is a 5-character string
+  guessesSplit: [
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""],
+    ["", "", "", "", ""]
+  ],
   currentGuessIndex: 0,
   guessedLetters: {
     miss: [],
@@ -21,11 +29,9 @@ const state = reactive({
 const wonGame = computed(
   () => state.guesses[state.currentGuessIndex - 1] === state.solution,
 );
-
 const lostGame = computed(
   () => !wonGame.value && state.currentGuessIndex >= 6
 );
-
 const computedClass = computed(() => {
   let className = '';
   if (wonGame.value || lostGame.value) {
@@ -34,23 +40,36 @@ const computedClass = computed(() => {
   return className;
 });
 
+watch(
+  () => state.guesses,
+  (newGuesses) => {
+    for (let i = 0; i < state.guesses.length; i++) {
+      state.guessesSplit[i] = state.guesses[i].split("");
+    }
+  },
+  { deep: true }
+);
+
 const handleInput = (key) => {
+
   if (state.currentGuessIndex >= 6 || wonGame.value) {
+    console.log("Victory!")
     return;
   }
-  const currentGuess = state.guesses[state.currentGuessIndex];
+  const currentGuess = state.guesses[state.currentGuessIndex]
 
   if (key == "{enter}") {
     if (currentGuess.length >= 5) {
+      console.log("🚀 ~ file: WordleMain.vue:60 ~ handleInput ~ Enter pressed: guess submitted")
       state.currentGuessIndex++;
       for (var i = 0; i < currentGuess.length; i++) {
         let c = currentGuess.charAt(i);
         if (c == state.solution.charAt(i)) {
           state.guessedLetters.found.push(c);
-          state.guesses[state.currentGuessIndex - 1] =
-            state.guesses[state.currentGuessIndex - 1].substring(0, i) +
-            c +
-            state.guesses[state.currentGuessIndex - 1].substring(i + 1);
+          const charIndex = state.solution.indexOf(c);
+          state.guessesSplit.forEach((guess, x) => {
+            state.guessesSplit[x][charIndex] = c;
+          });
         } else if (state.solution.indexOf(c) != -1) {
           state.guessedLetters.hint.push(c);
         } else {
@@ -67,9 +86,19 @@ const handleInput = (key) => {
     const alphaRegex = /[a-zA-Z]/;
     if (alphaRegex.test(key)) {
       state.guesses[state.currentGuessIndex] += key;
+      console.log("🚀 ~ file: WordleMain.vue:91 ~ handleInput ~ This key added to guesses:", key)
     }
   }
 };
+
+axios.get('https://api.datamuse.com/words?sp=?????')
+  .then(response => {
+    const randomWord = response.data[Math.floor(Math.random() * response.data.length)].word;
+    state.solution = randomWord;
+  })
+  .catch(error => {
+    console.error(error);
+  });
 
 onMounted(() => {
   window.addEventListener("keyup", (e) => {
@@ -82,23 +111,12 @@ onMounted(() => {
           : e.key.toLowerCase();
     handleInput(key);
   });
-
-  axios.get('https://api.datamuse.com/words?sp=?????')
-    .then(response => {
-      const randomWord = response.data[Math.floor(Math.random() * response.data.length)].word;
-      state.solution = randomWord;
-    })
-    .catch(error => {
-      console.error(error);
-    });
-
   window.addEventListener("keydown", (e) => {
     const button = document.querySelector(`.hg-button[data-skbtn="${e.key.toLowerCase()}"]`);
     if (button) {
       button.style.backgroundColor = "#b3b3b3";
     }
   });
-
   window.addEventListener("keyup", (e) => {
     const button = document.querySelector(`.hg-button[data-skbtn="${e.key.toLowerCase()}"]`);
     if (button) {
@@ -112,7 +130,7 @@ onMounted(() => {
   <div :class="computedClass" class="d-flex flex-column align-items-center gap-4 mt-5">
     <div class="container d-flex flex-column gap-1 align-items-center">
       <WordleRow
-      v-for="(guess, i) in state.guesses"
+      v-for="(guess, i) in state.guessesSplit"
       :key="i"
       :value="guess"
       :solution="state.solution"

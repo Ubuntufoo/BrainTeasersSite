@@ -1,9 +1,10 @@
+<!-- eslint-disable no-unused-vars -->
 <script setup>
 import WordleLetterBox from "./WordleLetterBox.vue";
 
 import { defineProps, ref, watch } from 'vue';
 const props = defineProps({
-  value: String,
+  value: Array,
   solution: String,
   submitted: Boolean,
 });
@@ -12,11 +13,11 @@ const colors = ref(["", "", "", "", ""]);
 
 watch(
   () => props.submitted,
-  // eslint-disable-next-line no-unused-vars
+
   async (submitted, prevSubmitted) => {
     if (props.submitted) {
       let s = props.solution;
-      let v = props.value;
+      let v = props.value.join("");
 
       let temp = ["gray", "gray", "gray", "gray", "gray"];
       let letterPool = [];
