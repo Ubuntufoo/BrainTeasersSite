@@ -41,18 +41,18 @@ const computedClass = computed(() => {
   return className;
 });
 
-watchEffect(() => {
-  console.log("solution:", state.solution)
-});
-watchEffect(() => {
-  console.log("guesses:", JSON.stringify(state.guesses))
-});
-watchEffect(() => {
-  console.log("state.currentGuessIndex:", state.currentGuessIndex)
-});
-watchEffect(() => {
-  console.log("guessedLetters found:", JSON.stringify(state.guessedLetters.found))
-});
+// watchEffect(() => {
+//   console.log("solution:", state.solution)
+// });
+// watchEffect(() => {
+//   console.log("guesses:", JSON.stringify(state.guesses))
+// });
+// watchEffect(() => {
+//   console.log("state.currentGuessIndex:", state.currentGuessIndex)
+// });
+// watchEffect(() => {
+//   console.log("guessedLetters found:", JSON.stringify(state.guessedLetters.found))
+// });
 
 
 const handleInput = (key) => {
@@ -65,31 +65,25 @@ const handleInput = (key) => {
       state.currentGuessIndex++;
       for (var i = 0; i < 5; i++) {
         let c = currentGuess[i];
-        console.log("loop of currentGuess on enter-press:", i + 1, "char is:", c);
         if (c == state.solution.charAt(i)) {
           state.guessedLetters.found.push(c);
           state.guesses[state.currentGuessIndex][i] = c;
-          // for (var x = state.currentGuessIndex; x < state.guesses.length; x++) {
-          //   console.log("Match found: ", c, ". Loop for updating remaining rows beings now. loop count is:", x, ". Now updating", state.guesses[x]);
-          //   state.guesses[x][i] = c;
-          // }
         } else if (state.solution.indexOf(c) != -1) {
           state.guessedLetters.hint.push(c);
         } else {
           state.guessedLetters.miss.push(c);
         }
       }
-      console.log("currentGuess after loop:", JSON.stringify(currentGuess))
     }
   } else if (key == "{bksp}") {
     console.log("Backspace pressed. currentGuess array =", JSON.stringify(currentGuess))
     for (let i = currentGuess.length - 1; i >= 0; i--) {
-      console.log(">>Backspace loop<<. currentGuess array value at index", i, "=", currentGuess[i], ". Is", currentGuess[i], "included in state.guessedLetters.found? True or false:", Boolean(state.guessedLetters.found.includes(currentGuess[i])), "Also, does currentGuess[i] == state.solution.indexOf(currentGuess[i])? True or false:", Boolean(currentGuess.indexOf(currentGuess[i]) == state.solution.indexOf(currentGuess[i])));
+      console.log(">>Backspace loop<<. currentGuess array value at index", i, "=", currentGuess[i], ". Is", currentGuess[i], "included in state.guessedLetters.found? True or false:", Boolean(state.guessedLetters.found.includes(currentGuess[i])), "Also, does currentGuess[i] == state.solution[i]? True or false:", Boolean(currentGuess[i] == state.solution[i]));
       if (currentGuess[i] == "") {
         console.log("Option 1. Its an empty", typeof (currentGuess[i]), ". continue.")
         continue;
-      } else if (state.guessedLetters.found.includes(currentGuess[i]) && currentGuess.indexOf(currentGuess[i]) == state.solution.indexOf(currentGuess[i])) {
-        console.log("Option 2. It matches solution @index. CG index =", currentGuess.indexOf[currentGuess[i]], "solution index =", state.solution.indexOf[currentGuess[i]], "continue.")
+      } else if (state.guessedLetters.found.includes(currentGuess[i]) && currentGuess[i] == state.solution[i]) {
+        console.log("Option 2. It matches solution @index. CG index =", currentGuess[i], "solution index =", state.solution[i], "continue.")
         continue;
       } else {
         console.log("Option 3. Make this index = ''.")
@@ -153,7 +147,7 @@ onMounted(() => {
       :key="i"
       :value="guess"
       :solution="state.solution"
-      :submitted="i < state.currentGuessIndex"
+      :submitted="i <= state.currentGuessIndex"
       />
     </div>
     <div class="text-center">

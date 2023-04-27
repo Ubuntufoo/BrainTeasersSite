@@ -13,7 +13,6 @@ const colors = ref(["", "", "", "", ""]);
 
 watch(
   () => props.submitted,
-
   async (submitted, prevSubmitted) => {
     if (props.submitted) {
       let s = props.solution;
