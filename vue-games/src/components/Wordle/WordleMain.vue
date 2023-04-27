@@ -44,8 +44,7 @@ const computedClass = computed(() => {
 // watch(
 //   () => state.guesses,
 //   (newGuesses) => {
-//     for (let i = 0; i < state.guesses.length; i++) {
-//       state.guessesSplit[i] = state.guesses[i].split("");
+//     for (let i = 0; i < state.guesses.length; i++) {t
 //     }
 //   },
 //   { deep: true }
@@ -55,43 +54,54 @@ const handleInput = (key) => {
     return;
   }
   let currentGuess = state.guesses[state.currentGuessIndex]
-  console.log("🚀 ~ file: WordleMain.vue:59 ~ handleInput ~ currentGuess pre cond:", currentGuess)
 
   if (key == "{enter}") {
     if (currentGuess.length >= 5) {
       state.currentGuessIndex++;
-      for (var i = 0; i < currentGuess.length; i++) {
+      for (var i = 0; i < 5; i++) {
         let c = currentGuess[i];
+        console.log("loop of currentGuess on enter-press:", i + 1, "char is:", c);
         if (c == state.solution.charAt(i)) {
           state.guessedLetters.found.push(c);
-          const charIndex = state.solution.indexOf(c);
-          currentGuess.forEach((guess, x) => {
-            currentGuess[x][charIndex] = c;
-            console.log("At index:", currentGuess[x].indexOf(c, charIndex), ", placing:", c);
-          });
+          console.log("Match found: ", c, ". Loop for updating remaining rows beings now. CurrentGuessIndex is:", state.currentGuessIndex, ". 6 -", state.currentGuessIndex, " is:", 6 - state.currentGuessIndex);
+          for (var x = state.currentGuessIndex; x < 7 - state.currentGuessIndex; x++) {
+            console.log("Match found: ", c, ". Loop for updating remaining rows beings now. CurrentGuessIndex is:", state.currentGuessIndex, ".  6 -", state.currentGuessIndex, " is:", 6 - state.currentGuessIndex);
+            state.guesses[x][i] = c;
+          }
+          // currentGuess.forEach((str) => {
+            //   console.log("str is:", str);
+            //   state.guesses[matchIndex] = c;
+            // });
+            // console.log("🚀 ~ file: WordleMain.vue:69 ~ handleInput ~ loop to update remaining guesses begins next. currentGuess:", currentGuess);
         } else if (state.solution.indexOf(c) != -1) {
           state.guessedLetters.hint.push(c);
         } else {
           state.guessedLetters.miss.push(c);
         }
       }
+      console.log("currentGuess after loop:", JSON.stringify(currentGuess))
     }
   } else if (key == "{bksp}") {
+    console.log("Backspace pressed. currentGuess array =", JSON.stringify(currentGuess), ". currentGuess.length =", currentGuess.length)
+
     // Remove most recent non-empty string from currentGuess array
     for (let i = currentGuess.length - 1; i >= 0; i--) {
+      console.log(">>Backspace loop<<. currentGuess array value at index", i,  "=", currentGuess[i])
       if (currentGuess[i] !== "" && !state.guessedLetters.found.includes(currentGuess[i])) {
         currentGuess[i] = "";
         break;
       }
     }
-  } else if (currentGuess[state.currentGuessIndex].length < 5) {
+
+  // console.log("currentGuess:", currentGuess)
+  } else if (currentGuess) {
     //ADD LETTER IF ALPHABETICAL
     const alphaRegex = /[a-zA-Z]/;
     if (alphaRegex.test(key)) {
       for (let i = 0; i < 5; i++) {
         if (!currentGuess[i]) {
           currentGuess[i] = key;
-          console.log("🚀 ~ file: WordleMain.vue:92 ~ handleInput ~ currentGuess update:", currentGuess);
+          // console.log("🚀 ~ file: WordleMain.vue:92 ~ handleInput ~ currentGuess update:", currentGuess);
           break;
         }
       }
