@@ -13,8 +13,7 @@ const props = defineProps({
 
 const state = reactive({
   solution: "",
-  guesses: ["", "", "", "", "", ""], //each item is a 5-character string
-  guessesSplit: [
+  guesses: [
     ["", "", "", "", ""],
     ["", "", "", "", ""],
     ["", "", "", "", ""],
@@ -29,9 +28,8 @@ const state = reactive({
     hint: [],
   }
 });
-
 const wonGame = computed(
-  () => state.guesses[state.currentGuessIndex - 1] === state.solution,
+  () => state.guesses[state.currentGuessIndex - 1] && state.guesses[state.currentGuessIndex - 1].join("") === state.solution,
 );
 const lostGame = computed(
   () => !wonGame.value && state.currentGuessIndex >= 6
@@ -43,36 +41,33 @@ const computedClass = computed(() => {
   }
   return className;
 });
-
-watch(
-  () => state.guesses,
-  (newGuesses) => {
-    for (let i = 0; i < state.guesses.length; i++) {
-      state.guessesSplit[i] = state.guesses[i].split("");
-    }
-  },
-  { deep: true }
-);
-
+// watch(
+//   () => state.guesses,
+//   (newGuesses) => {
+//     for (let i = 0; i < state.guesses.length; i++) {
+//       state.guessesSplit[i] = state.guesses[i].split("");
+//     }
+//   },
+//   { deep: true }
+// );
 const handleInput = (key) => {
-
   if (state.currentGuessIndex >= 6 || wonGame.value) {
-    console.log("Victory!")
     return;
   }
-  const currentGuess = state.guesses[state.currentGuessIndex]
+  let currentGuess = state.guesses[state.currentGuessIndex]
+  console.log("🚀 ~ file: WordleMain.vue:59 ~ handleInput ~ currentGuess pre cond:", currentGuess)
 
   if (key == "{enter}") {
     if (currentGuess.length >= 5) {
-      console.log("🚀 ~ file: WordleMain.vue:60 ~ handleInput ~ Enter pressed: guess submitted")
       state.currentGuessIndex++;
       for (var i = 0; i < currentGuess.length; i++) {
-        let c = currentGuess.charAt(i);
+        let c = currentGuess[i];
         if (c == state.solution.charAt(i)) {
           state.guessedLetters.found.push(c);
           const charIndex = state.solution.indexOf(c);
-          state.guessesSplit.forEach((guess, x) => {
-            state.guessesSplit[x][charIndex] = c;
+          currentGuess.forEach((guess, x) => {
+            currentGuess[x][charIndex] = c;
+            console.log("At index:", currentGuess[x].indexOf(c, charIndex), ", placing:", c);
           });
         } else if (state.solution.indexOf(c) != -1) {
           state.guessedLetters.hint.push(c);
@@ -82,18 +77,28 @@ const handleInput = (key) => {
       }
     }
   } else if (key == "{bksp}") {
-    //REMOVE LAST LETTER
-    state.guesses[state.currentGuessIndex] =
-      currentGuess.slice(0, -1);
-  } else if (currentGuess.length < 5) {
+    // Remove most recent non-empty string from currentGuess array
+    for (let i = currentGuess.length - 1; i >= 0; i--) {
+      if (currentGuess[i] !== "" && !state.guessedLetters.found.includes(currentGuess[i])) {
+        currentGuess[i] = "";
+        break;
+      }
+    }
+  } else if (currentGuess[state.currentGuessIndex].length < 5) {
     //ADD LETTER IF ALPHABETICAL
     const alphaRegex = /[a-zA-Z]/;
     if (alphaRegex.test(key)) {
-      state.guesses[state.currentGuessIndex] += key;
-      console.log("🚀 ~ file: WordleMain.vue:91 ~ handleInput ~ This key added to guesses:", key)
+      for (let i = 0; i < 5; i++) {
+        if (!currentGuess[i]) {
+          currentGuess[i] = key;
+          console.log("🚀 ~ file: WordleMain.vue:92 ~ handleInput ~ currentGuess update:", currentGuess);
+          break;
+        }
+      }
     }
   }
 };
+
 
 axios.get('https://api.datamuse.com/words?sp=?????')
   .then(response => {
@@ -134,7 +139,7 @@ onMounted(() => {
   <div :class="computedClass" class="d-flex flex-column align-items-center gap-4 mt-5">
     <div class="container d-flex flex-column gap-1 align-items-center">
       <WordleRow
-      v-for="(guess, i) in state.guessesSplit"
+      v-for="(guess, i) in state.guesses"
       :key="i"
       :value="guess"
       :solution="state.solution"
