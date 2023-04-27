@@ -147,7 +147,7 @@ onMounted(() => {
       :key="i"
       :value="guess"
       :solution="state.solution"
-      :submitted="i <= state.currentGuessIndex"
+      :submitted="i < state.currentGuessIndex"
       />
     </div>
     <div class="text-center">
