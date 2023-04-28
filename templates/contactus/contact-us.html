@@ -3,15 +3,12 @@
 
 {% block title %}Contact Us{% endblock title %}
 {% block main %}
-<h2 class="text-center m-5">Contact Us</h2>
-<div class="card border-primary m-auto mb-3 p-3" style="max-width: 40rem">
+<h1 class="text-center m-5">Contact Us</h1>
+<div class="card border-success m-auto mb-3 p-3 fs-4" style="max-width: 40rem">
   <form method="post">
     {% csrf_token %}
     {{ form|crispy }}
-    <button class="btn btn-success float-end">Send</button>
+    <button class="btn btn-success btn-lg float-end">Send</button>
   </form>
-</div>
-<div class="text-center mt-5"> Brand Logo attribution:
-  <a href="https://www.freepik.com/free-vector/vintage-badge-hand-holding-joystick-vector-illustration-round-label-with-gamepad_11236049.htm#page=2&query=games&position=18&from_view=search&track=sph">Image by pch.vector</a> on Freepik
 </div>
 {% endblock main %}

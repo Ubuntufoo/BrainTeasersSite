@@ -1,7 +1,8 @@
 <template>
-  <section id="main-container">
+  <section class="container w-25 shadow rounded mt-5" id="main-container">
+    <h1 class="display-3 fw-bold text-warning text-center pt-4">Mathificent</h1>
+    <hr class="border border-black border-3 opacity-100 rounded">
     <div v-if="screen === 'config'" id="config-container">
-      <h1>Mathificent</h1>
 
       <MathSelectInput :currentValue="operation" label="Operation"
         id="operation" v-model="operation" :options="operations" />
@@ -9,55 +10,38 @@
         id="max-number" v-model="maxNumber" :options="numbers" />
       <MathPlayButton @play-button-click="play" />
     </div>
-    <div v-else-if="screen === 'play'" id="game-container" class="text-center">
-      <transition name="slide">
-        <template v-if="timeLeft === 0">
-          <div>
-            <h2>Time's Up!</h2>
-            <strong class="big">You Answered</strong>
-            <div class="huge">{{score}}</div>
-            <strong class="big">Questions Correctly</strong>
-            <MathRecordScore :user="user" :finalScore="finalScore"/>
-            <button class="btn btn-primary form-control m-1"
-              v-on:click="restart">
-                Play Again with Same Settings
-            </button>
-            <button class="btn btn-secondary form-control m-1"
-              v-on:click="config">
-                Change Settings
-            </button>
+    <div v-else-if="screen === 'play'" id="game-container">
+      <div v-if="timeLeft > 0">
+        <div class="d-flex flex-column justify-content-start align-items-center mx-5">
+          <div class="w-100 d-flex justify-content-evenly border-bottom  pt-4">
+            <MathScore :score="score" />
+            <MathTimer :timeLeft="timeLeft" />
           </div>
-        </template>
-      </transition>
-      <transition name="slide-right">
-        <template v-if="timeLeft > 0">
-          <div>
-            <div class="row border-bottom" id="scoreboard">
-              <div class="col px-3 text-left">
-                <MathScore :score="score" />
-              </div>
-              <div class="col px-3 text-right">
-                <MathTimer :timeLeft="timeLeft" />
-              </div>
-            </div>
-            <div :class="equationClass" id="equation">
-              <MathEquation :question="question"
-                :answer="input"
-                :answered="answered" />
-            </div>
-            <div class="row" id="buttons">
-              <div class="col">
-                <button class="btn btn-primary number-button"
-                  v-for="button in buttons" :key="button"
-                  @click="setInput(button)">{{button}}</button>
-                <button class="btn btn-primary" id="clear-button"
-                  @click="this.input = ''">Clear</button>
-              </div>
-
-            </div>
+          <div :class="equationClass" id="equation">
+            <MathEquation :question="question"
+              :answer="input"
+              :answered="answered" />
           </div>
-        </template>
-      </transition>
+          <MathKeypad :buttons="buttons" />
+        </div>
+      </div>
+      <div v-else-if="timeLeft === 0">
+        <div>
+          <h2>Time's Up!</h2>
+          <strong class="big">You Answered</strong>
+          <div class="huge">{{ score }}</div>
+          <strong class="big">Questions Correctly</strong>
+          <MathRecordScore :user="user" :finalScore="finalScore"/>
+          <button class="btn btn-primary form-control m-1"
+            v-on:click="restart">
+              Play Again with Same Settings
+          </button>
+          <button class="btn btn-secondary form-control m-1"
+            v-on:click="config">
+              Change Settings
+          </button>
+        </div>
+      </div>
     </div>
   </section>
 </template>
@@ -69,6 +53,7 @@ import MathScore from './MathScore';
 import MathTimer from './MathTimer';
 import MathEquation from './MathEquation';
 import MathRecordScore from './MathRecordScore.vue';
+import MathKeypad from './MathKeypad.vue';
 
 import {randInt} from '../../helpers/helpers';
 export default {
@@ -79,7 +64,8 @@ export default {
     MathScore,
     MathTimer,
     MathEquation,
-    MathRecordScore
+    MathRecordScore,
+    MathKeypad,
   },
    props: {
      user: String,
@@ -95,14 +81,14 @@ export default {
       operation: '+',
       maxNumber: '10',
       buttons: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0],
-      screen: 'config',
+      screen: 'play',           // revert this to config to fix
       input: '',
       operands: {num1: '1', num2: '1'},
       answered: false,
       score: 0,
       finalScore: 0,
       gameLength: 6,
-      timeLeft: 0
+      timeLeft: 1           // revert this to 0 to fix
     }
   },
   methods: {
@@ -213,76 +199,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-  #main-container {
-    margin: auto;
-    width: 380px;
-  }
-
-  button.number-button {
-    border-radius: .25em;
-    font-size: 3em;
-    height: 2em;
-    margin: .1em;
-    text-align: center;
-    width: 2em;
-  }
-
-  #clear-button {
-    border-radius: .25em;
-    font-size: 3em;
-    height: 2em;
-    margin: .1em;
-    text-align: center;
-    width: 4.2em;
-  }
-
-  #scoreboard {
-    font-size: 1.5em;
-  }
-
-  .big {
-    font-size: 1.5em;
-  }
-
-  .huge {
-    font-size: 5em;
-  }
-
-  .slide-leave-active,
-  .slide-enter-active {
-    position: absolute;
-    top: 56px;
-    transition: 1s;
-    width: 380px;
-  }
-
-  .slide-enter {
-    transform: translate(-100%, 0);
-    transition: opacity .5s;
-  }
-
-  .slide-leave-to {
-    opacity:0;
-    transform: translate(100%, 0);
-  }
-
-  .slide-right-leave-active,
-  .slide-right-enter-active {
-    position: absolute;
-    top: 56px;
-    transition: 1s;
-    width: 380px;
-  }
-
-  .slide-right-enter {
-    transform: translate(100%, 0);
-    transition: opacity .5s;
-  }
-
-  .slide-right-leave-to {
-    opacity:0;
-    transform: translate(-100%, 0);
-  }
-</style>

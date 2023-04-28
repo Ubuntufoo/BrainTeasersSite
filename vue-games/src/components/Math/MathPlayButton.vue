@@ -1,6 +1,6 @@
 <template>
-  <div class="row mx-1 my-3">
-    <button class="form-control btn btn-primary" @click="$emit('play-button-click')">
+  <div class="text-center">
+    <button class="btn btn-primary btn-lg shadow rounded-pill w-25 fs-4 my-4" @click="$emit('play-button-click')">
       Play!
     </button>
   </div>

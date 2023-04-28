@@ -1,13 +1,15 @@
 <template>
-  <section class="container w-25 border border-primary border-5 rounded-5 my-5 p-5">
-    <h1 class="text-center pb-2">Anagram Hunt</h1>
-    <div v-if="screen === 'config'" id="config-container">
-
+  <section class="container w-25 shadow rounded mt-5">
+    <div>
+      <h1 class="display-3 fw-bold text-warning text-center pt-4">Anagram Hunt</h1>
+      <hr class="border border-black border-3 opacity-100 rounded">
+    </div>
+    <div v-if="screen === 'config'" class="pt-2" id="config-container">
       <AnagramSelectInput :options="numbers" v-model="WordLength" />
-      <ol class="fs-5">
-        <li>Choose Word Length</li>
-        <li>Press <span class="fw-bold">Play!</span></li>
-        <li>Find anagrams! You get 60 seconds</li>
+      <ol class="h4 list-group list-group-flush text-center m-4">
+        <li class="list-group-item"> Choose Word Length</li>
+        <li class="list-group-item"> Press <span class="fw-bold">Play!</span></li>
+        <li class="list-group-item"> Find anagrams! You get 60 seconds</li>
       </ol>
       <AnagramPlayButton @play-button-click="play" />
     </div>
@@ -23,22 +25,17 @@
       <div>
         <AnagramWordGiven :startWord="startWord" :answersLeft="answersLeft" />
         <AnagramAnswerInput v-model="answered" @change="answerChk(answered)" />
-        <ol id="answer-list" class="pt-5 text-success fw-bold fs-2">
-          <li v-for="item in correctAnswers" :key="item.id">
-            {{ item }}
-          </li>
-        </ol>
+        <AnagramAnswerList :answers="correctAnswers" />
       </div>
     </div>
-    <div class="text-center" id="end-game" v-else-if="screen === 'game-over'">
-      <h2>Time's Up!</h2>
-      <h3 class="my-4">You Got:</h3>
-      <p class="fs-1 fw-bold text-success">{{ finalScore }}</p>
-      <p class="fs-2 fw-bold text-primary">Anagrams</p>
-      <AnagramRecordScore :finalScore="finalScore" :user="user" />
-      <div>
-        <a href="http://127.0.0.1:8000/anagram-game/" class="btn btn-dark form-control mt-3" role="button">Play Again</a>
+    <div class="h-50 d-flex flex-column justify-content-evenly align-items-center text-center py-5" id="end-game" v-else-if="screen === 'game-over'">
+      <h1 class="text-info display-4">Time is Up!</h1>
+      <div class="w-100 d-flex justify-content-evenly text-info fs-1 mb-5">
+        <p>Final score:</p>
+        <p><span class="fw-bold">{{ finalScore }}</span> Anagrams</p>
       </div>
+      <AnagramRecordScore :finalScore="finalScore" :user="user" />
+      <button v-on:click="config" class="btn btn-primary btn-lg shadow rounded-pill fs-3">Play Again</button>
     </div>
   </section>
 </template>
@@ -51,6 +48,7 @@ import AnagramTimeLeft from './AnagramTimeLeft';
 import AnagramWordGiven from './AnagramWordGiven';
 import AnagramAnswerInput from './AnagramAnswerInput';
 import AnagramRecordScore from './AnagramRecordScore.vue';
+import AnagramAnswerList from './AnagramAnswerList.vue';
 import { anagramsDict } from '../../helpers/anagramsDict.js';
 import { getRandom } from '../../helpers/helpers.js';
 
@@ -65,6 +63,7 @@ export default {
     AnagramWordGiven,
     AnagramAnswerInput,
     AnagramRecordScore,
+    AnagramAnswerList
   },
 
   props: {
@@ -85,7 +84,7 @@ export default {
       score: 0,
       finalScore: 0,
       startTime: '',
-      timeLeft: 600,
+      timeLeft: 60,
       screen: 'config',
       newAnagram: {},
       anagrams: anagramsDict
@@ -104,6 +103,7 @@ export default {
       this.finalScore = this.score;
       this.score = 0;
       this.timeLeft = 60;
+      this.correctAnswers = []
     },
     play() {
       this.screen = "play";

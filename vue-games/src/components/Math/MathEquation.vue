@@ -1,8 +1,6 @@
 <template>
-  <div id="equation" class="row">
-    <div class="col-5">{{question}}</div>
-    <div class="col-2">=</div>
-    <div class="col-5">{{answer}}</div>
+  <div>
+    <div>{{question}}={{ answer }}</div>
   </div>
 </template>
 

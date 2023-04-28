@@ -15,9 +15,9 @@ const props = defineProps({
 
 <template>
   <div
-    class="rounded text-uppercase shadow fs-1 d-flex justify-content-center align-items-center"
+    class="rounded text-uppercase shadow fs-1 d-flex justify-content-center align-items-center user-select-none"
     :class="{
-    'bg-secondary text-white'
+    'bg-danger text-white'
     : color == 'gray',
     'border border-success bg-success text-white'
     : color == 'green',

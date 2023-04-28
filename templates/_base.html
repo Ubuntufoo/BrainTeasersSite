@@ -20,54 +20,56 @@
 <body>
   {% block body %}
   <header class="navigation-font">
-    <nav class="navbar navbar-expand-lg" style="background-color: rgb(195, 107, 34); color: #fff">
+    <nav class="navbar navbar-expand-lg border-5 border-bottom border-success" >
       <div class="container-fluid mx-5">
-        <a class="navbar-brand" href="{% url 'games:homepage' %}">
-        <img src="{% static 'dist\img\brainteaserslogo.jpg' %}" class="img-fluid rounded-circle" alt="Gaming Zone" width="130" height="130">
-        </a>
+        <div class"navbar-brand text-center">
+          <a class="" href="{% url 'games:homepage' %}">
+            <img src="{% static 'dist\img\brainteaserslogo.jpg' %}" class="img-fluid" alt="Gaming Zone" width="140" height="100">
+          </a>
+        </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse fw-bold m-3" id="navbarSupportedContent">
-          <ul class="navbar-nav ms-auto fs-3">
+        <div class="collapse navbar-collapse fw-bold m-3 " id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto fs-3 ">
             <li class="nav-item">
-              <a class="nav-link active mx-2" aria-current="page" href="{% url 'games:homepage' %}">Home</a>
+              <a class="nav-link active mx-2 text-success" aria-current="page" href="{% url 'games:homepage' %}">Home</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle mx-2" href="#" role="button" data-bs-toggle="dropdown"
+              <a class="nav-link dropdown-toggle mx-2  text-success" href="#" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 Games
               </a>
-              <ul class="dropdown-menu fs-4">
-                <li><a class="dropdown-item" href="{% url 'games:anagram-game' %}">Anagram Hunt</a></li>
-                <li><a class="dropdown-item" href="{% url 'games:math-game' %}">Math Game</a></li>
-                <li><a class="dropdown-item" href="{% url 'games:wordle-game' %}">Wordle Game</a></li>
-                <li><a class="dropdown-item" href="{% url 'games:game-scores' %}">Game Scores</a></li>
+              <ul class="dropdown-menu fs-4 border-success">
+                <li><a class="dropdown-item text-success" href="{% url 'games:anagram-game' %}">Anagram Hunt</a></li>
+                <li><a class="dropdown-item text-success" href="{% url 'games:math-game' %}">Math Game</a></li>
+                <li><a class="dropdown-item text-success" href="{% url 'games:wordle-game' %}">Wordle Game</a></li>
+                <li><a class="dropdown-item text-success" href="{% url 'games:game-scores' %}">Game Scores</a></li>
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-2" href="{% url 'contactus:form' %}">Contact Us</a>
+              <a class="nav-link mx-2 text-success" href="{% url 'contactus:form' %}">Contact Us</a>
             </li>
             {% if not user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link mx-2" href="{% url 'account_login' %}">Log in</a>
+              <a class="nav-link mx-2 text-success" href="{% url 'account_login' %}">Log in</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-2" href="{% url 'account_signup' %}">Sign up</a>
+              <a class="nav-link mx-2 text-success" href="{% url 'account_signup' %}">Sign up</a>
             </li>
             {% else %}
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle mx-2" href="#" role="button" data-bs-toggle="dropdown"
+              <a class="nav-link dropdown-toggle mx-2 text-success" href="#" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 Me
               </a>
               <ul class="dropdown-menu ">
-                <li><a class="dropdown-item fs-4" href="{% url 'my-account' %}">My Account</a></li>
+                <li><a class="dropdown-item fs-4 text-success" href="{% url 'my-account' %}">My Account</a></li>
                 <div class="dropdown-divider"></div>
                 <form method="post" action="{% url 'account_logout' %}">
                   {% csrf_token %}
-                  <button class="btn dropdown-item fs-4">Log out</button>
+                  <button class="btn dropdown-item fs-4 text-success">Log out</button>
                 </form>
               </ul>
             </li>
@@ -83,28 +85,25 @@
     {% endblock main %}
   </main>
 
-  <footer class="container-fluid fixed-bottom py-3 text-center navigation-font"
-    style="background-color: rgb(195, 107, 34)">
+  <footer class="container-fluid fixed-bottom py-3 text-center navigation-font border-5 border-top border-success">
     <div class="row">
       <div class="col">
-        <a class="nav-link fs-5" href="{% url 'contactus:form' %}">&copy; 2022 Brainteasers.</a>
+        <a class="nav-link fs-5 text-success" href="{% url 'contactus:form' %}">&copy; 2022 Brainteasers.</a>
       </div>
       {% if user.is_staff %}
       <div class="col">
         <li class="nav-item list-unstyled">
-          <a class="nav-link" href="/admin/">Admin Portal</a>
+          <a class="nav-link text-success" href="/admin/">Admin Portal</a>
         </li>
       </div>
       {% endif %}
       <div id="footLinks" class="col mt-1">
-        <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram fa-bounce fa-2xl" style="color: #000000;"></i></a>
-        <a class="mx-4" href="https://twitter.com" target="_blank"><i class="fa-brands fa-square-facebook fa-bounce fa-2xl" style="color: #000000;"></i></a>
-        <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-twitter fa-bounce fa-2xl" style="color: #000000;"></i></a>
+        <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram fa-bounce fa-2xl" style="color: #198754;"></i></a>
+        <a class="mx-4" href="https://twitter.com" target="_blank"><i class="fa-brands fa-square-facebook fa-bounce fa-2xl" style="color: #198754;"></i></a>
+        <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-twitter fa-bounce fa-2xl" style="color: #198754;"></i></a>
       </div>
     </div>
   </footer>
-  <!-- <script src="{% static 'dist/js/indexjs.js' %}"></script>
-  <script src="{% static 'dist/js/mathfacts.js' %}"></script> -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
     crossorigin="anonymous"></script>

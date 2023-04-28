@@ -1,7 +1,7 @@
 
 <template>
-  <div class="d-flex flex-column justify-content-center align-items-center mb-5">
-    <button class="btn btn-primary" @click="recordScore">Record Score</button>
+  <div class="">
+    <button class="btn btn-secondary btn-lg shadow fs-4" @click="recordScore">Record Score</button>
   </div>
 </template>
 

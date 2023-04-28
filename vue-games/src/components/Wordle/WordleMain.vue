@@ -1,6 +1,6 @@
 <!-- eslint-disable no-unused-vars -->
 <script setup>
-import { onMounted, reactive, computed, defineProps, watchEffect} from "vue";
+import { onMounted, reactive, computed, defineProps} from "vue";
 import axios from 'axios';
 import SimpleKeyboard from "./WordleKeyboard.vue"
 import WordleRow from "./WordleRow.vue";
@@ -10,7 +10,7 @@ const props = defineProps({
   user: String
 });
 const state = reactive({
-  solution: "",
+  solution: "",             // initialized from API call
   guesses: [
     ["", "", "", "", ""],
     ["", "", "", "", ""],
@@ -32,7 +32,6 @@ const wonGame = computed(
 const lostGame = computed(
   () => !wonGame.value && state.currentGuessIndex >= 6
 );
-
 const computedClass = computed(() => {
   let className = '';
   if (wonGame.value || lostGame.value) {
@@ -40,21 +39,6 @@ const computedClass = computed(() => {
   }
   return className;
 });
-
-// watchEffect(() => {
-//   console.log("solution:", state.solution)
-// });
-// watchEffect(() => {
-//   console.log("guesses:", JSON.stringify(state.guesses))
-// });
-// watchEffect(() => {
-//   console.log("state.currentGuessIndex:", state.currentGuessIndex)
-// });
-// watchEffect(() => {
-//   console.log("guessedLetters found:", JSON.stringify(state.guessedLetters.found))
-// });
-
-
 const handleInput = (key) => {
   if (state.currentGuessIndex >= 6 || wonGame.value) {
     return;
@@ -76,22 +60,35 @@ const handleInput = (key) => {
       }
     }
   } else if (key == "{bksp}") {
-    console.log("Backspace pressed. currentGuess array =", JSON.stringify(currentGuess))
     for (let i = currentGuess.length - 1; i >= 0; i--) {
       console.log(">>Backspace loop<<. currentGuess array value at index", i, "=", currentGuess[i], ". Is", currentGuess[i], "included in state.guessedLetters.found? True or false:", Boolean(state.guessedLetters.found.includes(currentGuess[i])), "Also, does currentGuess[i] == state.solution[i]? True or false:", Boolean(currentGuess[i] == state.solution[i]));
       if (currentGuess[i] == "") {
         console.log("Option 1. Its an empty", typeof (currentGuess[i]), ". continue.")
         continue;
       } else if (state.guessedLetters.found.includes(currentGuess[i]) && currentGuess[i] == state.solution[i]) {
-        console.log("Option 2. It matches solution @index. CG index =", currentGuess[i], "solution index =", state.solution[i], "continue.")
-        continue;
+        console.log("Option 2: It matches solution @index. Number of occurs in last guess:", state.guesses[state.currentGuessIndex - 1].reduce((acc, curr) => acc + (curr === currentGuess[i]), 0), ". Number of occurs in solution:", state.solution.split("").reduce((acc, curr) => acc + (curr === currentGuess[i]), 0));
+        if (state.guesses[state.currentGuessIndex - 1].reduce((acc, curr) => acc + (curr === currentGuess[i]), 0) >= 2 && state.solution.split("").reduce((acc, curr) => acc + (curr === currentGuess[i]), 0) >= 2) {
+          console.log("Option 2.1: The previous guess and the solution have 2+ of the matching character. Ignore char and continue.");
+          continue;
+        } else if (state.guesses[state.currentGuessIndex - 1].reduce((acc, curr) => acc + (curr === currentGuess[i]), 0) <= 1 && state.solution.split("").reduce((acc, curr) => acc + (curr === currentGuess[i]), 0) >= 2) {
+          if (currentGuess.reduce((acc, curr) => acc + (curr === currentGuess[i]), 0) >= 2) {
+            console.log("Option 2.2.1: The solution has 2+ of the matching char, but the prev guess does not. Replacing char with '', as long as there is 1 still remaining in currentGuess.");
+            currentGuess[i] = "";
+            break;
+          }
+          console.log("Option 2.2.2: The solution has 2+ of the matching char, but the prev guess does not. Also, the currentGuess only has 1 instance of char remaining. Do nothing and continue.");
+          continue;
+        } else {
+          console.log("Option 2.3: Continue.");
+          continue;
+        }
       } else {
         console.log("Option 3. Make this index = ''.")
         currentGuess[i] = "";
         break;
       }
     }
-  } else if (currentGuess) {
+  } else if (key.length == 1) {
     const alphaRegex = /[a-zA-Z]/;
     if (alphaRegex.test(key)) {
       for (let i = 0; i < 5; i++) {
@@ -103,15 +100,6 @@ const handleInput = (key) => {
     }
   }
 };
-
-axios.get('https://api.datamuse.com/words?sp=?????')
-  .then(response => {
-    const randomWord = response.data[Math.floor(Math.random() * response.data.length)].word;
-    state.solution = randomWord;
-  })
-  .catch(error => {
-    console.error(error);
-  });
 
 onMounted(() => {
   window.addEventListener("keyup", (e) => {
@@ -137,6 +125,14 @@ onMounted(() => {
     }
   });
 });
+axios.get('https://api.datamuse.com/words?sp=?????')
+  .then(response => {
+    const randomWord = response.data[Math.floor(Math.random() * response.data.length)].word;
+    state.solution = randomWord;
+  })
+  .catch(error => {
+    console.error(error);
+  });
 </script>
 
 <template>
@@ -150,7 +146,7 @@ onMounted(() => {
       :submitted="i < state.currentGuessIndex"
       />
     </div>
-    <div class="text-center">
+    <div>
       <SimpleKeyboard
       @onKeyPress="handleInput"
       :guessedLetters="state.guessedLetters"
@@ -160,18 +156,16 @@ onMounted(() => {
   <div v-if="wonGame || lostGame" class="position-absolute top-50 start-50 translate-middle text-center">
     <WordleGameOver v-if="wonGame" :class="'text-primary'" :content="'Congratulations!'"/>
     <WordleGameOver v-if="lostGame" :class="'text-danger'" :content="'No more guesses. Play again!'"/>
-    <button class="btn btn-outline-primary btn-lg fw-bold">Play Again</button>
+    <button class="btn btn-dark btn-lg fw-bold">Play Again</button>
   </div>
 </template>
 
 <style lang="css" scoped>
-/* Style the button text */
 .simple-keyboard {
   background-color: #d8d8d8;
   border-radius: 10px;
   box-shadow: 0px 0px 5px 1px #d2d2d2;
   padding: 5px;
-  margin-top: 10px;
   font-size: 1.6em;
   width: fit-content;
 }

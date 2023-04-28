@@ -54,7 +54,7 @@ onMounted(() => {
 
 <style>
 div.miss {
-  background-color: RGB(108, 117, 125) !important;
+  background-color: rgba(255, 0, 0, 0.598) !important;
   color: white;
 }
 div.found {
