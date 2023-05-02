@@ -27,6 +27,7 @@
             <img src="{% static 'dist\img\brainteaserslogo.jpg' %}" class="img-fluid" alt="Gaming Zone" width="140" height="100">
           </a>
         </div>
+        <div class="display-2 text-warning ms-5">Brainteasers</div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -85,15 +86,15 @@
     {% endblock main %}
   </main>
 
-  <footer class="container-fluid fixed-bottom py-3 text-center navigation-font border-5 border-top border-success">
+  <footer class="container-fluid fixed-bottom bg-white py-3 text-center navigation-font border-5 border-top border-success ">
     <div class="row">
       <div class="col">
-        <a class="nav-link fs-5 text-success" href="{% url 'contactus:form' %}">&copy; 2022 Brainteasers.</a>
+        <a class="nav-link fs-5 text-success d-inline-block" href="{% url 'contactus:form' %}">&copy; 2022 Brainteasers.</a>
       </div>
       {% if user.is_staff %}
       <div class="col">
         <li class="nav-item list-unstyled">
-          <a class="nav-link text-success" href="/admin/">Admin Portal</a>
+          <a class="nav-link text-success d-inline-block" href="/admin/">Admin Portal</a>
         </li>
       </div>
       {% endif %}
