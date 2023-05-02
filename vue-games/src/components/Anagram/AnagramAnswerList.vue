@@ -10,7 +10,7 @@
 export default {
   name: 'AnagramAnswerList',
   props: {
-    answers: String,
+    answers: Array,
   }
 }
 </script>

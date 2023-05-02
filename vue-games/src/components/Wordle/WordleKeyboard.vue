@@ -48,7 +48,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="simple-keyboard"></div>
+  <div class="simple-keyboard"></div>
 </template>
 
 

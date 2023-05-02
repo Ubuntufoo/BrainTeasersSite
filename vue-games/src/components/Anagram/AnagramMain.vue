@@ -6,8 +6,8 @@
     </div>
     <div v-if="screen === 'config'" class="pt-2" id="config-container">
       <AnagramSelectInput :options="numbers" v-model="WordLength" />
-      <ol class="h4 list-group list-group-flush text-center m-4">
-        <li class="list-group-item"> Choose Word Length</li>
+      <ol class="h4 list-group list-group-flush text-center my-5">
+        <li class="list-group-item"> Choose word length</li>
         <li class="list-group-item"> Press <span class="fw-bold">Play!</span></li>
         <li class="list-group-item"> Find anagrams! You get 60 seconds</li>
       </ol>

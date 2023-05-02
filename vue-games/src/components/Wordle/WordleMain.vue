@@ -170,13 +170,13 @@ axios.get('https://api.datamuse.com/words?sp=?????')
   width: fit-content;
 }
 
-.simple-keyboard >>> .hg-row {
+.simple-keyboard :deep(.hg-row) {
   display: flex;
   justify-content: center;
   padding: 0 10px 0 10px;
 }
 
-.simple-keyboard >>> .hg-button {
+.simple-keyboard :deep(.hg-button) {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -191,27 +191,28 @@ axios.get('https://api.datamuse.com/words?sp=?????')
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   transition: background-color 0.2s ease-in-out;
 }
-.simple-keyboard >>> .hg-button:hover {
+.simple-keyboard :deep(.hg-button:hover) {
   background-color: #e2e2e2;
 }
-.simple-keyboard >>> .hg-functionBtn {
+.simple-keyboard :deep(.hg-functionBtn) {
   background-color: #c9c9c9;
 }
-.simple-keyboard >>> .hg-functionBtn:hover {
+.simple-keyboard :deep(.hg-functionBtn:hover) {
   background-color: #b3b3b3;
 }
-.simple-keyboard >>> .hg-button-enter {
+.simple-keyboard :deep(.hg-button-enter) {
   width: 5em;
 }
-.simple-keyboard >>> .hg-standardBtn {
+.simple-keyboard :deep(.hg-standardBtn) {
   width: 1.8em;
 }
-.simple-keyboard >>> .hg-button-bksp {
+.simple-keyboard :deep(.hg-button-bksp) {
   width: 5em;
 }
-.simple-keyboard >>> .hg-button:hover,
-.simple-keyboard >>> .hg-button:active {
+.simple-keyboard :deep(.hg-button:hover),
+.simple-keyboard :deep(.hg-button:active) {
   background-color: #b3b3b3;
 }
+
 
 </style>

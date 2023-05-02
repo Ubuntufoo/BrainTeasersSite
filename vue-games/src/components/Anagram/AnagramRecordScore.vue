@@ -1,6 +1,6 @@
 
 <template>
-  <div class="">
+  <div>
     <button class="btn btn-secondary btn-lg shadow fs-4" @click="recordScore">Record Score</button>
   </div>
 </template>

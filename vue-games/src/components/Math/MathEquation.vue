@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <div>{{question}}={{ answer }}</div>
-  </div>
+  <div>{{question}}</div>
+  <div>=</div>
+  <div>{{ answer }}</div>
 </template>
 
 <script>
@@ -16,9 +16,4 @@
 </script>
 
 <style scoped>
-  #equation {
-    font-size: 1.6em;
-    margin: auto;
-    width: 90%;
-  }
 </style>

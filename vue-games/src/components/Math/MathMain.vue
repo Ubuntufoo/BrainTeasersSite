@@ -1,5 +1,5 @@
 <template>
-  <section class="container w-25 shadow rounded mt-5" id="main-container">
+  <section class="container w-25 shadow rounded mt-5 pb-4" id="main-container">
     <h1 class="display-3 fw-bold text-warning text-center pt-4">Mathificent</h1>
     <hr class="border border-black border-3 opacity-100 rounded">
     <div v-if="screen === 'config'" id="config-container">
@@ -10,36 +10,41 @@
         id="max-number" v-model="maxNumber" :options="numbers" />
       <MathPlayButton @play-button-click="play" />
     </div>
-    <div v-else-if="screen === 'play'" id="game-container">
-      <div v-if="timeLeft > 0">
-        <div class="d-flex flex-column justify-content-start align-items-center mx-5">
-          <div class="w-100 d-flex justify-content-evenly border-bottom  pt-4">
-            <MathScore :score="score" />
-            <MathTimer :timeLeft="timeLeft" />
-          </div>
-          <div :class="equationClass" id="equation">
-            <MathEquation :question="question"
-              :answer="input"
-              :answered="answered" />
-          </div>
-          <MathKeypad :buttons="buttons" />
+    <div v-else-if="screen === 'play'" id="game-container" class="pb-5">
+      <div v-if="timeLeft > 0" class="h-50 text-center">
+        <div class="w-100 d-flex justify-content-evenly border-bottom my-4">
+          <MathScore :score="score" />
+          <MathTimer :timeLeft="timeLeft" />
         </div>
+        <div :class="equationClass" class="w-75 d-inline-flex justify-content-evenly fs-1 mb-3 text-center">
+          <MathEquation :question="question"
+            :answer="input"
+            :answered="answered" />
+        </div>
+        <MathKeypad :buttons="buttons" @keyPress="setInput"/>
       </div>
       <div v-else-if="timeLeft === 0">
-        <div>
-          <h2>Time's Up!</h2>
-          <strong class="big">You Answered</strong>
-          <div class="huge">{{ score }}</div>
-          <strong class="big">Questions Correctly</strong>
-          <MathRecordScore :user="user" :finalScore="finalScore"/>
-          <button class="btn btn-primary form-control m-1"
-            v-on:click="restart">
-              Play Again with Same Settings
-          </button>
-          <button class="btn btn-secondary form-control m-1"
-            v-on:click="config">
-              Change Settings
-          </button>
+        <div class="text-center mt-5">
+          <h1 class="text-info display-4">Time is Up!</h1>
+          <div class="w-100 d-flex justify-content-evenly text-info fs-1 my-5">
+            <p>Final score:</p>
+            <p class="fw-bold">{{ finalScore }}</p>
+          </div>
+          <div>
+            <MathRecordScore :user="user" :finalScore="finalScore"/>
+          </div>
+          <div class="my-4">
+            <button class="btn btn-primary btn-lg shadow rounded-pill fs-3"
+              v-on:click="restart">
+                Play Again!
+            </button>
+          </div>
+          <div>
+            <button class="btn btn-primary btn-lg shadow rounded-pill fs-3"
+              v-on:click="config">
+                Change Settings
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -81,14 +86,14 @@ export default {
       operation: '+',
       maxNumber: '10',
       buttons: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0],
-      screen: 'play',           // revert this to config to fix
+      screen: 'config',           // revert this to config to fix
       input: '',
       operands: {num1: '1', num2: '1'},
       answered: false,
       score: 0,
       finalScore: 0,
-      gameLength: 6,
-      timeLeft: 1           // revert this to 0 to fix
+      gameLength: 60,
+      timeLeft: 0        // revert this to 0 to fix
     }
   },
   methods: {
@@ -101,12 +106,16 @@ export default {
       this.startTimer();
     },
     setInput(value) {
-      this.input += String(Number(value));
-      this.answered = this.checkAnswer(this.input, this.operation, this.operands);
-      if (this.answered) {
-        setTimeout(this.newQuestion, 300);
-        this.score++;
-        this.finalScore++;
+      if (value == 'clear') {
+        this.input = "";
+      } else {
+        this.input += String(Number(value));
+        this.answered = this.checkAnswer(this.input, this.operation, this.operands);
+        if (this.answered) {
+          setTimeout(this.newQuestion, 300);
+          this.score++;
+          this.finalScore++;
+        }
       }
     },
     getRandNumbers(operator, low, high) {
@@ -153,14 +162,14 @@ export default {
       );
     },
     startTimer() {
-      window.addEventListener('keyup', this.handleKeyUp);
+      window.addEventListener('keydown', this.handleKeyDown);
       this.timeLeft = this.gameLength;
       if (this.timeLeft > 0) {
         this.timer = setInterval(() => {
           this.timeLeft--;
           if (this.timeLeft === 0) {
             clearInterval(this.timer);
-            window.removeEventListener('keyup', this.handleKeyUp);
+            window.removeEventListener('keydown', this.handleKeyDown);
           }
         }, 1000)
       }
@@ -171,10 +180,11 @@ export default {
       this.startTimer();
       this.newQuestion();
     },
-    handleKeyUp(e) {
+    handleKeyDown(e) {
+      console.log(e);
       e.preventDefault(); // prevent the normal behavior of the key
       if (e.keyCode === 32 || e.keyCode === 13) { // space/Enter
-        this.clear();
+        return;
       } else if (e.keyCode === 8) { // backspace
         this.input = this.input.substring(0, this.input.length - 1);
       } else if (!isNaN(e.key)) {
@@ -194,7 +204,7 @@ export default {
       return `${this.operands.num1} ${this.operation} ${this.operands.num2}`;
     },
     equationClass() {
-      return this.answered ? 'row text-primary my-2 fade' : 'row text-secondary my-2';
+      return this.answered ? 'text-primary fade' : 'text-info show';
     }
   }
 }
