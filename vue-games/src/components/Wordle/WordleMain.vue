@@ -1,6 +1,6 @@
 <!-- eslint-disable no-unused-vars -->
 <script setup>
-import { onMounted, reactive, computed, defineProps} from "vue";
+import { onMounted, reactive, ref, computed, defineProps} from "vue";
 import axios from 'axios';
 import SimpleKeyboard from "./WordleKeyboard.vue"
 import WordleRow from "./WordleRow.vue";
@@ -9,23 +9,35 @@ import WordleGameOver from "./WordleGameOver.vue";
 const props = defineProps({
   user: String
 });
-const state = reactive({
-  solution: "",             // initialized from API call
+const initialState = {
+  solution: "",
   guesses: [
     ["", "", "", "", ""],
     ["", "", "", "", ""],
     ["", "", "", "", ""],
     ["", "", "", "", ""],
     ["", "", "", "", ""],
-    ["", "", "", "", ""]
+    ["", "", "", "", ""],
   ],
   currentGuessIndex: 0,
   guessedLetters: {
     miss: [],
-    found: [], // added to future guesses at same position they were originally
+    found: [],
     hint: [],
-  }
-});
+  },
+};
+
+const resetGame = () => {
+  console.log("resetGame executed.")
+  state.solution = initialState.solution;
+  state.guesses = initialState.guesses;
+  state.currentGuessIndex = initialState.currentGuessIndex;
+  state.guessedLetters = initialState.guessedLetters;
+  console.log(initialState)
+};
+
+const state = reactive(initialState);
+
 const wonGame = computed(
   () => state.guesses[state.currentGuessIndex - 1] && state.guesses[state.currentGuessIndex - 1].join("") === state.solution,
 );
@@ -153,10 +165,15 @@ axios.get('https://api.datamuse.com/words?sp=?????')
       />
     </div>
   </div>
+  <div
+  v-if="state.guesses[0][0] == false"
+  class="display-1 text-warning"
+  style="transform: rotate(-45deg); position: fixed; top: 17%; left: 33%;"
+  >Wordle</div>
   <div v-if="wonGame || lostGame" class="position-absolute top-50 start-50 translate-middle text-center">
     <WordleGameOver v-if="wonGame" :class="'text-primary'" :content="'Congratulations!'"/>
     <WordleGameOver v-if="lostGame" :class="'text-danger'" :content="'No more guesses. Play again!'"/>
-    <button class="btn btn-dark btn-lg fw-bold">Play Again</button>
+    <button class="btn btn-primary btn-lg fw-bold" @click="resetGame"><a class="text-decoration-none text-white" href="http://127.0.0.1:8000/wordle-game/">Play Again</a></button>
   </div>
 </template>
 
@@ -165,8 +182,7 @@ axios.get('https://api.datamuse.com/words?sp=?????')
   background-color: #d8d8d8;
   border-radius: 10px;
   box-shadow: 0px 0px 5px 1px #d2d2d2;
-  padding: 5px;
-  font-size: 1.6em;
+  font-size: 1.5em;
   width: fit-content;
 }
 
