@@ -26,7 +26,7 @@ class CustomUserChangeForm(UserChangeForm):
         widgets = {
             'dob': forms.SelectDateWidget(
                 attrs={
-                    'style': 'width: 31%; display: inline-block; margin: 0 1%'
+                    'style': 'width: 25%; display: inline-block; margin: 0 1%'
                 },
                 years=BIRTH_YEAR_CHOICES
             )
