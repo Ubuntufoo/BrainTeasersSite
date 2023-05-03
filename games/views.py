@@ -62,7 +62,6 @@ class MyAccountView(TemplateView):
 
 
 class HomeView(CreateView):
-
     model = UserReview
     fields = ['rating', 'comment']
 

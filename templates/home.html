@@ -33,35 +33,35 @@
       </div>
     </div>
     <div class="col-5 rounded bg-success bg-gradient h-100 shadow">
-      <div class="accordion accordion-flush py-5 px-3" id="accordionFlush">
+      <div class="accordion accordion-flush py-4 px-3" id="accordionFlush">
         <div class="accordion-item">
           <h2 class="accordion-header" id="flush-headingOne">
-            <button class="accordion-button collapsed fs-2 fs-bold bg-secondary bg-gradient text-warning" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+            <button class="accordion-button collapsed fs-3 fs-bold bg-secondary bg-gradient text-warning" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
               Wordle
             </button>
           </h2>
           <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlush">
-            <div class="accordion-body bg-light">Wordle Game is a refreshing take on a classic. Wordle is a popular online word-guessing game where players have to guess a five-letter word in a limited number of attempts. This version enhances the visual cues given to the player by way of a stop-light color theme. It also adds functionality - correct letters in the correct position are rolled down to the next guess to help the player fill in the word.<button class="btn btn-primary rounded-pill">Let's Play</button></div>
+            <div class="accordion-body bg-light"><p>Wordle Game is a refreshing take on a classic. Wordle is a popular online word-guessing game where players have to guess a five-letter word in a limited number of attempts. This version enhances the visual cues given to the player by way of a stop-light color theme. It also adds functionality - correct letters in the correct position are rolled down to the next guess to help the player fill in the word.</p><div class="text-center"><button class="btn btn-primary rounded-pill"><a href="{% url 'games:wordle-game' %}" class="text-light text-decoration-none">Let's Play</a></button></div></div>
           </div>
         </div>
         <div class="accordion-item">
           <h2 class="accordion-header" id="flush-headingTwo">
-            <button class="accordion-button collapsed fs-2 fs-bold bg-secondary bg-gradient text-warning" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+            <button class="accordion-button collapsed fs-3 fs-bold bg-secondary bg-gradient text-warning" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
               Anagram Hunt
             </button>
           </h2>
           <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlush">
-            <div class="accordion-body bg-light">Are you ready to put your anagram skills to the test? In this word game, you choose the length of the word and we'll randomly generate a word of that length. Your goal is to guess all of the anagrams of that word. With multiple levels of difficulty, you'll be challenged to unscramble words and expand your vocabulary. Get ready to become a word wizard and unlock the power of anagrams!<button class="btn btn-primary rounded-pill">Let's Play</button></div>
+            <div class="accordion-body bg-light"><p>Are you ready to put your anagram skills to the test? In this word game, you choose the length of the word and we'll randomly generate a word of that length. Your goal is to guess all of the anagrams of that word. With multiple levels of difficulty, you'll be challenged to unscramble words and expand your vocabulary. Get ready to become a word wizard and unlock the power of anagrams!</p><div class="text-center"><button class="btn btn-primary rounded-pill"><a href="{% url 'games:anagram-game' %}" class="text-light text-decoration-none">Let's Play</a></button></div></div>
           </div>
         </div>
         <div class="accordion-item">
           <h2 class="accordion-header" id="flush-headingThree">
-            <button class="accordion-button collapsed fs-2 fs-bold bg-secondary bg-gradient text-warning" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+            <button class="accordion-button collapsed fs-3 fs-bold bg-secondary bg-gradient text-warning" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
               Mathificent
             </button>
           </h2>
           <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlush">
-            <div class="accordion-body bg-light"><p class="mb-5">Get ready to flex your math skills with this fast-paced game! Choose from addition, subtraction, multiplication, or division and put your arithmetic abilities to the test. You'll have just 60 seconds to answer as many random equations as you can using your chosen operation. Think fast, because the clock is ticking and the equations are getting harder with each passing second. Can you beat the clock and become a math whiz? Let's find out!</p><button class="btn btn-primary rounded-pill">Let's Play</button></div>
+            <div class="accordion-body bg-light"><p>Get ready to flex your math skills with this fast-paced game! Choose from addition, subtraction, multiplication, or division and put your arithmetic abilities to the test. You'll have just 60 seconds to answer as many random equations as you can using your chosen operation. Think fast, because the clock is ticking and the equations are getting harder with each passing second. Can you beat the clock and become a math whiz? Let's find out!</p><div class="text-center"><button class="btn btn-primary rounded-pill"><a href="{% url 'games:math-game' %}" class="text-light text-decoration-none">Let's Play</a></button></div></div>
           </div>
         </div>
       </div>
@@ -69,7 +69,7 @@
   </section>
   <div class="border-bottom border-5 my-5 pt-4 border-success"></div>
   <section class="row align-items-center justify-content-center my-5 pt-5">
-    <div id="carouselHome" class="col-6 carousel slide pb-5" data-bs-ride="carousel">
+    <div id="carouselHome" class="col-5 carousel slide pb-5" data-bs-ride="carousel">
       <div class="carousel-inner">
         {% for review in reviews %}
         {% if forloop.first %}
