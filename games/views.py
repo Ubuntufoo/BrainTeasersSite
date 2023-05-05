@@ -9,6 +9,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from reviews.models import UserReview
 from games.models import GameScore
+from django.conf import settings
+
+
+def get_openai_key(request):
+    # Function that retrieves the API key from a secure location
+    return JsonResponse({'openai_key': settings.OPENAI_API_KEY})
 
 
 def record_score(request):

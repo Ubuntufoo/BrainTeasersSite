@@ -1,6 +1,6 @@
 from django.urls import path
 
-from games.views import HomeView, MathGameView, AnagramGameView, WordleGameView, GameScoresView, ContactUsView, record_score
+from games.views import HomeView, MathGameView, AnagramGameView, WordleGameView, GameScoresView, ContactUsView, record_score, get_openai_key
 
 app_name = 'games'
 urlpatterns = [
@@ -11,4 +11,5 @@ urlpatterns = [
     path('wordle-game/', WordleGameView.as_view(), name='wordle-game'),
     path('game-scores/',  GameScoresView.as_view(), name='game-scores'),
     path('record-score/', record_score, name='record-score'),
+    path('wordle-game/openai-key/', get_openai_key, name='get_openai_key'),
 ]

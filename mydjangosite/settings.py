@@ -114,6 +114,9 @@ EMAIL_HOST_USER = 'apikey'
 EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
 DEFAULT_FROM_EMAIL = 'timothymurphy123@gmail.com'
 
+# OpenAI API
+OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
