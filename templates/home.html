@@ -7,13 +7,14 @@
 {% block main %}
 <main class="container my-5">
   <section class="row gap-5 align-items-center justify-content-center">
-    <h1 class="col-12 text-warning text-center bg-success rounded-pill mb-5 py-3">Get Hooked on Our Brainteasers: Put Your Math and Word Skills to the Test!
+    <h1 class="col-12 display-2 text-center mb-5">Get Hooked on Our Brainteasers:
+      <span class="d-block">Put Your Math and Word Skills to the Test!</span>
     </h1>
     <div class="col-6">
       <div id="carouselOfGames" class="carousel slide .carousel-fade carousel-dark h-75 w-75" data-bs-ride="true">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="{% static 'dist\img\Wordle_3_500x500.jpg' %}" class="d-block w-100" alt="Wordle">
+            <img src="{% static 'dist\img\Wordle_3_500x500.jpg' %}" class="d-block w-100" alt="Wordle+">
           </div>
           <div class="carousel-item">
             <img src="{% static 'dist\img\Anagram_500x500.jpg' %}" class="d-block w-100" alt="Anagram Hunt">
@@ -37,11 +38,11 @@
         <div class="accordion-item">
           <h2 class="accordion-header" id="flush-headingOne">
             <button class="accordion-button collapsed fs-3 fs-bold bg-secondary bg-gradient text-warning" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-              Wordle
+              Wordle+
             </button>
           </h2>
           <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlush">
-            <div class="accordion-body bg-light"><p>Wordle Game is a refreshing take on a classic. Wordle is a popular online word-guessing game where players have to guess a five-letter word in a limited number of attempts. This version enhances the visual cues given to the player by way of a stop-light color theme. It also adds functionality - correct letters in the correct position are rolled down to the next guess to help the player fill in the word.</p><div class="text-center"><button class="btn btn-primary rounded-pill"><a href="{% url 'games:wordle-game' %}" class="text-light text-decoration-none">Let's Play</a></button></div></div>
+            <div class="accordion-body bg-light"><p>Wordle+ is a refreshing take on a classic. Wordle is a popular online word-guessing game where players have to guess a five-letter word in a limited number of attempts. This version enhances the visual cues given to the player by way of a stop-light color theme. It also adds functionality - correct letters in the correct position are rolled down to the next guess to help the player fill in the word.</p><div class="text-center"><button class="btn btn-primary rounded-pill"><a href="{% url 'games:wordle-game' %}" class="text-light text-decoration-none">Let's Play</a></button></div></div>
           </div>
         </div>
         <div class="accordion-item">

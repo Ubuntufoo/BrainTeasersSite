@@ -1,6 +1,6 @@
 <template>
   <section class="container w-25 shadow rounded mt-5 pb-4" id="main-container">
-    <h1 class="display-3 fw-bold text-warning text-center pt-4">Mathificent</h1>
+    <h2 class="display-3 fw-bold text-warning text-center pt-4">Mathificent</h2>
     <hr class="border border-black border-3 opacity-100 rounded">
     <div v-if="screen === 'config'" id="config-container">
 
