@@ -86,14 +86,14 @@ export default {
       operation: '+',
       maxNumber: '10',
       buttons: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0],
-      screen: 'config',           // revert this to config to fix
+      screen: 'config',
       input: '',
       operands: {num1: '1', num2: '1'},
       answered: false,
       score: 0,
       finalScore: 0,
       gameLength: 60,
-      timeLeft: 0        // revert this to 0 to fix
+      timeLeft: 0
     }
   },
   methods: {
@@ -122,12 +122,12 @@ export default {
       let num1 = randInt(low, high);
       let num2 = randInt(low, high);
 
-      if (operator === '-') { // Make sure higher num comes first
+      if (operator === '-') {
         [num1, num2] = [Math.max(num1, num2), Math.min(num1, num2)];
       }
 
       if(operator === '/') {
-        if (num2 === 0) { // No division by zero
+        if (num2 === 0) {
           num2 = randInt(1, high);
         }
         num1 = (num1 * num2);
@@ -136,21 +136,20 @@ export default {
     },
     checkAnswer(userAnswer, operation, operands) {
       if (isNaN(userAnswer)) {
-        return false; // User hasn't answered
+        return false;
       }
+      const { num1, num2 } = operands;
       let correctAnswer;
-      switch(operation) {
+      switch (operation) {
         case '+':
-          correctAnswer = operands.num1 + operands.num2;
+          correctAnswer = num1 + num2;
           break;
         case '-':
-          correctAnswer = operands.num1 - operands.num2;
+          correctAnswer = num1 - num2;
           break;
         case 'x':
-          correctAnswer = operands.num1 * operands.num2;
+          correctAnswer = num1 * num2;
           break;
-        default: // division
-          correctAnswer = operands.num1 / operands.num2;
       }
       return (Number(userAnswer) === correctAnswer);
     },
@@ -182,8 +181,8 @@ export default {
     },
     handleKeyDown(e) {
       console.log(e);
-      e.preventDefault(); // prevent the normal behavior of the key
-      if (e.keyCode === 32 || e.keyCode === 13) { // space/Enter
+      e.preventDefault();
+      if (e.keyCode === 32 || e.keyCode === 13) {
         return;
       } else if (e.keyCode === 8) { // backspace
         this.input = this.input.substring(0, this.input.length - 1);

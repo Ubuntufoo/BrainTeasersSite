@@ -159,7 +159,7 @@ axios.get('https://api.datamuse.com/words?sp=?????')
   </div>
   <Transition>
     <div v-if="state.guesses[0][0] == false">
-      <div class="display-1 text-warning" style="transform: rotate(-45deg); position: fixed; top: 18%; left: 33%;">Wordle+
+      <div class="display-1 text-warning" style="transform: rotate(-45deg); position: fixed; top: 23%; left: 35%;">Wordle+
       </div>
     </div>
   </Transition>

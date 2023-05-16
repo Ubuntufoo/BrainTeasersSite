@@ -103,7 +103,7 @@ export default {
       this.finalScore = this.score;
       this.score = 0;
       this.timeLeft = 60;
-      this.correctAnswers = []
+      this.correctAnswers = [];
     },
     play() {
       this.screen = "play";
@@ -113,15 +113,19 @@ export default {
       }
 
       const key = this.WordLength;
+      const keyLength = this.newAnagram[key].length;
 
-      if (this.newAnagram[key].length == 0) {
+      if (keyLength === 0) {
         this.screen = "game-over";
         this.gameOver();
       } else {
-        this.randArrayIndex = getRandom(this.newAnagram[key].length);
-        this.randWordIndex = getRandom(this.newAnagram[key][this.randArrayIndex].length);
-        this.startArray = this.newAnagram[key][this.randArrayIndex];
-        this.startWord = this.newAnagram[key][this.randArrayIndex][this.randWordIndex];
+        this.randArrayIndex = getRandom(keyLength);
+        const currentArray = this.newAnagram[key][this.randArrayIndex];
+        const currentArrayLength = currentArray.length;
+
+        this.randWordIndex = getRandom(currentArrayLength);
+        this.startArray = currentArray;
+        this.startWord = currentArray[this.randWordIndex];
         this.startArray.splice(this.randWordIndex, 1);
         this.answerKey = this.startArray;
         this.answersLeft = this.answerKey.length;
@@ -132,7 +136,7 @@ export default {
       this.startTimer();
     },
     startTimer() {
-      if (this.timeLeft == 60) {
+      if (this.timeLeft === 60) {
         this.timer = setInterval(() => {
           this.timeLeft--;
           if (this.timeLeft === 0) {
@@ -147,24 +151,22 @@ export default {
       const indexOfAnswer = this.answerKey.indexOf(answer);
       console.log(`user answer is: ${answer}, and index of answer: ${indexOfAnswer}`);
 
-      for (const i of this.answerKey) {
-        if (i === answer) {
-          this.score++;
-          this.answered = '';
-          this.answersLeft--;
-          this.answerKey.splice(indexOfAnswer, 1);  // Improper testing of this.answerKey.splice(i, 1) , now corrected.
-          this.renderAnswer(i);
+      if (indexOfAnswer !== -1) {
+        this.score++;
+        this.answered = '';
+        this.answersLeft--;
+        this.answerKey.splice(indexOfAnswer, 1);
+        this.renderAnswer(answer);
 
-          console.log(`updated answer key: ${this.answerKey}`);
+        console.log(`updated answer key: ${this.answerKey}`);
 
-          if (this.answerKey.length == 0) {
-            this.correctAnswers = [];
-            this.newAnagram[this.WordLength].splice([this.randArrayIndex], 1);
-            this.play();
-          }
-        } else {
-          this.answered = '';
+        if (this.answerKey.length === 0) {
+          this.correctAnswers = [];
+          this.newAnagram[this.WordLength].splice(this.randArrayIndex, 1);
+          this.play();
         }
+      } else {
+        this.answered = '';
       }
     },
     renderAnswer(answer) {
