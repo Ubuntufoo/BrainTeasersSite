@@ -36,7 +36,7 @@ watch(
           }
         }
         colors.value[i] = temp[i];
-        await new Promise((resolve) => setTimeout(resolve, 500));
+        await new Promise((resolve) => setTimeout(resolve, 300));
 }
     }
   }
