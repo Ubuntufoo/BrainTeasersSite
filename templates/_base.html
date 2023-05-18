@@ -19,67 +19,65 @@
 
 <body class="bg-light">
   {% block body %}
-  <header class="navigation-font pb-3">
-    <nav class="navbar navbar-expand-lg border-5 border-bottom border-success" >
-      <div class="container-fluid mx-5">
-        <div class"navbar-brand text-center">
-          <a href="{% url 'games:homepage' %}">
-            <img src="{% static 'dist\img\brainteaserslogo.jpg' %}" class="img-fluid" alt="Gaming Zone" width="140" height="100">
-          </a>
-        </div>
-        <div>
-          <a href="{% url 'games:homepage' %}" class="display-2 text-warning ms-5 text-decoration-none gradient-text">Brainteasers
-          <a/>
-        </div>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse fw-bold m-3 " id="navbarSupportedContent">
-          <ul class="navbar-nav ms-auto fs-3 ">
-            <li class="nav-item">
-              <a class="nav-link active mx-2 text-success" aria-current="page" href="{% url 'games:homepage' %}">Home</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle mx-2  text-success" href="#" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Games
-              </a>
-              <ul class="dropdown-menu fs-4 border-success">
-                <li><a class="dropdown-item text-success" href="{% url 'games:anagram-game' %}">Anagram Hunt</a></li>
-                <li><a class="dropdown-item text-success" href="{% url 'games:math-game' %}">Math Game</a></li>
-                <li><a class="dropdown-item text-success" href="{% url 'games:wordle-game' %}">Wordle+</a></li>
-                <li><a class="dropdown-item text-success" href="{% url 'games:game-scores' %}">Game Scores</a></li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link mx-2 text-success" href="{% url 'contactus:form' %}">Contact Us</a>
-            </li>
-            {% if not user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link mx-2 text-success" href="{% url 'account_login' %}">Log in</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link mx-2 text-success" href="{% url 'account_signup' %}">Sign up</a>
-            </li>
-            {% else %}
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle mx-2 text-success" href="#" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Me
-              </a>
-              <ul class="dropdown-menu ">
-                <li><a class="dropdown-item fs-4 text-success" href="{% url 'my-account' %}">My Account</a></li>
-                <div class="dropdown-divider"></div>
-                <form method="post" action="{% url 'account_logout' %}">
-                  {% csrf_token %}
-                  <button class="btn dropdown-item fs-4 text-success">Log out</button>
-                </form>
-              </ul>
-            </li>
-            {% endif %}
-          </ul>
-        </div>
+  <header class="navigation-font container">
+    <nav class="navbar navbar-expand-xxl" >
+      <div class"navbar-brand">
+        <a href="{% url 'games:homepage' %}">
+          <img src="{% static 'dist\img\brainteaserslogo.jpg' %}" class="img-fluid d-none d-md-block" alt="Gaming Zone" width="140" height="100">
+        </a>
+      </div>
+      <div>
+        <a href="{% url 'games:homepage' %}" class="gradient-text display-2 text-decoration-none">Brainteasers
+        <a/>
+      </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse text-end" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto fs-3">
+          <li class="nav-item">
+            <a class="nav-link active mx-2 text-success" aria-current="page" href="{% url 'games:homepage' %}">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle mx-2  text-success" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Games
+            </a>
+            <ul class="dropdown-menu fs-4 border-success">
+              <li><a class="dropdown-item text-success" href="{% url 'games:anagram-game' %}">Anagram Hunt</a></li>
+              <li><a class="dropdown-item text-success" href="{% url 'games:math-game' %}">Math Game</a></li>
+              <li><a class="dropdown-item text-success" href="{% url 'games:wordle-game' %}">Wordle+</a></li>
+              <li><a class="dropdown-item text-success" href="{% url 'games:game-scores' %}">Game Scores</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link mx-2 text-success" href="{% url 'contactus:form' %}">Contact Us</a>
+          </li>
+          {% if not user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link mx-2 text-success" href="{% url 'account_login' %}">Log in</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link mx-2 text-success" href="{% url 'account_signup' %}">Sign up</a>
+          </li>
+          {% else %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle mx-2 text-success" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Me
+            </a>
+            <ul class="dropdown-menu ">
+              <li><a class="dropdown-item fs-4 text-success" href="{% url 'my-account' %}">My Account</a></li>
+              <div class="dropdown-divider"></div>
+              <form method="post" action="{% url 'account_logout' %}">
+                {% csrf_token %}
+                <button class="btn dropdown-item fs-4 text-success">Log out</button>
+              </form>
+            </ul>
+          </li>
+          {% endif %}
+        </ul>
       </div>
     </nav>
   </header>
@@ -89,23 +87,21 @@
     {% endblock main %}
   </main>
 
-  <footer class="container-fluid fixed-bottom bg-white py-3 text-center navigation-font border-5 border-top border-success ">
-    <div class="row">
-      <div class="col">
-        <a class="nav-link fs-5 text-success d-inline-block" href="{% url 'contactus:form' %}">&copy; 2022 Brainteasers.</a>
-      </div>
-      {% if user.is_staff %}
-      <div class="col">
-        <li class="nav-item list-unstyled">
-          <a class="nav-link text-success d-inline-block" href="/admin/">Admin Portal</a>
-        </li>
-      </div>
-      {% endif %}
-      <div id="footLinks" class="col mt-1">
-        <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram fa-bounce fa-2xl" style="color: #198754;"></i></a>
-        <a class="mx-4" href="https://twitter.com" target="_blank"><i class="fa-brands fa-square-facebook fa-bounce fa-2xl" style="color: #198754;"></i></a>
-        <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-twitter fa-bounce fa-2xl" style="color: #198754;"></i></a>
-      </div>
+  <footer class="container fixed-bottom bg-light py-4 text-center navigation-font d-flex justify-content-between">
+    <div>
+      <a class="nav-link fs-5 text-success" href="{% url 'contactus:form' %}">&copy; 2022 Brainteasers.</a>
+    </div>
+    {% if user.is_staff %}
+    <div>
+      <li class="nav-item list-unstyled">
+        <a class="nav-link text-success me-5" href="/admin/">Admin Portal</a>
+      </li>
+    </div>
+    {% endif %}
+    <div id="footLinks">
+      <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram fa-bounce fa-2xl" style="color: #198754;"></i></a>
+      <a class="" href="https://twitter.com" target="_blank"><i class="fa-brands fa-square-facebook fa-bounce fa-2xl" style="color: #198754;"></i></a>
+      <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-twitter fa-bounce fa-2xl" style="color: #198754;"></i></a>
     </div>
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
