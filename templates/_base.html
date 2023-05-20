@@ -44,7 +44,7 @@
               aria-expanded="false">
               Games
             </a>
-            <ul class="dropdown-menu fs-4 border-success">
+            <ul class="dropdown-menu fs-4 border-succes w-25 ms-auto text-center">
               <li><a class="dropdown-item text-success" href="{% url 'games:anagram-game' %}">Anagram Hunt</a></li>
               <li><a class="dropdown-item text-success" href="{% url 'games:math-game' %}">Math Game</a></li>
               <li><a class="dropdown-item text-success" href="{% url 'games:wordle-game' %}">Wordle+</a></li>
@@ -67,9 +67,8 @@
               aria-expanded="false">
               Me
             </a>
-            <ul class="dropdown-menu ">
+            <ul class="dropdown-menu w-25 ms-auto text-center">
               <li><a class="dropdown-item fs-4 text-success" href="{% url 'my-account' %}">My Account</a></li>
-              <div class="dropdown-divider"></div>
               <form method="post" action="{% url 'account_logout' %}">
                 {% csrf_token %}
                 <button class="btn dropdown-item fs-4 text-success">Log out</button>
@@ -87,18 +86,18 @@
     {% endblock main %}
   </main>
 
-  <footer class="container fixed-bottom bg-light py-4 text-center navigation-font d-flex justify-content-between">
+  <footer class="container-fluid fixed-bottom bg-warning-subtle py-3 text-center navigation-font d-flex justify-content-evenly align-items-center">
     <div>
-      <a class="nav-link fs-5 text-success" href="{% url 'contactus:form' %}">&copy; 2022 Brainteasers.</a>
+      <a class="nav-link fs-6 text-success text-wrap" href="{% url 'contactus:form' %}">&copy; 2022 Brainteasers.</a>
     </div>
     {% if user.is_staff %}
     <div>
-      <li class="nav-item list-unstyled">
-        <a class="nav-link text-success me-5" href="/admin/">Admin Portal</a>
+      <li class="nav-item list-unstyled text-wrap">
+        <a class="nav-link text-success me-5 fs-6 fst-italic text-wrap" href="/admin/">Admin</a>
       </li>
     </div>
     {% endif %}
-    <div id="footLinks">
+    <div id="footLinks" class="text-nowrap pe-3">
       <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram fa-bounce fa-2xl" style="color: #198754;"></i></a>
       <a class="" href="https://twitter.com" target="_blank"><i class="fa-brands fa-square-facebook fa-bounce fa-2xl" style="color: #198754;"></i></a>
       <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-twitter fa-bounce fa-2xl" style="color: #198754;"></i></a>
