@@ -5,13 +5,13 @@
 {% block title %}Home{% endblock title %}
 
 {% block main %}
-<main class="container my-5">
-  <section class="row gap-5 align-items-center justify-content-center">
-    <h1 class="col-12 display-2 text-center mb-5">Get Hooked on Our Brainteasers:
-      <span class="d-block">Put Your Math and Word Skills to the Test!</span>
-    </h1>
-    <div class="col-6">
-      <div id="carouselOfGames" class="carousel slide .carousel-fade carousel-dark h-75 w-75" data-bs-ride="true">
+<main class="container-fluid my-2 py-5">
+  <h1 class="display-4 text-center mb-5">Get Hooked on Our Brainteasers:
+    <span class="d-block">Put Your Math and Word Skills to the Test!</span>
+  </h1>
+  <div class="row mb-5 align-items-center justify-content-center">
+    <div class="col">
+      <div id="carouselOfGames" class="carousel slide carousel-fade carousel-dark mx-auto  w-50" data-bs-ride="true">
         <div class="carousel-inner">
           <div class="carousel-item active">
             <img src="{% static 'dist\img\WG_1_500x500.png' %}" class="d-block w-100" alt="Wordle+">
@@ -33,55 +33,56 @@
         </button>
       </div>
     </div>
-    <div class="col-5 rounded bg-success bg-gradient h-100 shadow">
-      <div class="accordion accordion-flush py-4 px-3" id="accordionFlush">
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="flush-headingOne">
-            <button class="accordion-button collapsed fs-3 fs-bold bg-secondary bg-gradient text-warning" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-              Wordle+
-            </button>
-          </h2>
-          <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlush">
-            <div class="accordion-body bg-light"><p>Wordle+ is a refreshing take on a classic. Wordle is a popular online word-guessing game where players have to guess a five-letter word in a limited number of attempts. This version enhances the visual cues given to the player by way of a stop-light color theme. It also adds functionality - correct letters in the correct position are rolled down to the next guess to help the player fill in the word.</p><div class="text-center"><button class="btn btn-primary rounded-pill"><a href="{% url 'games:wordle-game' %}" class="text-light text-decoration-none">Let's Play</a></button></div></div>
+    <div class="col-lg mt-5">
+      <div class="rounded bg-success shadow w-75 mx-auto">
+        <div class="accordion accordion-flush p-4" id="accordionFlush">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne">
+              <button class="accordion-button collapsed fs-6 fs-bold bg-secondary bg-gradient text-warning" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                Wordle +
+              </button>
+            </h2>
+            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlush">
+              <div class="accordion-body bg-light"><p>Wordle+ is a refreshing take on a classic. Wordle is a popular online word-guessing game where players have to guess a five-letter word in a limited number of attempts. This version enhances the visual cues given to the player by way of a stop-light color theme. It also adds functionality - correct letters in the correct position are rolled down to the next guess to help the player fill in the word.</p><div class="text-center"><button class="btn btn-primary rounded-pill"><a href="{% url 'games:wordle-game' %}" class="text-light text-decoration-none">Let's Play</a></button></div></div>
+            </div>
           </div>
-        </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="flush-headingTwo">
-            <button class="accordion-button collapsed fs-3 fs-bold bg-secondary bg-gradient text-warning" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-              Anagram Hunt
-            </button>
-          </h2>
-          <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlush">
-            <div class="accordion-body bg-light"><p>Are you ready to put your anagram skills to the test? In this word game, you choose the length of the word and we'll randomly generate a word of that length. Your goal is to guess all of the anagrams of that word. With multiple levels of difficulty, you'll be challenged to unscramble words and expand your vocabulary. Get ready to become a word wizard and unlock the power of anagrams!</p><div class="text-center"><button class="btn btn-primary rounded-pill"><a href="{% url 'games:anagram-game' %}" class="text-light text-decoration-none">Let's Play</a></button></div></div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingTwo">
+              <button class="accordion-button collapsed fs-6 fs-bold bg-secondary bg-gradient text-warning" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                Anagram Hunt
+              </button>
+            </h2>
+            <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlush">
+              <div class="accordion-body bg-light"><p>Are you ready to put your anagram skills to the test? In this word game, you choose the length of the word and we'll randomly generate a word of that length. Your goal is to guess all of the anagrams of that word. With multiple levels of difficulty, you'll be challenged to unscramble words and expand your vocabulary. Get ready to become a word wizard and unlock the power of anagrams!</p><div class="text-center"><button class="btn btn-primary rounded-pill"><a href="{% url 'games:anagram-game' %}" class="text-light text-decoration-none">Let's Play</a></button></div></div>
+            </div>
           </div>
-        </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="flush-headingThree">
-            <button class="accordion-button collapsed fs-3 fs-bold bg-secondary bg-gradient text-warning" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-              Mathificent
-            </button>
-          </h2>
-          <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlush">
-            <div class="accordion-body bg-light"><p>Get ready to flex your math skills with this fast-paced game! Choose from addition, subtraction, multiplication, or division and put your arithmetic abilities to the test. You'll have just 60 seconds to answer as many random equations as you can using your chosen operation. Think fast, because the clock is ticking and the equations are getting harder with each passing second. Can you beat the clock and become a math whiz? Let's find out!</p><div class="text-center"><button class="btn btn-primary rounded-pill"><a href="{% url 'games:math-game' %}" class="text-light text-decoration-none">Let's Play</a></button></div></div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingThree">
+              <button class="accordion-button collapsed fs-6 fs-bold bg-secondary bg-gradient text-warning" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                Mathificent
+              </button>
+            </h2>
+            <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlush">
+              <div class="accordion-body bg-light"><p>Get ready to flex your math skills with this fast-paced game! Choose from addition, subtraction, multiplication, or division and put your arithmetic abilities to the test. You'll have just 60 seconds to answer as many random equations as you can using your chosen operation. Think fast, because the clock is ticking and the equations are getting harder with each passing second. Can you beat the clock and become a math whiz? Let's find out!</p><div class="text-center"><button class="btn btn-primary rounded-pill"><a href="{% url 'games:math-game' %}" class="text-light text-decoration-none">Let's Play</a></button></div></div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
-  <div class="border-bottom border-5 my-5 pt-4 border-success"></div>
-  <section class="row align-items-center justify-content-center my-5 pt-5">
-    <div id="carouselHome" class="col-5 carousel slide pb-5" data-bs-ride="carousel">
-      <div class="carousel-inner">
+  </div>
+  <div class="row align-items-center justify-content-center">
+    <div id="carouselHome" class="col mb-5 carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner mx-auto shadow w-75">
         {% for review in reviews %}
         {% if forloop.first %}
         <div class="carousel-item active">
         {% else %}
         <div class="carousel-item">
         {% endif %}
-          <div class="card w-75 text-warning bg-success shadow mx-auto">
+          <div class="card text-warning bg-success">
             <div class="card-body">
-              <h2 class="card-title font-weight-bold">{{ review.user.first_name }}</h3>
-              <p class="card-text py-4 fs-5 fst-italic lh-base text-center">{{ review.comment }}</p>
+              <h2 class="card-title font-weight-bold">{{ review.user.first_name }}</h2>
+              <p class="card-text fs-6 pt-3 fst-italic lh-base text-center">{{ review.comment }}</p>
               <p class="card-text">Rating: {{ review.rating }}</p>
             </div>
           </div>
@@ -89,23 +90,20 @@
         {% endfor %}
       </div>
     </div>
-
     {% if user.is_authenticated %}
-    <div class="col-5 pb-5 shadow fs-5">
-      <h3 class="text-center fw-bold">Please leave a comment!</h3>
-      <form method="post">
+    <div class="col-lg mb-5">
+      <form method="post" class="w-75 fs-6 p-3 shadow mx-auto">
+        <h5 class="fw-bold p-1 text-center">Please leave a comment!</h5>
         {% csrf_token %}
         <table class="table">
           {{ form|crispy }}
         </table>
-        <button class="btn btn-primary float-end">Submit</button>
+        <button class="btn btn-primary">Submit</button>
       </form>
     </div>
-
     {% else %}
     <div></div>
     {% endif %}
-  </section>
-
+  </div>
 </main>
 {% endblock main %}

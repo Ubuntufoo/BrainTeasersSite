@@ -1,7 +1,7 @@
 <template>
-  <div class="d-flex justify-content-between text-center my-5">
-    <label :for="id" class="form-label fw-bold text-uppercase text-center h4 pt-3">{{label}}:</label>
-    <select class="form-select shadow fs-4 text-center w-50" :id="id" :value="currentValue"
+  <div class="row justify-content-center my-5 mx-auto">
+    <label :for="id" class="col form-label fw-bold text-uppercase text-center fs-5 pt-3">{{label}}:</label>
+    <select class="col-md w-75 form-select shadow fs-5 text-start w-50" :id="id" :value="currentValue"
         @input="$emit('update:modelValue', $event.target.value)">
       <option v-for="option in options" :key="option[1]"
         :value="option[1]" :class="'fw-bold'">

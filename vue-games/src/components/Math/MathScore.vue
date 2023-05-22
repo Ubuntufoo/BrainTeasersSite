@@ -1,6 +1,6 @@
 <template>
-  <div class="w-75 d-flex justify-content-evenly h4">
-    <p class="text-uppercase">Score:</p>
+  <div class="d-flex fs-4">
+    <p class="text-uppercase me-2">Score:</p>
     <p>{{ score }}</p>
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
-  <div class="w-75 d-flex justify-content-evenly h4">
-    <p class="text-uppercase">Time Left:</p>
+  <div class="d-flex fs-4">
+    <p class="text-uppercase me-2">Time Left:</p>
     <p>{{ timeLeft }}</p>
   </div>
 </template>

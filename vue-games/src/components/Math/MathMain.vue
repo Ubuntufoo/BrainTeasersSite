@@ -1,49 +1,52 @@
 <template>
-  <section class="container w-25 shadow rounded mt-5 pb-4" id="main-container">
-    <h2 class="display-3 fw-bold text-warning text-center pt-4">Mathificent</h2>
-    <hr class="border border-black border-3 opacity-100 rounded">
-    <div v-if="screen === 'config'" id="config-container">
-
-      <MathSelectInput :currentValue="operation" label="Operation"
-        id="operation" v-model="operation" :options="operations" />
-      <MathSelectInput :currentValue="maxNumber" label="Maximum Number"
-        id="max-number" v-model="maxNumber" :options="numbers" />
-      <MathPlayButton @play-button-click="play" />
-    </div>
-    <div v-else-if="screen === 'play'" id="game-container" class="pb-5">
-      <div v-if="timeLeft > 0" class="h-50 text-center">
-        <div class="w-100 d-flex justify-content-evenly border-bottom my-4">
-          <MathScore :score="score" />
-          <MathTimer :timeLeft="timeLeft" />
-        </div>
-        <div :class="equationClass" class="w-75 d-inline-flex justify-content-evenly fs-1 mb-3 text-center">
-          <MathEquation :question="question"
-            :answer="input"
-            :answered="answered" />
-        </div>
-        <MathKeypad :buttons="buttons" @keyPress="setInput"/>
+  <section class="container mb-5 pb-4">
+    <div class="shadow rounded w-75 mx-auto my-5 p-3">
+      <h2 class="display-3 fw-bold text-warning text-center pt-4">Mathificent</h2>
+      <hr class="border border-black border-3 opacity-100 rounded">
+      <div v-if="screen === 'config'" id="config-container">
+        <MathSelectInput :currentValue="operation" label="Operation"
+          id="operation" v-model="operation" :options="operations" />
+        <MathSelectInput :currentValue="maxNumber" label="Maximum Number"
+          id="max-number" v-model="maxNumber" :options="numbers" />
+        <MathPlayButton @play-button-click="play" />
       </div>
-      <div v-else-if="timeLeft === 0">
-        <div class="text-center mt-5">
-          <h1 class="text-info display-4">Time is Up!</h1>
-          <div class="w-100 d-flex justify-content-evenly text-info fs-1 my-5">
-            <p>Final score:</p>
-            <p class="fw-bold">{{ finalScore }}</p>
+      <div v-else-if="screen === 'play'" id="game-container" class="pb-3">
+        <div v-if="timeLeft > 0">
+          <div class="d-flex justify-content-evenly border-bottom my-4">
+            <MathScore :score="score" />
+            <MathTimer :timeLeft="timeLeft" />
           </div>
-          <div>
-            <MathRecordScore :user="user" :finalScore="finalScore"/>
+          <div class="text-center">
+            <div :class="equationClass" class="d-inline-flex justify-content-between fs-1 mb-3">
+              <MathEquation :question="question"
+                :answer="input"
+                :answered="answered" />
+            </div>
           </div>
-          <div class="my-4">
-            <button class="btn btn-primary btn-lg shadow rounded-pill fs-3"
-              v-on:click="restart">
-                Play Again!
-            </button>
-          </div>
-          <div>
-            <button class="btn btn-primary btn-lg shadow rounded-pill fs-3"
-              v-on:click="config">
-                Change Settings
-            </button>
+          <MathKeypad :buttons="buttons" @keyPress="setInput"/>
+        </div>
+        <div v-else-if="timeLeft === 0">
+          <div class="text-center">
+            <h1 class="text-info display-4">Time is Up!</h1>
+            <div class="d-flex justify-content-evenly text-info fs-1 my-5">
+              <p>Final score:</p>
+              <p class="fw-bold">{{ finalScore }}</p>
+            </div>
+            <div>
+              <MathRecordScore :user="user" :finalScore="finalScore"/>
+            </div>
+            <div class="my-3">
+              <button class="btn btn-primary btn-lg shadow rounded-pill fs-3"
+                v-on:click="restart">
+                  Play Again!
+              </button>
+            </div>
+            <div>
+              <button class="btn btn-primary btn-lg shadow rounded-pill fs-3"
+                v-on:click="config">
+                  Change Settings
+              </button>
+            </div>
           </div>
         </div>
       </div>

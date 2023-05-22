@@ -1,6 +1,6 @@
 <template>
   <div>{{question}}</div>
-  <div>=</div>
+  <div class="mx-3">=</div>
   <div>{{ answer }}</div>
 </template>
 
