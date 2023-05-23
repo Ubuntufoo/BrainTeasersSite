@@ -17,7 +17,7 @@
             <MathTimer :timeLeft="timeLeft" />
           </div>
           <div class="text-center">
-            <div :class="equationClass" class="d-inline-flex justify-content-between fs-1 mb-3">
+            <div :class="equationClass" class="d-inline-flex justify-content-between fs-1 mb-3 py-3">
               <MathEquation :question="question"
                 :answer="input"
                 :answered="answered" />

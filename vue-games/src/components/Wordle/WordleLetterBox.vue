@@ -14,7 +14,8 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="rounded text-uppercase shadow fs-1 d-flex justify-content-center align-items-center user-select-none"
+  <div id="down-size"
+    class="col rounded shadow justify-content-center align-items-center user-select-none text-uppercase text-center fs-1"
     :class="{
       'bg-danger text-white'
         : color == 'gray',
@@ -24,7 +25,7 @@ const props = defineProps({
         : color == 'yellow',
     }">
     <transition>
-      <p v-if="letter" class="mt-3">{{ letter }}</p>
+      <p v-if="letter" class="pt-2">{{ letter }}</p>
     </transition>
   </div>
 </template>
@@ -40,8 +41,16 @@ const props = defineProps({
   opacity: 0;
 }
 
+@media (max-width: 576px) {
+  /* Update the CSS selector to target the desired element */
+  #down-size {
+    height: 50px;
+    width: 50px;
+  }
+}
+
 div {
-  height: 90px;
-  width: 90px;
+  height: 80px;
+  width: 80px;
 }
 </style>

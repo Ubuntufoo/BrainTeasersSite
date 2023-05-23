@@ -1,41 +1,39 @@
 <template>
-  <section class="container w-25 shadow rounded mt-5">
-    <div>
-      <h2 class="display-3 fw-bold text-warning text-center pt-4">Anagram Hunt</h2>
-      <hr class="border border-black border-3 opacity-100 rounded">
-    </div>
-    <div v-if="screen === 'config'" class="pt-2" id="config-container">
-      <AnagramSelectInput :options="numbers" v-model="WordLength" />
-      <ol class="h4 list-group list-group-flush text-center my-5">
-        <li class="list-group-item"> Choose word length</li>
-        <li class="list-group-item"> Press <span class="fw-bold">Play!</span></li>
-        <li class="list-group-item"> Find anagrams! You get 60 seconds</li>
-      </ol>
-      <AnagramPlayButton @play-button-click="play" />
-    </div>
-    <div id="game-container" v-else-if="screen === 'play'">
-      <div class="border-bottom row p-2 pt-4">
-        <div class="col text-start fw-bold">
+  <section class="container mb-5 pb-4">
+    <div class="shadow rounded w-75 mx-auto my-5 p-3">
+      <div>
+        <h2 class="display-3 fw-bold text-warning text-center pt-4">Anagram Hunt</h2>
+        <hr class="border border-black border-3 opacity-100 rounded">
+      </div>
+      <div v-if="screen === 'config'" class="pt-2" id="config-container">
+        <AnagramSelectInput :options="numbers" v-model="WordLength" />
+        <ol class="list-group list-group-flush text-center my-5 fs-4">
+          <li class="list-group-item"> Choose word length</li>
+          <li class="list-group-item"> Press <span class="fw-bold">Play!</span></li>
+          <li class="list-group-item"> Find anagrams! You get 60 seconds</li>
+        </ol>
+        <AnagramPlayButton @play-button-click="play" />
+      </div>
+      <div id="game-container" v-else-if="screen === 'play'">
+        <div class="d-flex flex-xl-wrap justify-content-around border-bottom fw-bold py-4 fs-4">
           <AnagramScoreComp :score="score" />
-        </div>
-        <div class="col text-end fw-bold">
           <AnagramTimeLeft :timeLeft="timeLeft" />
         </div>
+        <div>
+          <AnagramWordGiven :startWord="startWord" :answersLeft="answersLeft" />
+          <AnagramAnswerInput v-model="answered" @change="answerChk(answered)" />
+          <AnagramAnswerList :answers="correctAnswers" />
+        </div>
       </div>
-      <div>
-        <AnagramWordGiven :startWord="startWord" :answersLeft="answersLeft" />
-        <AnagramAnswerInput v-model="answered" @change="answerChk(answered)" />
-        <AnagramAnswerList :answers="correctAnswers" />
+      <div class="h-50 d-flex flex-column justify-content-evenly align-items-center text-center py-5" id="end-game" v-else-if="screen === 'game-over'">
+        <h1 class="text-info display-4 mt-3">Time is Up!</h1>
+        <div class="text-info fs-1 my-4">
+          <p>Final score:</p>
+          <p><span class="fw-bold">{{ finalScore }}</span> Anagrams</p>
+        </div>
+        <AnagramRecordScore :finalScore="finalScore" :user="user" />
+        <button v-on:click="config" class="btn btn-primary btn-lg shadow rounded-pill fs-3 my-5">Play Again</button>
       </div>
-    </div>
-    <div class="h-50 d-flex flex-column justify-content-evenly align-items-center text-center py-5" id="end-game" v-else-if="screen === 'game-over'">
-      <h1 class="text-info display-4">Time is Up!</h1>
-      <div class="w-100 d-flex justify-content-evenly text-info fs-1 mb-5">
-        <p>Final score:</p>
-        <p><span class="fw-bold">{{ finalScore }}</span> Anagrams</p>
-      </div>
-      <AnagramRecordScore :finalScore="finalScore" :user="user" />
-      <button v-on:click="config" class="btn btn-primary btn-lg shadow rounded-pill fs-3">Play Again</button>
     </div>
   </section>
 </template>

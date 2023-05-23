@@ -148,32 +148,34 @@ axios.get('https://api.datamuse.com/words?sp=?????')
 </script>
 
 <template>
-  <div :class="computedClass" class="d-flex flex-column align-items-center gap-4 mt-5">
-    <div class="container d-flex flex-column gap-1 align-items-center">
+  <div class="container position-relative d-flex justify-content-center mt-5">
+    <div :class="computedClass">
       <WordleRow v-for="(guess, i) in state.guesses" :key="i" :value="guess" :solution="state.solution"
         :submitted="i < state.currentGuessIndex" />
-    </div>
-    <div>
       <SimpleKeyboard @onKeyPress="handleInput" :guessedLetters="state.guessedLetters" />
     </div>
-  </div>
-  <Transition>
-    <div v-if="state.guesses[0][0] == false">
-      <div class="display-1 text-warning" style="transform: rotate(-45deg); position: fixed; top: 22%; left: 35%;">Wordle+
+    <Transition>
+      <div v-if="state.guesses[0][0] == false" id="game-title" class="display-1 text-warning text-nowrap">Wordle +</div>
+    </Transition>
+    <transition>
+      <div v-if="wonGame || lostGame" class="position-absolute top-50 start-50 translate-middle text-center">
+        <WordleGameOver v-if="wonGame" :class="'text-primary'" :content="'Congratulations!'" />
+        <WordleGameOver v-if="lostGame" :class="'text-danger'" :content="'No more guesses. Play again!'" />
+        <button class="btn btn-primary btn-lg fw-bold" @click="resetGame"><a class="text-decoration-none text-white"
+            onclick="location.reload();">Play Again</a></button>
       </div>
-    </div>
-  </Transition>
-  <transition>
-    <div v-if="wonGame || lostGame" class="position-absolute top-50 start-50 translate-middle text-center">
-      <WordleGameOver v-if="wonGame" :class="'text-primary'" :content="'Congratulations!'" />
-      <WordleGameOver v-if="lostGame" :class="'text-danger'" :content="'No more guesses. Play again!'" />
-      <button class="btn btn-primary btn-lg fw-bold" @click="resetGame"><a class="text-decoration-none text-white"
-          onclick="location.reload();">Play Again</a></button>
-    </div>
-  </transition>
+    </transition>
+  </div>
 </template>
 
 <style lang="css" scoped>
+#game-title {
+  position: absolute;
+  top: 36%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
 .v-enter-active,
 .v-leave-active {
   transition: opacity 1.5s ease;
@@ -184,18 +186,12 @@ axios.get('https://api.datamuse.com/words?sp=?????')
   opacity: 0;
 }
 
-.gradient-text {
-  background: linear-gradient(to right, #eff400, #9f45ff);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
 .simple-keyboard {
-  background-color: #d8d8d8;
+  margin-top: 10px;
+  background-color: #6c6c6c;
   border-radius: 10px;
   box-shadow: 0px 0px 5px 1px #d2d2d2;
-  font-size: 1.5em;
+  font-size: 1.3em;
   width: fit-content;
 }
 

@@ -1,8 +1,6 @@
 
 <template>
-  <div>
-    <button class="btn btn-secondary btn-lg shadow fs-4" @click="recordScore">Record Score</button>
-  </div>
+    <button class="btn btn-secondary rounded-pill btn-lg shadow fs-4" @click="recordScore">Record Score</button>
 </template>
 
 <script>

@@ -1,6 +1,7 @@
 {% extends "_base.html" %}
 {% load crispy_forms_tags %}
 {% load static %}
+{% load custom_filters %}
 
 {% block title %}Home{% endblock title %}
 
@@ -34,7 +35,7 @@
       </div>
     </div>
     <div class="col-lg mt-5">
-      <div class="rounded bg-success shadow w-75 mx-auto">
+      <div class="rounded bg-success shadow-lg w-75 mx-auto">
         <div class="accordion accordion-flush p-4" id="accordionFlush">
           <div class="accordion-item">
             <h2 class="accordion-header" id="flush-headingOne">
@@ -71,7 +72,7 @@
     </div>
   </div>
   <div class="row align-items-center justify-content-center">
-    <div id="carouselHome" class="col mb-5 carousel slide" data-bs-ride="carousel">
+    <div id="carouselHome" class="col mb-5 mx-5 carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner mx-auto shadow w-75">
         {% for review in reviews %}
         {% if forloop.first %}
@@ -79,11 +80,13 @@
         {% else %}
         <div class="carousel-item">
         {% endif %}
-          <div class="card text-warning bg-success">
+          <div class="card bg-success-subtle">
             <div class="card-body">
               <h2 class="card-title font-weight-bold">{{ review.user.first_name }}</h2>
               <p class="card-text fs-6 pt-3 fst-italic lh-base text-center">{{ review.comment }}</p>
-              <p class="card-text">Rating: {{ review.rating }}</p>
+              {% for _ in review.rating|get_range %}
+                <i class="fa-solid fa-star fa-xl" style="color: #ffc107;"></i>
+              {% endfor %}
             </div>
           </div>
         </div>
@@ -91,9 +94,9 @@
       </div>
     </div>
     {% if user.is_authenticated %}
-    <div class="col-lg mb-5">
+    <div class="col-lg mb-5 mx-5">
       <form method="post" class="w-75 fs-6 p-3 shadow mx-auto">
-        <h5 class="fw-bold p-1 text-center">Please leave a comment!</h5>
+        <h5 class="fw-bold p-1 text-center">Please leave a rating and comment!</h5>
         {% csrf_token %}
         <table class="table">
           {{ form|crispy }}

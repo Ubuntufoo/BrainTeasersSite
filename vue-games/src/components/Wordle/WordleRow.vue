@@ -37,19 +37,14 @@ watch(
         }
         colors.value[i] = temp[i];
         await new Promise((resolve) => setTimeout(resolve, 300));
-}
+      }
     }
   }
 )
 </script>
 
 <template>
-  <div class="d-flex gap-1">
-    <WordleLetterBox
-    v-for="i in 5"
-    :key="i"
-    :letter="value[i-1]"
-    :color="colors[i-1]"
-    />
+  <div class="row row-cols-5 justify-content-center gap-2 my-2">
+    <WordleLetterBox v-for="i in 5" :key="i" :letter="value[i - 1]" :color="colors[i - 1]" />
   </div>
 </template>
