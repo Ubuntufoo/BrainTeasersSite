@@ -6,9 +6,14 @@
 {% block title %}Home{% endblock title %}
 
 {% block main %}
-<main class="container-fluid my-2 py-5">
-  <h1 class="display-4 text-center mb-5">Get Hooked on Our Brainteasers:
-    <span class="d-block">Put Your Math and Word Skills to the Test!</span>
+<main class="container my-2 py-5">
+  <h1 class="display-4 mb-5">
+    <span class="d-block text-center mb-4">Get Hooked on Our Brainteasers:</span>
+    <div class="w-75 mx-auto display-5">
+      <span class="d-block text-start mb-2">Put Your</span>
+      <marquee id="word-animation" class="fade-in-out text-center fst-italic" behavior="scroll" direction="up" scrollamount="3"></marquee>
+      <span class="d-block text-end">to the Test!</span>
+    </div>
   </h1>
   <div class="row mb-5 align-items-center justify-content-center">
     <div class="col">
