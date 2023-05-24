@@ -15,7 +15,7 @@ const props = defineProps({
 
 <template>
   <div id="down-size"
-    class="col rounded shadow justify-content-center align-items-center user-select-none text-uppercase text-center fs-1"
+    class="col rounded shadow justify-content-center align-items-center user-select-none text-uppercase text-center fs-1 bg-secondary-subtle"
     :class="{
       'bg-danger text-white'
         : color == 'gray',
