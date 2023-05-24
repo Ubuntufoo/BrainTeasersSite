@@ -13,11 +13,12 @@
   <script src="https://kit.fontawesome.com/0e33780c76.js" crossorigin="anonymous"></script>
   <link rel="shortcut icon" type="image/png" href="{% static 'dist/img/faviconB-32x32.png' %}">
   <link rel="stylesheet" href="{% static 'dist\css\main.css' %}">
+  <link rel="stylesheet" href="{% static 'dist\css\hover.css' %}"  media="all">
   <title>{% block title %}{% endblock title %}</title>
   {% endblock head %}
 </head>
 
-<body class="bg-light">
+<body class=" bg-body-secondary">
   {% block body %}
   <header class="navigation-font container">
     <nav class="navbar navbar-expand-xxl" >
@@ -37,41 +38,41 @@
       <div class="collapse navbar-collapse text-end" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto fs-3">
           <li class="nav-item">
-            <a class="nav-link active mx-2 text-success" aria-current="page" href="{% url 'games:homepage' %}">Home</a>
+            <a class="nav-link active mx-2 text-success hvr-bounce-in" aria-current="page" href="{% url 'games:homepage' %}">Home</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle mx-2  text-success" href="#" role="button" data-bs-toggle="dropdown"
+            <a class="nav-link dropdown-toggle mx-2 text-success hvr-bounce-in" href="#" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
               Games
             </a>
-            <ul class="dropdown-menu fs-4 border-succes w-25 ms-auto text-center">
-              <li><a class="dropdown-item text-success" href="{% url 'games:anagram-game' %}">Anagram Hunt</a></li>
-              <li><a class="dropdown-item text-success" href="{% url 'games:math-game' %}">Math Game</a></li>
-              <li><a class="dropdown-item text-success" href="{% url 'games:wordle-game' %}">Wordle +</a></li>
-              <li><a class="dropdown-item text-success" href="{% url 'games:game-scores' %}">Game Scores</a></li>
+            <ul class="dropdown-menu fs-4 border-succes w-25 ms-auto text-center bg-light">
+              <li><a class="dropdown-item text-success hvr-bounce-out" href="{% url 'games:anagram-game' %}">Anagram Hunt</a></li>
+              <li><a class="dropdown-item text-success hvr-bounce-out" href="{% url 'games:math-game' %}">Math Game</a></li>
+              <li><a class="dropdown-item text-success hvr-bounce-out" href="{% url 'games:wordle-game' %}">Wordle +</a></li>
+              <li><a class="dropdown-item text-success hvr-bounce-out" href="{% url 'games:game-scores' %}">Game Scores</a></li>
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link mx-2 text-success" href="{% url 'contactus:form' %}">Contact Us</a>
+            <a class="nav-link mx-2 text-success hvr-bounce-in" href="{% url 'contactus:form' %}">Contact Us</a>
           </li>
           {% if not user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link mx-2 text-success" href="{% url 'account_login' %}">Log in</a>
+            <a class="nav-link mx-2 text-success hvr-bounce-in" href="{% url 'account_login' %}">Log in</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link mx-2 text-success" href="{% url 'account_signup' %}">Sign up</a>
+            <a class="nav-link mx-2 text-success hvr-bounce-in" href="{% url 'account_signup' %}">Sign up</a>
           </li>
           {% else %}
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle mx-2 text-success" href="#" role="button" data-bs-toggle="dropdown"
+            <a class="nav-link dropdown-toggle mx-2 text-success hvr-bounce-in" href="#" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
               Me
             </a>
-            <ul class="dropdown-menu w-25 ms-auto text-center">
-              <li><a class="dropdown-item fs-4 text-success" href="{% url 'my-account' %}">My Account</a></li>
+            <ul class="dropdown-menu w-25 ms-auto text-center bg-light">
+              <li><a class="dropdown-item fs-4 text-success hvr-bounce-out" href="{% url 'my-account' %}">My Account</a></li>
               <form method="post" action="{% url 'account_logout' %}">
                 {% csrf_token %}
-                <button class="btn dropdown-item fs-4 text-success">Log out</button>
+                <div class="hvr-bounce-out"><button class="btn dropdown-item fs-4 text-success">Log out</button></div>
               </form>
             </ul>
           </li>
@@ -86,7 +87,7 @@
     {% endblock main %}
   </main>
 
-  <footer class="container-fluid fixed-bottom bg-warning-subtle py-3 text-center navigation-font d-flex justify-content-evenly align-items-center">
+  <footer class="container-fluid fixed-bottom bg-success-subtle py-3 text-center navigation-font d-flex justify-content-evenly align-items-center">
     <div>
       <a class="nav-link fs-6 text-success text-wrap" href="{% url 'contactus:form' %}">&copy; 2022 Brainteasers.</a>
     </div>
@@ -97,10 +98,10 @@
       </li>
     </div>
     {% endif %}
-    <div id="footLinks" class="text-nowrap pe-3">
-      <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram fa-bounce fa-2xl" style="color: #198754;"></i></a>
-      <a class="" href="https://twitter.com" target="_blank"><i class="fa-brands fa-square-facebook fa-bounce fa-2xl" style="color: #198754;"></i></a>
-      <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-twitter fa-bounce fa-2xl" style="color: #198754;"></i></a>
+    <div id="footLinks" class="text-nowrap pe-3 pt-2">
+      <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram fa-beat fa-xl" style="color: #198754;"></i></a>
+      <a href="https://twitter.com" target="_blank"><i class="px-2 fa-brands fa-square-facebook fa-beat fa-xl" style="color: #198754;"></i></a>
+      <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-twitter fa-beat fa-xl" style="color: #198754;"></i></a>
     </div>
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
