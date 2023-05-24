@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Paaji+2&family=Bubblegum+Sans&family=Maven+Pro&display=swap');
+
+main {
+  font-family: 'Baloo Paaji 2', cursive;
+}
+
+.navigation-font {
+  font-family: 'Bubblegum Sans', cursive;
+}
+
+.gradient-text {
+  background: linear-gradient(to right, RGBa(25, 135, 84), rgba(255, 0, 0, 0.598), RGBa(255, 193, 7));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+h1 {
+  color: RGBa(255, 193, 7);
+}
+
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+@keyframes fadeEffect {
+  0% {
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  75% {
+    opacity: 0.3;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.fade-in-out {
+  height: 58px;
+  animation-name: fadeEffect;
+  animation-duration: 3.25s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@media (max-width: 576px) {
+  .fade-in-out {
+    height: 75px;
+
+  }
+}
