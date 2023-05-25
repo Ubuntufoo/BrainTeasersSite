@@ -32,10 +32,10 @@
   </section>
 
   <div class="row mb-5 align-items-center justify-content-center">
-    <div class="col" data-bs-theme="dark">
-      <div id="carouselOfGames" class="carousel slide carousel-fade mx-auto w-50" >
+    <div class="col">
+      <div id="carouselOfGames" class="carousel carousel-dark card slide carousel-fade mx-auto w-50">
         <div class="carousel-inner rounded">
-          <div class=" parent-1 carousel-item active"><img src="{% static 'img\WG_1_500x500.png' %}" class="d-block w-100" role="button" alt="Wordle+">
+          <div class="parent-1 carousel-item active"><img src="{% static 'img\WG_1_500x500.png' %}" class="d-block w-100" role="button" alt="Wordle+">
           </div>
           <div class="parent-2 carousel-item"><img src="{% static 'img\AH_1_500x500.png' %}" class="d-block w-100" role="button" alt="Anagram Hunt">
           </div>
@@ -50,6 +50,9 @@
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
+        <div class="pt-3 mx-auto">
+          <h6 class="pt-2 text-center border-top border-3 fw-semibold">Three exciting games to choose from!</h6>
+        </div>
       </div>
     </div>
     <div class="col-lg mt-5">
