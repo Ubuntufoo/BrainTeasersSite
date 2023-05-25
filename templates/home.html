@@ -7,26 +7,39 @@
 
 {% block main %}
 <main class="container my-2 py-5">
-  <h1 class="display-4 mb-5">
+  {% comment %} <h1 class="display-4 mb-5">
     <span class="d-block text-center mb-4">Get Hooked on Our Brainteasers:</span>
     <div class="w-75 mx-auto display-5">
       <span class="d-block text-start mb-2 ms-5 display-6">Put Your</span>
       <marquee id="word-animation" class="fade-in-out text-center fst-italic" behavior="scroll" direction="up" scrollamount="3"></marquee>
       <span class="d-block text-end me-4 display-6">to the Test!</span>
     </div>
-  </h1>
+  </h1> {% endcomment %}
+
+  <section id="hero" class="text-center mb-5">
+    <h1 class="display-4 text-warning">Get Hooked on Our Brainteasers:</h1>
+    <div class="display-6 text-warning text-center d-md-inline-block">Put your</div>
+    <div class="d-md-inline-block">
+      <div class="word-list text-center display-6 mx-1">
+        <span>Problem-Solving</span>
+        <span>Math Skills</span>
+        <span>Wits</span>
+        <span>Vocabulary</span>
+        <span>Memory</span>
+      </div>
+    </div>
+    <div class="display-6 text-warning text-center d-md-inline-block">to the test!</div>
+  </section>
+
   <div class="row mb-5 align-items-center justify-content-center">
-    <div class="col">
-      <div id="carouselOfGames" class="carousel slide carousel-fade carousel-dark mx-auto w-50" data-bs-ride="true">
+    <div class="col" data-bs-theme="dark">
+      <div id="carouselOfGames" class="carousel slide carousel-fade mx-auto w-50" >
         <div class="carousel-inner rounded">
-          <div class="carousel-item active"><a href="{% url 'games:wordle-game' %}"><img src="{% static 'img\WG_1_500x500.png' %}" class="d-block w-100" alt="Wordle+"></a>
-
+          <div class=" parent-1 carousel-item active"><img src="{% static 'img\WG_1_500x500.png' %}" class="d-block w-100" role="button" alt="Wordle+">
           </div>
-          <div class="carousel-item"><a href="{% url 'games:anagram-game' %}"><img src="{% static 'img\AH_1_500x500.png' %}" class="d-block w-100" alt="Anagram Hunt"></a>
-
+          <div class="parent-2 carousel-item"><img src="{% static 'img\AH_1_500x500.png' %}" class="d-block w-100" role="button" alt="Anagram Hunt">
           </div>
-          <div class="carousel-item"><a href="{% url 'games:math-game' %}"><img src="{% static 'img\MG_1_500x500.png' %}" class="d-block w-100" alt="Mathificent"></a>
-
+          <div class="parent-3 carousel-item "><img src="{% static 'img\MG_1_500x500.png' %}" class="d-block w-100" role="button" alt="Mathificent">
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselOfGames" data-bs-slide="prev">
@@ -40,11 +53,11 @@
       </div>
     </div>
     <div class="col-lg mt-5">
-      <div class="rounded bg-success shadow-lg w-75 mx-auto">
-        <div class="accordion accordion-flush p-4" id="accordionFlush">
+
+        <div class="accordion accordion-flush p-4 card bg-success-subtle rounded shadow-lg w-75 mx-auto" id="accordionFlush">
           <div class="accordion-item">
             <h2 class="accordion-header" id="flush-headingOne">
-              <button class="accordion-button collapsed fs-6 fs-bold bg-secondary bg-gradient text-warning" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+              <button class="child-1 accordion-button collapsed fs-5 fs-bold bg-secondary text-warning rounded border border-5 border-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                 Wordle +
               </button>
             </h2>
@@ -55,7 +68,7 @@
           </div>
           <div class="accordion-item">
             <h2 class="accordion-header" id="flush-headingTwo">
-              <button class="accordion-button collapsed fs-6 fs-bold bg-secondary bg-gradient text-warning" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+              <button class="child-2 accordion-button collapsed fs-5 fs-bold bg-secondary text-warning rounded border border-5 border-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
                 Anagram Hunt
               </button>
             </h2>
@@ -66,7 +79,7 @@
           </div>
           <div class="accordion-item">
             <h2 class="accordion-header" id="flush-headingThree">
-              <button class="accordion-button collapsed fs-6 fs-bold bg-secondary bg-gradient text-warning" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+              <button class="child-3 accordion-button collapsed fs-5 fs-bold bg-secondary text-warning rounded border border-5 border-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
                 Mathificent
               </button>
             </h2>
@@ -76,11 +89,11 @@
             </div>
           </div>
         </div>
-      </div>
+
     </div>
   </div>
   <div class="row align-items-center justify-content-center">
-    <div id="carouselHome" class="col mb-5 mx-5 carousel slide" data-bs-ride="carousel">
+    <div id="carouselHome" class="col align-self-start mx-5 carousel slide my-5" data-bs-ride="carousel">
       <div class="carousel-inner mx-auto shadow w-75">
         {% for review in reviews %}
         {% if forloop.first %}
@@ -88,10 +101,10 @@
         {% else %}
         <div class="carousel-item">
         {% endif %}
-          <div class="card bg-success-subtle">
+          <div class="card bg-success-subtle bg-gradient">
             <div class="card-body">
               <h2 class="card-title font-weight-bold">{{ review.user.first_name }}</h2>
-              <p class="card-text fs-6 pt-3 fst-italic lh-base text-center">{{ review.comment }}</p>
+              <p class="card-text fs-4 pt-3 fst-italic lh-base text-center">{{ review.comment }}</p>
               {% for _ in review.rating|get_range %}
                 <i class="fa-solid fa-star fa-xl" style="color: #ffc107;"></i>
               {% endfor %}
@@ -102,8 +115,8 @@
       </div>
     </div>
     {% if user.is_authenticated %}
-    <div class="col-lg mb-5 mx-5">
-      <form method="post" class="w-75 fs-6 p-3 shadow rounded bg-secondary mx-auto">
+    <div class="col-lg my-5 mx-5">
+      <form method="post" class="w-75 fs-6 p-3 shadow rounded bg-secondary bg-gradient mx-auto">
         <h5 class="fw-bold p-1 text-center">Please leave a rating and comment!</h5>
         {% csrf_token %}
         <table class="table">

@@ -1,17 +1,21 @@
-const words = ['Math Skills', 'Vocabulary', 'Wit', 'Problem-Solving', 'Creativity']; // Replace with your array of words
-const wordAnimationElement = document.getElementById('word-animation');
+// Collect parent elements, add/remove class list to child elements
+const parentElements = document.querySelectorAll('.parent-1, .parent-2, .parent-3');
 
-let currentWordIndex = 0;
+parentElements.forEach(parent => {
+  parent.addEventListener('click', () => {
 
-function animateWords() {
-  wordAnimationElement.textContent = words[currentWordIndex];
+    const parentClass = parent.classList[0];
+    const childClass = parentClass.replace('parent', 'child');
 
-  // Increment the current word index and wrap around if necessary
-  currentWordIndex = (currentWordIndex + 1) % words.length;
-}
+    const childElements = document.querySelectorAll('.child-1, .child-2, .child-3');
 
-// Start the initial animation
-animateWords();
+    childElements.forEach(child => {
+      child.classList.remove('border-warning');
+    });
 
-// Repeat the animation every 3 seconds (adjust as needed)
-setInterval(animateWords, 3300);
+
+    const clickedChildElement = document.querySelector(`.${childClass}`);
+
+    clickedChildElement.classList.add('border-warning');
+  });
+});

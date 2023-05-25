@@ -15,43 +15,92 @@ main {
   -webkit-text-fill-color: transparent;
 }
 
-h1 {
-  color: RGBa(255, 193, 7);
+/* home page header section */
+#hero>div {
+  text-align: left;
+  height: 48px !important;
+  line-height: 48px !important;
+
+  overflow: hidden;
 }
 
-@keyframes fadeEffect {
+div.word-list span {
+  display: block;
+  height: 48px !important;
+  line-height: 48px !important;
+}
+
+div.word-list {
+  position: relative;
+  animation: cycle ease 7s infinite;
+}
+
+@keyframes cycle {
   0% {
-    opacity: 0;
+    top: 0
   }
 
-  25% {
-    opacity: 0.3;
+  10% {
+    top: 0
+  }
+
+  20% {
+    top: -48px
+  }
+
+  30% {
+    top: -48px
+  }
+
+  40% {
+    top: -96px;
   }
 
   50% {
-    opacity: 1;
+    top: -96px;
   }
 
-  75% {
-    opacity: 0.3;
+  60% {
+    top: -144px;
+  }
+
+  70% {
+    top: -144px;
+  }
+
+  80% {
+    top: -192px;
+  }
+
+  90% {
+    top: -192px;
   }
 
   100% {
-    opacity: 0;
+    top: 0px;
   }
 }
 
-.fade-in-out {
-  height: 58px;
-  animation-name: fadeEffect;
-  animation-duration: 3.25s;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
+.word-list>span:nth-child(1) {
+  color: #ff4258;
 }
 
-@media (max-width: 576px) {
-  .fade-in-out {
-    height: 75px;
+.word-list>span:nth-child(2) {
+  color: #72ff79e0;
+}
 
-  }
+.word-list>span:nth-child(3) {
+  color: #0048ff;
+}
+
+.word-list>span:nth-child(4) {
+  color: #a56ffd;
+}
+
+.word-list>span:nth-child(5) {
+  color: #1dceff;
+}
+
+.accordion-collapse {
+  transition: height 0.3s ease-in-out;
 }
