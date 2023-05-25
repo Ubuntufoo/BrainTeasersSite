@@ -136,6 +136,7 @@ dmypy.json
 # MY ADDITIONS
 vue-games/node_modules
 .DS_Store
+predeploysettings.py
 
 # IDE and editor-specific files (customize as needed)
 .vscode
