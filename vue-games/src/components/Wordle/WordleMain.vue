@@ -28,12 +28,10 @@ const initialState = {
 };
 
 const resetGame = () => {
-  console.log("resetGame executed.")
   state.solution = initialState.solution;
   state.guesses = initialState.guesses;
   state.currentGuessIndex = initialState.currentGuessIndex;
   state.guessedLetters = initialState.guessedLetters;
-  console.log(initialState)
 };
 
 const state = reactive(initialState);
@@ -73,29 +71,29 @@ const handleInput = (key) => {
     }
   } else if (key == "{bksp}") {
     for (let i = currentGuess.length - 1; i >= 0; i--) {
-      console.log(">>Backspace loop<<. currentGuess array value at index", i, "=", currentGuess[i], ". Is", currentGuess[i], "included in state.guessedLetters.found? True or false:", Boolean(state.guessedLetters.found.includes(currentGuess[i])), "Also, does currentGuess[i] == state.solution[i]? True or false:", Boolean(currentGuess[i] == state.solution[i]));
+
       if (currentGuess[i] == "") {
-        console.log("Option 1. Its an empty", typeof (currentGuess[i]), ". continue.")
+
         continue;
       } else if (state.guessedLetters.found.includes(currentGuess[i]) && currentGuess[i] == state.solution[i]) {
-        console.log("Option 2: It matches solution @index. Number of occurs in last guess:", state.guesses[state.currentGuessIndex - 1].reduce((acc, curr) => acc + (curr === currentGuess[i]), 0), ". Number of occurs in solution:", state.solution.split("").reduce((acc, curr) => acc + (curr === currentGuess[i]), 0));
+
         if (state.guesses[state.currentGuessIndex - 1].reduce((acc, curr) => acc + (curr === currentGuess[i]), 0) >= 2 && state.solution.split("").reduce((acc, curr) => acc + (curr === currentGuess[i]), 0) >= 2) {
-          console.log("Option 2.1: The previous guess and the solution have 2+ of the matching character. Ignore char and continue.");
+
           continue;
         } else if (state.guesses[state.currentGuessIndex - 1].reduce((acc, curr) => acc + (curr === currentGuess[i]), 0) <= 1 && state.solution.split("").reduce((acc, curr) => acc + (curr === currentGuess[i]), 0) >= 2) {
           if (currentGuess.reduce((acc, curr) => acc + (curr === currentGuess[i]), 0) >= 2) {
-            console.log("Option 2.2.1: The solution has 2+ of the matching char, but the prev guess does not. Replacing char with '', as long as there is 1 still remaining in currentGuess.");
+
             currentGuess[i] = "";
             break;
           }
-          console.log("Option 2.2.2: The solution has 2+ of the matching char, but the prev guess does not. Also, the currentGuess only has 1 instance of char remaining. Do nothing and continue.");
+
           continue;
         } else {
-          console.log("Option 2.3: Continue.");
+
           continue;
         }
       } else {
-        console.log("Option 3. Make this index = ''.")
+
         currentGuess[i] = "";
         break;
       }

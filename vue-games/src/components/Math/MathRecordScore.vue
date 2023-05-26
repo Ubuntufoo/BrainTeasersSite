@@ -22,11 +22,8 @@ export default {
 
       try {
         const response = (await this.axios.post("/record-score/", data)).data;
-        console.log(response);
         console.log(response.data);
       } catch (error) {
-        console.error(error);     // NOTE - use "error.response.data` for better results (not "error")
-        console.error(error.response);     // NOTE - use "error.response.data` for better results (not "error")
         console.error(error.response.data);     // NOTE - use "error.response.data` for better results (not "error")
       }
     }

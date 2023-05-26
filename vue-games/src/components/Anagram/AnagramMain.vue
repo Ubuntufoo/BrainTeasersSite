@@ -147,7 +147,6 @@ export default {
     },
     answerChk(answer) {
       const indexOfAnswer = this.answerKey.indexOf(answer);
-      console.log(`user answer is: ${answer}, and index of answer: ${indexOfAnswer}`);
 
       if (indexOfAnswer !== -1) {
         this.score++;
