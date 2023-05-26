@@ -137,6 +137,7 @@ dmypy.json
 vue-games/node_modules
 .DS_Store
 predeploysettings.py
+secret_key.txt
 
 # IDE and editor-specific files (customize as needed)
 .vscode
