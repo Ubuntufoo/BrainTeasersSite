@@ -138,6 +138,8 @@ vue-games/node_modules
 .DS_Store
 predeploysettings.py
 secret_key.txt
+S3bucket_settings.py
+pre_deploy_settings.py
 
 # IDE and editor-specific files (customize as needed)
 .vscode
