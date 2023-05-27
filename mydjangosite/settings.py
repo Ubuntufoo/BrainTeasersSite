@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+import dj_database_url
 import os
 from pathlib import Path
 
@@ -98,16 +99,8 @@ WSGI_APPLICATION = 'mydjangosite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Brainteasers_App',
-        'USER': 'postgres',
-        'PASSWORD': '7777',
-        'HOST': 'localhost',
-        'PORT': 5432
-    }
-}
+
+DATABASES = {'default': dj_database_url.config()}
 
 # EMAIL
 SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
