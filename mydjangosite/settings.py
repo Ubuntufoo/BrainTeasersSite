@@ -179,6 +179,7 @@ AWS_DEFAULT_ACL = None  # Use S3 bucket's setting
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
+AWS_LOCATION = 'static'
 
 STATICFILES_STORAGE = 'mydjangosite.storage_backends.StaticStorage'
 DEFAULT_FILE_STORAGE = 'mydjangosite.storage_backends.PublicMediaStorage'
