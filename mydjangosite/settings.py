@@ -29,7 +29,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['brainteasers.herokuapp.com']
 
-
 # Application definition
 
 INSTALLED_APPS = [
