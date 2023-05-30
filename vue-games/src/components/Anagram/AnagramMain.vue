@@ -1,5 +1,5 @@
 <template>
-  <section class="container mb-5 pb-4">
+  <section class="container py-5">
     <div class="shadow rounded bg-light w-75 mx-auto my-5 p-3">
       <div>
         <h2 class="display-3 fw-bold text-warning text-center pt-4">Anagram Hunt</h2>

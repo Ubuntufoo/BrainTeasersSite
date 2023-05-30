@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex fs-4">
     <p class="text-uppercase me-2">Time Left:</p>
-    <p>{{ timeLeft }}</p>
+    <p class="fw-bold">{{ timeLeft }}</p>
   </div>
 </template>
 

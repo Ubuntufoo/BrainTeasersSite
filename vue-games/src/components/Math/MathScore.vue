@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex fs-4">
     <p class="text-uppercase me-2">Score:</p>
-    <p>{{ score }}</p>
+    <p class="fw-bold">{{ score }}</p>
   </div>
 </template>
 

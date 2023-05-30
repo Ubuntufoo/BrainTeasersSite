@@ -21,10 +21,10 @@
 <body class="bg-light">
   {% block body %}
   <header class="container-fluid navigation-font bg-warning-subtle">
-    <nav class="container navbar navbar-expand-xl " >
+    <nav class="container navbar navbar-expand-xl">
       <div class"navbar-brand">
         <a href="{% url 'games:homepage' %}">
-          <img src="{% static '\img\brainteaserslogo.jpg' %}" class="img-fluid d-none d-md-block" alt="Gaming Zone" width="140" height="100">
+          <img src="{% static '\img\brainteaserslogo.jpg' %}" class="img-fluid d-none d-md-block" alt="Gaming Zone" width="120" height="80">
         </a>
       </div>
       <div class="me-auto">
@@ -89,7 +89,7 @@
 
   <footer class="container-fluid fixed-bottom bg-warning-subtle py-3 text-center navigation-font d-flex justify-content-evenly align-items-center">
     <div>
-      <a class="nav-link fs-6 gradient-text text-wrap" href="{% url 'contactus:form' %}">&copy; 2022 Brainteasers.</a>
+      <a class="nav-link fs-6 gradient-text text-wrap" href="{% url 'contactus:form' %}">&copy; 2023 Brainteasers.</a>
     </div>
     {% if user.is_staff %}
     <div>

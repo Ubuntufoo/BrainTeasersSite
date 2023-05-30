@@ -35,11 +35,20 @@
     <div class="col">
       <div id="carouselOfGames" class="carousel carousel-dark card slide carousel-fade mx-auto w-50">
         <div class="carousel-inner rounded">
-          <div class="parent-1 carousel-item active"><img src="{% static 'img\WG_1_500x500.png' %}" class="d-block w-100" role="button" alt="Wordle+">
+          <div class="parent-1 carousel-item active">
+            <a href="#accordionFlush">
+              <img src="{% static 'img\WG_1_500x500.png' %}" class="d-block w-100" role="button" alt="Wordle+">
+            </a>
           </div>
-          <div class="parent-2 carousel-item"><img src="{% static 'img\AH_1_500x500.png' %}" class="d-block w-100" role="button" alt="Anagram Hunt">
+          <div class="parent-2 carousel-item">
+            <a href="#accordionFlush">
+              <img src="{% static 'img\AH_1_500x500.png' %}" class="d-block w-100" role="button" alt="Anagram Hunt">
+            </a>
           </div>
-          <div class="parent-3 carousel-item "><img src="{% static 'img\MG_1_500x500.png' %}" class="d-block w-100" role="button" alt="Mathificent">
+          <div class="parent-3 carousel-item">
+            <a href="#accordionFlush">
+              <img src="{% static 'img\MG_1_500x500.png' %}" class="d-block w-100" role="button" alt="Mathificent">
+            </a>
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselOfGames" data-bs-slide="prev">
@@ -56,43 +65,41 @@
       </div>
     </div>
     <div class="col-lg mt-5">
-
-        <div class="accordion accordion-flush p-4 card bg-success-subtle rounded shadow-lg w-75 mx-auto" id="accordionFlush">
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-headingOne">
-              <button class="child-1 accordion-button collapsed fs-5 fs-bold bg-secondary text-warning rounded border border-5 border-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                Wordle +
-              </button>
-            </h2>
-            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlush">
-              <div class="accordion-body bg-light"><p>Wordle+ is a refreshing take on a classic. Wordle is a popular online word-guessing game where players have to guess a five-letter word in a limited number of attempts. This version enhances the visual cues given to the player by way of a stop-light color theme. It also adds functionality - correct letters in the correct position are rolled down to the next guess to help the player fill in the word.</p><a href="{% url 'games:wordle-game' %}" class="d-block text-center text-light text-decoration-none hvr-buzz"><button class="btn btn-primary rounded-pill text-center">Let's play</button></a>
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-headingTwo">
-              <button class="child-2 accordion-button collapsed fs-5 fs-bold bg-secondary text-warning rounded border border-5 border-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                Anagram Hunt
-              </button>
-            </h2>
-            <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlush">
-              <div class="accordion-body bg-light"><p>Are you ready to put your anagram skills to the test? In this word game, you choose the length of the word and we'll randomly generate a word of that length. Your goal is to guess all of the anagrams of that word. With multiple levels of difficulty, you'll be challenged to unscramble words and expand your vocabulary. Get ready to become a word wizard and unlock the power of anagrams!</p><a href="{% url 'games:anagram-game' %}" class="d-block text-center text-light text-decoration-none hvr-buzz"><button class="btn btn-primary rounded-pill text-center">Let's play</button></a>
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-headingThree">
-              <button class="child-3 accordion-button collapsed fs-5 fs-bold bg-secondary text-warning rounded border border-5 border-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                Mathificent
-              </button>
-            </h2>
-            <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlush">
-              <div class="accordion-body bg-light"><p>Get ready to flex your math skills with this fast-paced game! Choose from addition, subtraction, multiplication, or division and put your arithmetic abilities to the test. You'll have just 60 seconds to answer as many random equations as you can using your chosen operation. Think fast, because the clock is ticking and the equations are getting harder with each passing second. Can you beat the clock and become a math whiz? Let's find out!</p><a href="{% url 'games:math-game' %}" class="d-block text-center text-light text-decoration-none hvr-buzz"><button class="btn btn-primary rounded-pill text-center">Let's play</button></a>
-              </div>
+      <div class="accordion accordion-flush p-4 card bg-success-subtle rounded shadow-lg w-75 mx-auto" id="accordionFlush">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingOne">
+            <button class="child-1 accordion-button collapsed fs-5 fs-bold bg-secondary text-warning rounded border border-5 border-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+              Wordle +
+            </button>
+          </h2>
+          <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlush">
+            <div class="accordion-body bg-light"><p>Wordle+ is a refreshing take on a classic. Wordle is a popular online word-guessing game where players have to guess a five-letter word in a limited number of attempts. This version adds functionality - correct letters in the correct position are rolled down to the next guess to help the player fill in the word.</p><a href="{% url 'games:wordle-game' %}" class="d-block text-center text-light text-decoration-none hvr-buzz"><button class="btn btn-primary rounded-pill text-center">Let's play</button></a>
             </div>
           </div>
         </div>
-
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingTwo">
+            <button class="child-2 accordion-button collapsed fs-5 fs-bold bg-secondary text-warning rounded border border-5 border-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+              Anagram Hunt
+            </button>
+          </h2>
+          <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlush">
+            <div class="accordion-body bg-light"><p>Are you ready to put your anagram skills to the test? Choose the length of the word and we'll randomly generate a word of that length. Your goal is to guess all of the anagrams of that word. With multiple levels of difficulty, you'll be challenged to unscramble words and expand your vocabulary. Get ready to become a word wizard and unlock the power of anagrams!</p><a href="{% url 'games:anagram-game' %}" class="d-block text-center text-light text-decoration-none hvr-buzz"><button class="btn btn-primary rounded-pill text-center">Let's play</button></a>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingThree">
+            <button class="child-3 accordion-button collapsed fs-5 fs-bold bg-secondary text-warning rounded border border-5 border-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+              Mathificent
+            </button>
+          </h2>
+          <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlush">
+            <div class="accordion-body bg-light"><p>Get ready to flex your math skills with this fast-paced game! Choose from addition, subtraction, multiplication, or division and put your arithmetic abilities to the test. You'll have just 60 seconds to answer as many random equations as you can using your chosen operation. Think fast, because the clock is ticking. Can you beat the clock and become a math whiz? Let's find out!</p><a href="{% url 'games:math-game' %}" class="d-block text-center text-light text-decoration-none hvr-buzz"><button class="btn btn-primary rounded-pill text-center">Let's play</button></a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="row align-items-center justify-content-center">
