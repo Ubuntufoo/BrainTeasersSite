@@ -3,14 +3,16 @@
 
 {% block title %}Contact Us{% endblock title %}
 {% block main %}
-<div class="container mb-5 pb-5">
-  <h1 class="text-center m-5">Contact Us</h1>
-  <div class="card w-75 border-success fs-6 p-3 mx-auto">
-    <form method="post">
-      {% csrf_token %}
-      {{ form|crispy }}
-      <button class="btn btn-success btn-lg float-end">Send</button>
-    </form>
+<div class="container">
+  <div class="w-75 card border-primary mx-auto mt-5">
+    <h1 class="card-header text-center">Contact Us</h1>
+    <div class="card-body fs-5">
+      <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button class="btn btn-success btn-lg float-end">Send</button>
+      </form>
+    </div>
   </div>
 </div>
 {% endblock main %}
