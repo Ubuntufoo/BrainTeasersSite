@@ -20,8 +20,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  
-  base: '/brainteasers.herokuapp.com',
+  base: '/',
   history: createWebHistory(),
   routes: routes,
 });
