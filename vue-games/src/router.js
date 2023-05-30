@@ -10,7 +10,7 @@ const routes = [
     component: MathMain
   },
   {
-    path: '/anagram-game',
+    path: '/',
     component: AnagramMain
   },
   {
@@ -20,7 +20,6 @@ const routes = [
 ];
 
 const router = createRouter({
-  base: '/',
   history: createWebHistory(),
   routes: routes,
 });
