@@ -1,3 +1,11 @@
+// add alert to home page after 2 sec
+window.addEventListener('DOMContentLoaded', function () {
+  setTimeout(function () {
+    var alertDiv = document.getElementById('alertDiv');
+    alertDiv.classList.remove('d-none');
+  }, 2000);
+});
+
 // Collect parent elements, add/remove class list to child elements
 const parentElements = document.querySelectorAll('.parent-1, .parent-2, .parent-3');
 
@@ -19,3 +27,4 @@ parentElements.forEach(parent => {
     clickedChildElement.classList.add('border-warning');
   });
 });
+
