@@ -7,15 +7,6 @@
 
 {% block main %}
 <main class="container my-2 py-5">
-  {% comment %} <h1 class="display-4 mb-5">
-    <span class="d-block text-center mb-4">Get Hooked on Our Brainteasers:</span>
-    <div class="w-75 mx-auto display-5">
-      <span class="d-block text-start mb-2 ms-5 display-6">Put Your</span>
-      <marquee id="word-animation" class="fade-in-out text-center fst-italic" behavior="scroll" direction="up" scrollamount="3"></marquee>
-      <span class="d-block text-end me-4 display-6">to the Test!</span>
-    </div>
-  </h1> {% endcomment %}
-
   <section id="hero" class="text-center mb-5">
     <h1 class="display-4 text-warning">Get Hooked on Our Brainteasers:</h1>
     <div class="display-6 text-warning text-center d-md-inline-block">Put your</div>
@@ -30,27 +21,22 @@
     </div>
     <div class="display-6 text-warning text-center d-md-inline-block">to the test!</div>
   </section>
-
   <div class="row mb-5 align-items-center justify-content-center">
     <div class="col">
       <div id="carouselOfGames" class="carousel carousel-dark card slide carousel-fade mx-auto w-50">
-        <div class="carousel-inner rounded">
-          <div class="parent-1 carousel-item active">
-            <a href="#accordionFlush">
+        <a href="#accordionFlush">
+          <div class="carousel-inner rounded">
+            <div class="parent-1 carousel-item active">
               <img src="{% static 'img\WG_1_500x500.png' %}" class="d-block w-100" role="button" alt="Wordle+">
-            </a>
-          </div>
-          <div class="parent-2 carousel-item">
-            <a href="#accordionFlush">
+            </div>
+            <div class="parent-2 carousel-item">
               <img src="{% static 'img\AH_1_500x500.png' %}" class="d-block w-100" role="button" alt="Anagram Hunt">
-            </a>
-          </div>
-          <div class="parent-3 carousel-item">
-            <a href="#accordionFlush">
+            </div>
+            <div class="parent-3 carousel-item">
               <img src="{% static 'img\MG_1_500x500.png' %}" class="d-block w-100" role="button" alt="Mathificent">
-            </a>
+            </div>
           </div>
-        </div>
+        </a>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselOfGames" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
