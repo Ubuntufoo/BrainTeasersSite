@@ -10,7 +10,7 @@ const routes = [
     component: MathMain
   },
   {
-    path: '/',
+    path: '/anagram-game',
     component: AnagramMain
   },
   {
