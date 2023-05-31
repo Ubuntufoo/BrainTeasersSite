@@ -16,7 +16,9 @@ main {
 }
 
 /* give nav dropdown visual priority over alert element */
+
 .dropdown-menu {
+  overflow: visible;
   z-index: 9999;
 }
 
