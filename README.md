@@ -1,21 +1,22 @@
 # Brainteasers Web App
 
-This is a beginner project to develop my full-stack skills. I have a lot of improvements to make. Components and code blocks need refactoring, some of my backend file structure needs work, and I'm not sure how I feel about the home page styling. All in due time!
+This is a beginner project to develop my full-stack skills. Still work to be done here. Components and code blocks need refactoring, some of my backend file structure needs work, and I'm not sure how I feel about the home page styling. All in due time!
 
 Welcome to the Brainteasers Web App! A games site that features several word and math games to challenge and entertain users.
 
 ## Technologies Used
 
 - **Frontend:** The frontend of this project is built with Vue using Vue CLI. Both Vue composition API and options API were utilized, for practice purposes.
-- **Backend:** The backend is developed using Django.
+- **Backend:** The backend is developed using Django and postgreSQL. I'm using the Python whitenoise library efficient serving of static files project-side.
 - **Dependencies:** The project includes a `requirements.txt` file in the directory for the backend and a `package.json` file for the frontend.
 - **Languages and Frameworks:** The app utilizes the following technologies:
   - JavaScript/Vue
-  - Python/Django
+  - Python/Django with /admin functionality
   - CSS/Bootstrap
 - **Vue Packages:** Vue Router, Axios, and Simple-Keyboard are utilized in the frontend.
-- **Django Packages:** SendGrid,
+- **Django Packages:** Most notable: sendGrid, whitenoise. See requirements.txt for complete list.
 - **API:** The app uses one web API, [DataMuse API](https://api.datamuse.com/words), to fetch words.
+- **Relational database:** postgreSQL is used for user data, game scores, and site reviews.
 
 ## Features
 
