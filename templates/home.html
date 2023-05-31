@@ -8,7 +8,7 @@
 {% block main %}
 
 <main class="pb-5">
-  <div class="sticky-top" style="height: 50px;">
+  <div class="sticky-top mt-2" style="height: 60px;">
   {% if not user.is_authenticated %}
     <div id="alertDiv" class="d-none container mx-auto alert alert-info alert-dismissible fade show text-center fs-5 text-nowrap" role="alert">
       <i class="fa-solid fa-triangle-exclamation fa-xl"></i>
@@ -17,7 +17,7 @@
     </div>
   {% endif %}
   </div>
-  <section id="hero" class="text-center mb-5 bg-success-subtle py-5">
+  {% comment %} <section id="hero" class="text-center mb-5 bg-success-subtle py-5">
     <h1 class="display-4 text-danger">Get Hooked on Our Brainteasers:</h1>
     <div class="display-6 text-danger text-center d-md-inline-block">Put your</div>
     <div class="d-md-inline-block">
@@ -30,9 +30,9 @@
       </div>
     </div>
     <div class="display-6 text-danger text-center d-md-inline-block">to the test!</div>
-  </section>
+  </section> {% endcomment %}
   <section class="container">
-    <div class="row mb-5 align-items-center justify-content-center">
+    <div class="row my-3 align-items-center justify-content-center">
       <div class="col">
         <div id="carouselOfGames" class="carousel carousel-dark card slide carousel-fade mx-auto w-50">
           <div class="carousel-inner rounded">
