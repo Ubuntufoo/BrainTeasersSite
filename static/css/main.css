@@ -15,6 +15,11 @@ main {
   -webkit-text-fill-color: transparent;
 }
 
+/* give nav dropdown visual priority over alert element */
+.dropdown-menu {
+  z-index: 9999;
+}
+
 /* home page header section */
 #hero>div {
   text-align: left;
