@@ -17,12 +17,13 @@ const props = defineProps({
   <div id="down-size"
     class="col rounded shadow justify-content-center align-items-center user-select-none text-uppercase text-center fs-1"
     :class="{
-      'bg-danger text-white'
+      'border border-danger bg-danger text-white'
         : color == 'gray',
       'border border-success bg-success text-white'
         : color == 'green',
       'border border warning bg-warning text-white'
         : color == 'yellow',
+      'bg-light': !['gray', 'green', 'yellow'].includes(color),
     }">
     <transition>
       <p v-if="letter" class="pt-2">{{ letter }}</p>

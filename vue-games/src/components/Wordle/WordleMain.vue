@@ -158,7 +158,7 @@ axios.get('https://api.datamuse.com/words?sp=?????')
     <transition>
       <div v-if="wonGame || lostGame" class="position-absolute top-50 start-50 translate-middle text-center">
         <WordleGameOver v-if="wonGame" :class="'text-primary'" :content="'Congratulations!'" />
-        <WordleGameOver v-if="lostGame" :class="'text-danger'" :content="'No more guesses. Play again!'" />
+        <WordleGameOver v-if="lostGame" :class="'text-primary'" :content="'No more guesses. Play again!'" />
         <button class="btn btn-primary btn-lg fw-bold" @click="resetGame"><a class="text-decoration-none text-white"
             onclick="location.reload();">Play Again</a></button>
       </div>

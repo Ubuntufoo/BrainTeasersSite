@@ -34,16 +34,16 @@
   <section class="container">
     <div class="row my-3 align-items-center justify-content-center">
       <div class="col">
-        <div id="carouselOfGames" class="carousel carousel-dark card slide carousel-fade mx-auto w-50">
+        <div id="carouselOfGames" class="carousel carousel-dark card slide carousel-fade mx-auto w-50 border border-warning-subtle">
           <div class="carousel-inner rounded">
             <div class="parent-1 carousel-item active">
-              <img src="{% static 'img\WG_1_500x500.png' %}" class="d-block w-100" role="button" alt="Wordle+" width="316" height="316">
+              <img src="{% static 'img\WG_1_500x500.png' %}" class="d-block w-100" role="button" alt="Wordle+"">
             </div>
             <div class="parent-2 carousel-item">
-              <img src="{% static 'img\AH_1_500x500.png' %}" class="d-block w-100" role="button" alt="Anagram Hunt" width="316" height="316">
+              <img src="{% static 'img\AH_1_500x500.png' %}" class="d-block w-100" role="button" alt="Anagram Hunt"">
             </div>
             <div class="parent-3 carousel-item">
-              <img src="{% static 'img\MG_1_500x500.png' %}" class="d-block w-100" role="button" alt="Mathificent" width="316" height="316">
+              <img src="{% static 'img\MG_1_500x500.png' %}" class="d-block w-100" role="button" alt="Mathificent">
             </div>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselOfGames" data-bs-slide="prev">
@@ -60,10 +60,10 @@
         </div>
       </div>
       <div class="col-lg mt-5">
-        <div class="accordion accordion-flush p-4 card bg-success-subtle rounded shadow-lg w-75 mx-auto" id="accordionFlush">
+        <div class="accordion accordion-flush p-4 card bg-warning-subtle rounded shadow-lg w-75 mx-auto" id="accordionFlush">
           <div class="accordion-item">
             <h2 class="accordion-header" id="flush-headingOne">
-              <button class="child-1 accordion-button collapsed fs-5 fs-bold bg-secondary text-warning rounded border border-5 border-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+              <button class="child-1 accordion-button collapsed fs-5 fs-bold bg-secondary text-warning  border border-5 border-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                 Wordle +
               </button>
             </h2>
@@ -74,7 +74,7 @@
           </div>
           <div class="accordion-item">
             <h2 class="accordion-header" id="flush-headingTwo">
-              <button class="child-2 accordion-button collapsed fs-5 fs-bold bg-secondary text-warning rounded border border-5 border-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+              <button class="child-2 accordion-button collapsed fs-5 fs-bold bg-secondary text-warning  border border-5 border-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
                 Anagram Hunt
               </button>
             </h2>
@@ -85,7 +85,7 @@
           </div>
           <div class="accordion-item">
             <h2 class="accordion-header" id="flush-headingThree">
-              <button class="child-3 accordion-button collapsed fs-5 fs-bold bg-secondary text-warning rounded border border-5 border-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+              <button class="child-3 accordion-button collapsed fs-5 fs-bold bg-secondary text-warning  border border-5 border-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
                 Mathificent
               </button>
             </h2>
@@ -106,7 +106,7 @@
           {% else %}
           <div class="carousel-item">
           {% endif %}
-            <div class="card bg-success-subtle bg-gradient">
+            <div class="card bg-warning-subtle bg-gradient">
               <div class="card-body">
                 <h2 class="card-title font-weight-bold">{{ review.user.first_name }}</h2>
                 <p class="card-text fs-4 pt-3 fst-italic lh-base text-center">{{ review.comment }}</p>

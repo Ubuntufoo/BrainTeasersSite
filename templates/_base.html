@@ -18,13 +18,13 @@
   {% endblock head %}
 </head>
 
-<body class="bg-light">
+<body>
   {% block body %}
-  <header class="container-fluid bg-warning-subtle navigation-font">
+  <header class="container-fluid bg-light navigation-font">
     <nav class="container navbar navbar-expand-xl">
       <div class"navbar-brand">
         <a href="{% url 'games:homepage' %}">
-          <img src="{% static '\img\brainteaserslogo.jpg' %}" class="img-fluid d-none d-md-block" alt="Gaming Zone" width="120" height="80">
+          <img src="{% static '\img\brainteaserslogo.jpg' %}" class="img-fluid d-none d-md-block" alt="Gaming Zone" width="100" height="60">
         </a>
       </div>
       <div class="me-auto">
@@ -87,7 +87,7 @@
     {% endblock main %}
   </main>
 
-  <footer class="container-fluid fixed-bottom bg-warning-subtle py-3 text-center navigation-font d-flex justify-content-evenly align-items-center">
+  <footer class="container-fluid fixed-bottom bg-light py-3 text-center navigation-font d-flex justify-content-evenly align-items-center">
     <div>
       <a class="nav-link fs-6 gradient-text text-wrap" href="{% url 'contactus:form' %}">&copy; 2023 Brainteasers.</a>
     </div>
