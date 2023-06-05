@@ -146,7 +146,7 @@ export default {
       }
     },
     answerChk(answer) {
-      const indexOfAnswer = this.answerKey.indexOf(answer);
+      const indexOfAnswer = this.answerKey.indexOf(answer.toLowerCase());
 
       if (indexOfAnswer !== -1) {
         this.score++;
