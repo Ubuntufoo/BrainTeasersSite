@@ -11,5 +11,4 @@ module.exports = {
     }
   }
 };
-// publicPath: 'http://localhost:8080', // The base URL where your app will be deployed
 

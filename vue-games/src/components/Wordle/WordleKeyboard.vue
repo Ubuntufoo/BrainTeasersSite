@@ -54,8 +54,6 @@ watch(
 
 <style>
 @media (max-width: 576px) {
-
-  /* Update the CSS selector to target the desired element */
   #down-size {
     font-size: 0.7em;
   }

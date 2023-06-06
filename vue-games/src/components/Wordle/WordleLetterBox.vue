@@ -43,7 +43,6 @@ const props = defineProps({
 }
 
 @media (max-width: 576px) {
-  /* Update the CSS selector to target the desired element */
   #down-size {
     height: 50px;
     width: 50px;
