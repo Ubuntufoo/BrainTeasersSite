@@ -6,7 +6,7 @@
         <hr class="border border-black border-3 opacity-100 rounded">
       </div>
       <div v-if="screen === 'config'" class="pt-2" id="config-container">
-        <AnagramSelectInput :options="numbers" v-model="wordLength" />
+        <AnagramSelectInput :options="numbers" v-model="WordLength" />
         <ol class="list-group list-group-flush text-center my-5 fs-4">
           <li class="list-group-item"> Choose word length</li>
           <li class="list-group-item"> Press <span class="fw-bold">Play!</span></li>
@@ -26,8 +26,8 @@
         </div>
       </div>
       <div class="h-50 d-flex flex-column justify-content-evenly align-items-center text-center py-5" id="end-game" v-else-if="screen === 'game-over'">
+        <h1 class="text-info display-4 mt-3">Time is Up!</h1>
         <div class="text-info fs-1 my-4">
-          <h2 class="text-info display-4 mt-3">Time is Up!</h2>
           <p>Final score:</p>
           <p><span class="fw-bold">{{ finalScore }}</span> Anagrams</p>
         </div>
@@ -70,7 +70,7 @@ export default {
 
   data: function () {
     return {
-      wordLength: '5',
+      WordLength: '5',
       startArray: '',
       startWord: '',
       randArrayIndex: '',
@@ -110,14 +110,15 @@ export default {
         this.newAnagram = this.anagrams;
       }
 
-      const userLength = Number(this.wordLength);
+      const key = this.WordLength;
+      const keyLength = this.newAnagram[key].length;
 
-      if (userLength === 0) {
+      if (keyLength === 0) {
         this.screen = "game-over";
         this.gameOver();
       } else {
-        this.randArrayIndex = getRandom(userLength);
-        const currentArray = this.newAnagram[userLength][this.randArrayIndex];
+        this.randArrayIndex = getRandom(keyLength);
+        const currentArray = this.newAnagram[key][this.randArrayIndex];
         const currentArrayLength = currentArray.length;
 
         this.randWordIndex = getRandom(currentArrayLength);
@@ -158,7 +159,7 @@ export default {
 
         if (this.answerKey.length === 0) {
           this.correctAnswers = [];
-          this.newAnagram[Number(this.wordLength)].splice(this.randArrayIndex, 1);
+          this.newAnagram[this.WordLength].splice(this.randArrayIndex, 1);
           this.play();
         }
       } else {
