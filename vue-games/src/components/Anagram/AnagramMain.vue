@@ -110,7 +110,9 @@ export default {
         this.newAnagram = this.anagrams;
       }
       console.log("wordLength value and type:", this.wordLength, typeof(this.wordLength))
+
       const userLength = Number(this.wordLength);
+
       console.log("🚀 ~ file: AnagramMain.vue:114 ~ play ~ Number(this.wordLength) = userLength:", userLength, ", type of userLength: ", typeof (userLength));
       // const keyLength = this.newAnagram[key].length;   error undefined in safari browser
 
