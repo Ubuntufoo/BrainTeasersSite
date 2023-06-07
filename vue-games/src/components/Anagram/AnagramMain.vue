@@ -6,7 +6,7 @@
         <hr class="border border-black border-3 opacity-100 rounded">
       </div>
       <div v-if="screen === 'config'" class="pt-2" id="config-container">
-        <AnagramSelectInput :options="numbers" v-model="wordLength" />
+        <AnagramSelectInput :options="numbers" v-model.lazy="wordLength" />
         <ol class="list-group list-group-flush text-center my-5 fs-4">
           <li class="list-group-item"> Choose word length</li>
           <li class="list-group-item"> Press <span class="fw-bold">Play!</span></li>
