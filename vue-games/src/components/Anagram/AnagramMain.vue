@@ -15,7 +15,7 @@
         <AnagramPlayButton @play-button-click="play" />
       </div>
       <div id="game-container" v-else-if="screen === 'play'">
-        <div class="d-flex flex-xl-wrap justify-content-around border-bottom fw-bold py-4 fs-4">
+        <div class="d-flex flex-xl-wrap justify-content-around border-bottom fw-bold py-4 fs-5">
           <AnagramScoreComp :score="score" />
           <AnagramTimeLeft :timeLeft="timeLeft" />
         </div>
@@ -26,8 +26,8 @@
         </div>
       </div>
       <div class="h-50 d-flex flex-column justify-content-evenly align-items-center text-center py-5" id="end-game" v-else-if="screen === 'game-over'">
-        <h1 class="text-info display-4 mt-3">Time is Up!</h1>
         <div class="text-info fs-1 my-4">
+          <h2 class="text-info display-4 mt-3">Time is Up!</h2>
           <p>Final score:</p>
           <p><span class="fw-bold">{{ finalScore }}</span> Anagrams</p>
         </div>
@@ -109,12 +109,8 @@ export default {
       if (this.score === 0) {
         this.newAnagram = this.anagrams;
       }
-      console.log("wordLength value and type:", this.wordLength, typeof(this.wordLength))
 
       const userLength = Number(this.wordLength);
-
-      console.log("🚀 ~ file: AnagramMain.vue:114 ~ play ~ Number(this.wordLength) = userLength:", userLength, ", type of userLength: ", typeof (userLength));
-      // const keyLength = this.newAnagram[key].length;   error undefined in safari browser
 
       if (userLength === 0) {
         this.screen = "game-over";
@@ -162,7 +158,7 @@ export default {
 
         if (this.answerKey.length === 0) {
           this.correctAnswers = [];
-          this.newAnagram[this.WordLength].splice(this.randArrayIndex, 1);
+          this.newAnagram[Number(this.wordLength)].splice(this.randArrayIndex, 1);
           this.play();
         }
       } else {
