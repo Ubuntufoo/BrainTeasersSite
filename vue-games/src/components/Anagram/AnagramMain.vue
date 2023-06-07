@@ -70,7 +70,7 @@ export default {
 
   data: function () {
     return {
-      wordLength: '',
+      wordLength: '5',
       startArray: '',
       startWord: '',
       randArrayIndex: '',
