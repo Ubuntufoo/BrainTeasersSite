@@ -110,15 +110,16 @@ export default {
         this.newAnagram = this.anagrams;
       }
 
-      const key = this.WordLength;
-      const keyLength = this.newAnagram[key].length;
+      const keyLength = Number(this.WordLength);
+      console.log("🚀 ~ file: AnagramMain.vue:114 ~ play ~ type of: keyLength:", keyLength, ",", typeof(keyLength))
+      // const keyLength = this.newAnagram[key].length;   error undefined in safari browser
 
       if (keyLength === 0) {
         this.screen = "game-over";
         this.gameOver();
       } else {
         this.randArrayIndex = getRandom(keyLength);
-        const currentArray = this.newAnagram[key][this.randArrayIndex];
+        const currentArray = this.newAnagram[keyLength][this.randArrayIndex];
         const currentArrayLength = currentArray.length;
 
         this.randWordIndex = getRandom(currentArrayLength);
