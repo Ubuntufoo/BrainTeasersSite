@@ -6,7 +6,7 @@
         <hr class="border border-black border-3 opacity-100 rounded">
       </div>
       <div v-if="screen === 'config'" class="pt-2" id="config-container">
-        <AnagramSelectInput :options="numbers" v-model="WordLength" />
+        <AnagramSelectInput :options="numbers" v-model="wordLength" />
         <ol class="list-group list-group-flush text-center my-5 fs-4">
           <li class="list-group-item"> Choose word length</li>
           <li class="list-group-item"> Press <span class="fw-bold">Play!</span></li>
@@ -70,7 +70,7 @@ export default {
 
   data: function () {
     return {
-      WordLength: '',
+      wordLength: '',
       startArray: '',
       startWord: '',
       randArrayIndex: '',
@@ -109,17 +109,17 @@ export default {
       if (this.score === 0) {
         this.newAnagram = this.anagrams;
       }
-
-      const keyLength = Number(this.WordLength);
-      console.log("🚀 ~ file: AnagramMain.vue:114 ~ play ~ type of: keyLength:", keyLength, ",", typeof(keyLength))
+      console.log("wordLength value and type:", this.wordLength, typeof(this.wordLength))
+      const userLength = Number(this.wordLength);
+      console.log("🚀 ~ file: AnagramMain.vue:114 ~ play ~ Number(this.wordLength) = userLength:", userLength, ", type of userLength: ", typeof (userLength));
       // const keyLength = this.newAnagram[key].length;   error undefined in safari browser
 
-      if (keyLength === 0) {
+      if (userLength === 0) {
         this.screen = "game-over";
         this.gameOver();
       } else {
-        this.randArrayIndex = getRandom(keyLength);
-        const currentArray = this.newAnagram[keyLength][this.randArrayIndex];
+        this.randArrayIndex = getRandom(userLength);
+        const currentArray = this.newAnagram[userLength][this.randArrayIndex];
         const currentArrayLength = currentArray.length;
 
         this.randWordIndex = getRandom(currentArrayLength);
