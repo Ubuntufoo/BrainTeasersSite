@@ -98,7 +98,7 @@
       </div>
     </div>
     <div class="row align-items-center justify-content-center">
-      <div id="carouselHome" class="col align-self-start mx-5 carousel slide mt-5" data-bs-ride="carousel">
+      <div id="carouselHome" class="col align-self-start mx-5 carousel slide my-5" data-bs-ride="carousel">
         <div class="carousel-inner mx-auto shadow w-75">
           {% for review in reviews %}
           {% if forloop.first %}
@@ -120,7 +120,7 @@
         </div>
       </div>
       {% if user.is_authenticated %}
-      <div class="col-lg pb-5 mx-5">
+      <div class="col-lg pb-5 mx-5 mb-5">
         <form method="post" class="w-75 fs-6 p-3 shadow rounded bg-secondary bg-gradient mx-auto">
           <h5 class="fw-bold p-1 text-center">Please leave a rating and comment!</h5>
           {% csrf_token %}
