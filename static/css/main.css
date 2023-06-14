@@ -2,6 +2,12 @@
 
 main {
   font-family: 'Baloo Paaji 2', cursive;
+  background: linear-gradient(#5fc367, #ffffff);
+  height: 100vh;
+}
+
+.accordion-collapse {
+  transition: height 0.3s ease-in-out;
 }
 
 .navigation-font {
@@ -16,14 +22,13 @@ main {
 }
 
 /* give nav dropdown visual priority over alert element */
-
 .dropdown-menu {
   overflow: visible;
   z-index: 9999;
 }
 
 /* home page header section */
-#hero>div {
+/* #hero>div {
   text-align: left;
   height: 48px !important;
   line-height: 48px !important;
@@ -106,12 +111,4 @@ div.word-list {
 
 .word-list>span:nth-child(5) {
   color: #1dceff;
-}
-
-.accordion-collapse {
-  transition: height 0.3s ease-in-out;
-}
-
-body {
-  background: linear-gradient(#5fc367, #f8ffff);
-}
+} */

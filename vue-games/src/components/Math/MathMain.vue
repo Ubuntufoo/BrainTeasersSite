@@ -1,5 +1,5 @@
 <template>
-  <section class="container my-5 py-5">
+  <section class="container pt-5">
     <div class="shadow rounded bg-light w-75 mx-auto p-3">
       <h2 class="display-3 fw-bold text-warning text-center pt-4">Mathificent</h2>
       <hr class="border border-black border-3 opacity-100 rounded">

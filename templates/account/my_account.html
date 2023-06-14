@@ -4,13 +4,13 @@
 {% block title %}My Account{% endblock title %}
 
 {% block main %}
-<div class="container my-5 pb-5">
+<div class="container py-5">
   <div class="card border-success mx-auto">
     <h1 class="card-header text-center">My Account</h1>
     <div class="card-body fs-5">
       {% if user.avatar and not form.avatar.errors %}
       <img src="{{ user.avatar.url }}" alt="{{ user.username }}"
-            class="img-fluid img-thumbnail rounded mx-auto d-block" width="225" height="300"/>
+            class="img-fluid img-thumbnail rounded mx-auto d-block" width="100" height="150"/>
       {% endif %}
       <form method="post" enctype="multipart/form-data" novalidate>
         {% csrf_token %}
